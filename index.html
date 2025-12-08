@@ -95,6 +95,18 @@
             color: white;
         }
         
+        .avatar-title {
+            font-size: 1.5rem;
+            margin: 10px 0 5px;
+            color: #fff;
+        }
+        
+        .avatar-subtitle {
+            font-size: 1rem;
+            color: #a0aec0;
+            margin-bottom: 30px;
+        }
+        
         .info-section {
             flex: 2;
             min-width: 300px;
@@ -119,71 +131,126 @@
             background: linear-gradient(90deg, #ff8a00, #e52e71);
         }
         
-        .info-item {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
+        .info-list {
+            list-style: none;
+            margin-bottom: 30px;
         }
         
-        .info-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 138, 0, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: #ff8a00;
+        .info-list li {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid #ff8a00;
         }
         
-        .info-content h3 {
-            font-size: 1.1rem;
+        .info-category {
+            font-size: 1rem;
             color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 5px;
         }
         
-        .info-content p {
-            font-size: 1.2rem;
+        .info-content {
+            font-size: 1.3rem;
             color: #fff;
+            font-weight: 500;
         }
         
-        /* Skills Section */
-        .skills-section {
+        /* ĐÃ SỬA: Công cụ hỗ trợ */
+        .tools-section {
             padding: 40px;
         }
         
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
         
-        .skill-card {
+        .tool-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            padding: 20px;
-            flex: 1;
-            min-width: 200px;
-            transition: transform 0.3s, background 0.3s;
+            padding: 25px;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
             border-left: 4px solid #ff8a00;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
         
-        .skill-card:hover {
-            transform: translateY(-5px);
+        .tool-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #9d4edd);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px);
             background: rgba(255, 138, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(229, 46, 113, 0.2);
         }
         
-        .skill-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 138, 0, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #ff8a00;
+            margin-bottom: 15px;
+        }
+        
+        .tool-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
             color: #fff;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
         }
         
-        .skill-card p {
+        .tool-card p {
             color: #a0aec0;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .tool-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .tool-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(229, 46, 113, 0.3);
+        }
+        
+        .separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff8a00, transparent);
+            margin: 30px 0;
         }
         
         /* Contact Section */
@@ -260,6 +327,10 @@
             .section-title {
                 font-size: 1.5rem;
             }
+            
+            .tools-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -267,7 +338,7 @@
     <div class="container">
         <header class="header">
             <h1 class="name-tag">baotg10</h1>
-            <p class="tagline">Developer • Creator • Innovator</p>
+            <p class="tagline">Developer • Creator • Chuyên Gia Công Cụ Ngân Hàng</p>
         </header>
         
         <main class="profile-card">
@@ -276,79 +347,116 @@
                     <div class="avatar">
                         <div class="avatar-text">B</div>
                     </div>
-                    <h2>Bao Tran</h2>
-                    <p>Digital Creator</p>
+                    <h2 class="avatar-title">Bao Tran</h2>
+                    <p class="avatar-subtitle">Digital Creator</p>
                 </div>
                 
                 <div class="info-section">
                     <h2 class="section-title">Thông Tin Cá Nhân</h2>
                     
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-user"></i>
+                    <ul class="info-list">
+                        <li>
+                            <div class="info-category">Tên</div>
+                            <div class="info-content">baotg10 (Bao Tran)</div>
+                        </li>
+                        
+                        <li>
+                            <div class="info-category">Mục Tiêu</div>
+                            <div class="info-content">Tạo ra những sản phẩm công nghệ đột phá</div>
+                        </li>
+                        
+                        <li>
+                            <div class="info-category">Địa Điểm</div>
+                            <div class="info-content">Thành phố Hồ Chí Minh, Việt Nam</div>
+                        </li>
+                        
+                        <li>
+                            <div class="info-category">Chuyên Môn</div>
+                            <div class="info-content">Full-stack Development & UI/UX Design</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <!-- ĐÃ SỬA: Thay kỹ năng bằng công cụ hỗ trợ -->
+            <div class="tools-section">
+                <h2 class="section-title">Công Cụ Hỗ Trợ</h2>
+                <div class="tools-container">
+                    <!-- Tool 1 -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-calculator"></i>
                         </div>
-                        <div class="info-content">
-                            <h3>Tên</h3>
-                            <p>baotg10 (Bao Tran)</p>
-                        </div>
+                        <h3>Tool Bảng Kê Tính Lãi VPBANK</h3>
+                        <p>Công cụ tính toán lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
+                        <button class="tool-btn" data-tool="1">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Sử Dụng Ngay</span>
+                        </button>
                     </div>
                     
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-bullseye"></i>
+                    <!-- Tool 2 -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-gavel"></i>
                         </div>
-                        <div class="info-content">
-                            <h3>Mục Tiêu</h3>
-                            <p>Tạo ra những sản phẩm công nghệ đột phá</p>
-                        </div>
+                        <h3>Tool Đơn Khởi Kiện Tín Chấp VPBANK</h3>
+                        <p>Mẫu đơn khởi kiện và hướng dẫn chi tiết cho các tranh chấp liên quan đến tín chấp tại VPBANK.</p>
+                        <button class="tool-btn" data-tool="2">
+                            <i class="fas fa-download"></i>
+                            <span>Tải Mẫu Đơn</span>
+                        </button>
                     </div>
                     
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <!-- Tool 3 -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-contract"></i>
                         </div>
-                        <div class="info-content">
-                            <h3>Địa Điểm</h3>
-                            <p>Thành phố Hồ Chí Minh, Việt Nam</p>
-                        </div>
+                        <h3>Tool Bảng Tự Khai Tín Chấp VPBANK</h3>
+                        <p>Công cụ tạo bảng tự khai thông tin tín chấp theo chuẩn VPBANK, hỗ trợ thủ tục vay vốn.</p>
+                        <button class="tool-btn" data-tool="3">
+                            <i class="fas fa-edit"></i>
+                            <span>Tạo Bảng Tự Khai</span>
+                        </button>
                     </div>
                     
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-code"></i>
+                    <!-- Tool 4 -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="info-content">
-                            <h3>Chuyên Môn</h3>
-                            <p>Full-stack Development & UI/UX Design</p>
+                        <h3>Tool Tính KPI Theo Tháng VPBANK</h3>
+                        <p>Hệ thống tính toán và theo dõi chỉ số KPI hàng tháng cho nhân viên VPBANK.</p>
+                        <button class="tool-btn" data-tool="4">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Xem Báo Cáo</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Tool 5 -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-balance-scale"></i>
                         </div>
+                        <h3>Tool Tính Án Phí Của Tòa Án</h3>
+                        <p>Công cụ tính toán án phí, lệ phí tòa án theo quy định pháp luật hiện hành.</p>
+                        <button class="tool-btn" data-tool="5">
+                            <i class="fas fa-calculator"></i>
+                            <span>Tính Án Phí</span>
+                        </button>
                     </div>
                 </div>
             </div>
             
-            <div class="skills-section">
-                <h2 class="section-title">Kỹ Năng & Sở Trường</h2>
-                <div class="skills-container">
-                    <div class="skill-card">
-                        <h3><i class="fas fa-laptop-code"></i> Phát Triển Web</h3>
-                        <p>Chuyên phát triển các ứng dụng web hiện đại với HTML5, CSS3, JavaScript và các framework tiên tiến.</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <h3><i class="fas fa-palette"></i> Thiết Kế UI/UX</h3>
-                        <p>Tạo ra những giao diện người dùng đẹp mắt, trực quan và mang lại trải nghiệm tốt nhất.</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <h3><i class="fas fa-mobile-alt"></i> Phát Triển Di Động</h3>
-                        <p>Xây dựng ứng dụng di động đa nền tảng với hiệu suất tối ưu và trải nghiệm mượt mà.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="separator"></div>
             
             <div class="contact-section">
                 <h2 class="section-title">Kết Nối Với Tôi</h2>
                 <div class="contact-container">
-                    <a href="#" class="contact-button">
+                    <a href="https://github.com/giabao1881" class="contact-button" target="_blank">
                         <i class="fab fa-github contact-icon"></i>
                         <span>GitHub</span>
                     </a>
@@ -372,7 +480,7 @@
         </main>
         
         <footer class="footer">
-            <p>© 2023 <span class="highlight">baotg10</span>. Tất cả các quyền được bảo lưu.</p>
+            <p>© 2024 <span class="highlight">baotg10</span>. Tất cả các quyền được bảo lưu.</p>
             <p>Designed with <i class="fas fa-heart" style="color: #e52e71;"></i> và <i class="fas fa-code" style="color: #ff8a00;"></i></p>
         </footer>
     </div>
@@ -396,15 +504,95 @@
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeWriter, 500);
             
-            // Thêm hiệu ứng hover cho các card kỹ năng
-            const skillCards = document.querySelectorAll('.skill-card');
-            skillCards.forEach(card => {
+            // Thêm hiệu ứng hover cho các card công cụ
+            const toolCards = document.querySelectorAll('.tool-card');
+            toolCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px)';
+                    this.style.transform = 'translateY(-8px)';
                 });
                 
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Thêm hiệu ứng cho avatar
+            const avatar = document.querySelector('.avatar');
+            avatar.addEventListener('mouseenter', function() {
+                this.style.transform = 'rotate(5deg) scale(1.05)';
+            });
+            
+            avatar.addEventListener('mouseleave', function() {
+                this.style.transform = 'rotate(0deg) scale(1)';
+            });
+            
+            // Xử lý click vào các nút công cụ
+            const toolButtons = document.querySelectorAll('.tool-btn');
+            toolButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const toolNumber = this.getAttribute('data-tool');
+                    const toolTitles = [
+                        "Tool Bảng Kê Tính Lãi VPBANK",
+                        "Tool Đơn Khởi Kiện Tín Chấp VPBANK",
+                        "Tool Bảng Tự Khai Tín Chấp VPBANK",
+                        "Tool Tính KPI Theo Tháng VPBANK",
+                        "Tool Tính Án Phí Của Tòa Án"
+                    ];
+                    
+                    const toolTitle = toolTitles[toolNumber - 1];
+                    
+                    // Hiển thị thông báo demo
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.8);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 1000;
+                    `;
+                    
+                    const modalContent = document.createElement('div');
+                    modalContent.style.cssText = `
+                        background: rgba(25, 25, 40, 0.95);
+                        padding: 40px;
+                        border-radius: 15px;
+                        max-width: 500px;
+                        width: 90%;
+                        border: 1px solid rgba(255, 138, 0, 0.3);
+                        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+                    `;
+                    
+                    modalContent.innerHTML = `
+                        <h3 style="color: #ff8a00; margin-bottom: 20px; font-size: 1.5rem;">${toolTitle}</h3>
+                        <p style="color: #a0aec0; margin-bottom: 30px; line-height: 1.6;">
+                            Công cụ này đang trong quá trình phát triển. Phiên bản đầy đủ sẽ sớm được cập nhật!
+                        </p>
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <button id="closeModal" style="padding: 12px 25px; background: linear-gradient(90deg, #ff8a00, #e52e71); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                Đóng
+                            </button>
+                        </div>
+                    `;
+                    
+                    modal.appendChild(modalContent);
+                    document.body.appendChild(modal);
+                    
+                    // Đóng modal
+                    document.getElementById('closeModal').addEventListener('click', function() {
+                        document.body.removeChild(modal);
+                    });
+                    
+                    // Đóng khi click ra ngoài
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            document.body.removeChild(modal);
+                        }
+                    });
                 });
             });
         });
