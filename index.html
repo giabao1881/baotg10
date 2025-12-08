@@ -173,26 +173,62 @@
             transform: translateY(0);
         }
         
-        /* Donate Tab */
+        /* Donate Tab - QR Code Chất lượng cao */
+        .donate-container {
+            text-align: center;
+        }
+        
+        .donate-qr-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+        
         .donate-qr {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 20px;
+            width: 250px; /* Tăng kích thước cho rõ */
+            height: 250px;
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            border: 3px solid #3b82f6;
+        }
+        
+        .donate-qr:before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            border-radius: 19px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .qr-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Giữ nguyên tỷ lệ */
+            border-radius: 8px;
+            image-rendering: -webkit-optimize-contrast; /* Tối ưu cho Chrome */
+            image-rendering: crisp-edges; /* Tối ưu cho Firefox */
+            -ms-interpolation-mode: nearest-neighbor; /* Tối ưu cho IE */
         }
         
         .qr-placeholder {
-            width: 170px;
-            height: 170px;
-            background: linear-gradient(45deg, #f1f5f9, #e2e8f0);
-            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f8fafc, #f1f5f9);
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -201,26 +237,86 @@
             font-weight: bold;
             font-size: 0.9rem;
             text-align: center;
+            padding: 20px;
+            border: 2px dashed #cbd5e1;
         }
         
         .qr-placeholder i {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #475569;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #64748b;
         }
         
         .donate-text {
             color: #f1f5f9;
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
         
         .donate-subtext {
             color: #94a3b8;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-align: center;
+            line-height: 1.6;
+            max-width: 400px;
+            margin: 0 auto 20px;
+        }
+        
+        .bank-info {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+            border-radius: 12px;
+            padding: 18px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .bank-name {
+            color: #3b82f6;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .account-number {
+            color: #f1f5f9;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        .qr-quality-tips {
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 20px;
+            text-align: left;
+            border-left: 3px solid #f59e0b;
+        }
+        
+        .qr-quality-tips h4 {
+            color: #f59e0b;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .qr-quality-tips ul {
+            color: #cbd5e1;
+            font-size: 0.85rem;
+            padding-left: 20px;
             line-height: 1.5;
+        }
+        
+        .qr-quality-tips li {
+            margin-bottom: 5px;
         }
         
         /* Email/Phone Tab */
@@ -247,23 +343,23 @@
         }
         
         .copy-btn {
-            padding: 8px 16px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 6px;
-            color: #3b82f6;
-            font-size: 0.9rem;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
         
         .copy-btn:hover {
-            background: rgba(59, 130, 246, 0.2);
             transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
         }
         
         /* Right Column */
@@ -455,6 +551,27 @@
             font-weight: 600;
         }
         
+        /* Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .name-main {
@@ -485,13 +602,8 @@
             }
             
             .donate-qr {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .qr-placeholder {
-                width: 150px;
-                height: 150px;
+                width: 220px;
+                height: 220px;
             }
         }
         
@@ -509,38 +621,31 @@
             }
             
             .donate-qr {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .qr-placeholder {
-                width: 120px;
-                height: 120px;
-                font-size: 0.8rem;
+                width: 200px;
+                height: 200px;
             }
         }
         
-        /* Animation */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        /* Download Button */
+        .download-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #10b981, #059669);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        .highlight-donate {
-            position: relative;
-        }
-        
-        .highlight-donate:after {
-            content: '🔥';
-            position: absolute;
-            top: -8px;
-            right: -25px;
-            font-size: 1.2rem;
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
         }
     </style>
 </head>
@@ -566,7 +671,7 @@
                 <div class="contact-tabs">
                     <div class="tab-buttons">
                         <button class="tab-btn active" data-tab="donate">
-                            <div class="tab-icon">❤️</div>
+                            <div class="tab-icon">💰</div>
                             <div>
                                 <div style="font-weight: 600;">Ủng hộ tác giả</div>
                                 <div style="font-size: 0.85rem; color: #94a3b8;">Donate & Support</div>
@@ -592,19 +697,65 @@
                     
                     <!-- Tab Contents -->
                     <div class="tab-content active" id="donate-tab">
-                        <div class="donate-qr pulse">
-    <img src="https://giabao1881.github.io/baotg10/qr-donate.png" 
-         alt="QR Code Donate" 
-         style="width: 170px; height: 170px; border-radius: 5px;">
-</div>
-                        
-                        <h3 class="donate-text">Hỗ trợ phát triển công cụ! 💖</h3>
-                        <p class="donate-subtext">
-                            Mọi đóng góp của bạn sẽ giúp tôi tiếp tục tạo ra những công cụ hữu ích miễn phí cho cộng đồng.
-                        </p>
-                        <p class="donate-subtext" style="margin-top: 15px; color: #3b82f6; font-weight: 500;">
-                            <i class="fas fa-star"></i> Cảm ơn sự ủng hộ của bạn!
-                        </p>
+                        <div class="donate-container">
+                            <!-- QR Code Container với hiệu ứng border -->
+                            <div class="donate-qr-container float">
+                                <div class="donate-qr pulse">
+                                    <!-- QR Code Thật - Chất lượng cao -->
+                                    <img src="https://quickchart.io/qr?text=https://giabao1881.github.io/baotg10/donate&size=500&margin=0&dark=3b82f6&light=ffffff&format=png"
+                                         alt="QR Code Donate" 
+                                         class="qr-image"
+                                         crossorigin="anonymous"
+                                         onerror="this.style.display='none'; document.getElementById('qr-placeholder').style.display='flex';">
+                                    
+                                    <!-- Placeholder nếu QR code lỗi -->
+                                    <div id="qr-placeholder" class="qr-placeholder" style="display: none;">
+                                        <i class="fas fa-qrcode"></i>
+                                        <span>QR Code Donate</span>
+                                        <small style="font-size: 0.7rem; margin-top: 10px; color: #64748b;">
+                                            Đang tải QR code...
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="donate-text">Hỗ trợ phát triển công cụ! 💖</h3>
+                            <p class="donate-subtext">
+                                Mọi đóng góp của bạn sẽ giúp tôi tiếp tục tạo ra những công cụ hữu ích miễn phí cho cộng đồng.
+                            </p>
+                            
+                            <!-- Thông tin chuyển khoản -->
+                            <div class="bank-info">
+                                <div class="bank-name">NGÂN HÀNG VPBANK</div>
+                                <div class="account-number">0336 620 689</div>
+                                <div style="color: #94a3b8; font-size: 0.85rem; margin-top: 8px;">
+                                    Chủ tài khoản: BAO TRAN
+                                </div>
+                            </div>
+                            
+                            <!-- Tips cho QR code chất lượng cao -->
+                            <div class="qr-quality-tips">
+                                <h4><i class="fas fa-lightbulb"></i> Để QR code rõ nét:</h4>
+                                <ul>
+                                    <li>Xuất file PNG độ phân giải cao (1000x1000px)</li>
+                                    <li>Nền trắng, mã đen hoặc màu tương phản</li>
+                                    <li>Không làm mờ hay nén chất lượng</li>
+                                    <li>Test scan trước khi upload</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Nút tải QR code mẫu -->
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button class="download-btn" id="downloadSampleQR">
+                                    <i class="fas fa-download"></i>
+                                    Tải QR Code Mẫu
+                                </button>
+                                <button class="download-btn" id="refreshQR" style="margin-left: 10px; background: linear-gradient(90deg, #8b5cf6, #ec4899);">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Làm Mới QR
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="tab-content" id="email-tab">
@@ -809,19 +960,89 @@
                 navigator.clipboard.writeText(text).then(() => {
                     const originalHTML = this.innerHTML;
                     this.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
-                    this.style.background = 'rgba(34, 197, 94, 0.2)';
-                    this.style.borderColor = 'rgba(34, 197, 94, 0.3)';
-                    this.style.color = '#22c55e';
+                    this.style.background = 'linear-gradient(90deg, #10b981, #059669)';
                     
                     setTimeout(() => {
                         this.innerHTML = originalHTML;
                         this.style.background = '';
-                        this.style.borderColor = '';
-                        this.style.color = '';
                     }, 2000);
                 });
             });
         });
+        
+        // Tải QR code mẫu chất lượng cao
+        document.getElementById('downloadSampleQR').addEventListener('click', function() {
+            // Tạo QR code mẫu chất lượng cao
+            const qrUrl = 'https://quickchart.io/qr?text=https%3A%2F%2Fgiabao1881.github.io%2Fbaotg10%2Fdonate&size=500&margin=0&dark=3b82f6&light=ffffff&format=png&qzone=2';
+            
+            const link = document.createElement('a');
+            link.href = qrUrl;
+            link.download = 'qr-donate-sample.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Hiển thị thông báo
+            this.innerHTML = '<i class="fas fa-check"></i> Đã tải mẫu!';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-download"></i> Tải QR Code Mẫu';
+            }, 2000);
+        });
+        
+        // Làm mới QR code
+        document.getElementById('refreshQR').addEventListener('click', function() {
+            const qrImage = document.querySelector('.qr-image');
+            const timestamp = new Date().getTime();
+            
+            // Thêm timestamp để tránh cache
+            qrImage.src = `https://quickchart.io/qr?text=https://giabao1881.github.io/baotg10/donate&size=500&margin=0&dark=3b82f6&light=ffffff&format=png&t=${timestamp}`;
+            
+            // Hiển thị loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang làm mới...';
+            
+            // Kiểm tra khi ảnh load xong
+            qrImage.onload = () => {
+                this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm Mới QR';
+                
+                // Ẩn placeholder nếu có
+                const placeholder = document.getElementById('qr-placeholder');
+                if (placeholder) {
+                    placeholder.style.display = 'none';
+                }
+            };
+            
+            qrImage.onerror = () => {
+                this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm Mới QR';
+                alert('Không thể tải QR code. Vui lòng thử lại sau!');
+            };
+        });
+        
+        // Tự động ẩn placeholder khi QR code load thành công
+        const qrImage = document.querySelector('.qr-image');
+        const placeholder = document.getElementById('qr-placeholder');
+        
+        if (qrImage) {
+            qrImage.onload = function() {
+                if (placeholder) {
+                    placeholder.style.display = 'none';
+                }
+            };
+            
+            qrImage.onerror = function() {
+                if (placeholder) {
+                    placeholder.style.display = 'flex';
+                }
+            };
+            
+            // Kiểm tra nếu ảnh đã load sẵn
+            if (qrImage.complete) {
+                if (qrImage.naturalHeight !== 0) {
+                    if (placeholder) {
+                        placeholder.style.display = 'none';
+                    }
+                }
+            }
+        }
         
         // Tool coming soon
         document.querySelectorAll('.tool-btn.coming-soon').forEach(btn => {
@@ -833,37 +1054,17 @@
             });
         });
         
-        // QR code pulse animation
-        const qrPlaceholder = document.querySelector('.qr-placeholder');
-        setInterval(() => {
-            qrPlaceholder.parentElement.classList.add('pulse');
-            setTimeout(() => {
-                qrPlaceholder.parentElement.classList.remove('pulse');
-            }, 2000);
-        }, 6000);
-        
-        // Avatar hover effect
-        const avatar = document.querySelector('.avatar');
-        avatar.addEventListener('mouseenter', () => {
-            avatar.style.transform = 'rotate(10deg) scale(1.1)';
-            avatar.style.transition = 'transform 0.3s ease';
-        });
-        
-        avatar.addEventListener('mouseleave', () => {
-            avatar.style.transform = 'rotate(0) scale(1)';
-        });
-        
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeWriter, 300);
             
-            // Auto-switch to donate tab after 5 seconds if not already active
+            // Auto-switch to donate tab after 2 seconds
             setTimeout(() => {
                 const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
                 if (activeTab !== 'donate') {
                     document.querySelector('[data-tab="donate"]').click();
                 }
-            }, 5000);
+            }, 2000);
         });
     </script>
 </body>
