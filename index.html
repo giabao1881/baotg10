@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>baotg10 | Profile</title>
+    <title>baotg10 | Digital Creator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,117 +14,135 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #f0f0f0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
             min-height: 100vh;
             overflow-x: hidden;
         }
         
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 1000;
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
         
-        .scroll-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        /* Header */
+        .header {
             text-align: center;
+            padding: 60px 20px;
             position: relative;
-            overflow: hidden;
         }
         
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 138, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(229, 46, 113, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
-            z-index: -1;
-        }
-        
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            color: rgba(255, 255, 255, 0.6);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-            40% {transform: translateX(-50%) translateY(-10px);}
-            60% {transform: translateX(-50%) translateY(-5px);}
-        }
-        
-        .name-tag {
-            font-size: 4rem;
-            background: linear-gradient(90deg, #ff8a00, #e52e71, #9d4edd);
+        .name-main {
+            font-size: 4.5rem;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
         
-        .tagline {
-            font-size: 1.5rem;
-            color: #a0aec0;
+        .title-main {
+            font-size: 1.4rem;
+            color: #94a3b8;
             font-weight: 300;
-            margin-bottom: 60px;
-            max-width: 600px;
-            line-height: 1.6;
+            margin-bottom: 40px;
         }
         
-        /* Divider */
-        .divider {
-            width: 80%;
-            max-width: 800px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 138, 0, 0.5), transparent);
-            margin: 40px auto;
+        /* Profile Section */
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: start;
         }
         
-        /* Content Section */
-        .content-section {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        /* Left Column - Avatar & Quick Info */
+        .profile-left {
+            position: sticky;
+            top: 40px;
+        }
+        
+        .avatar-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 5rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .name-title {
+            font-size: 2rem;
+            color: #f1f5f9;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+        
+        /* Contact Toggle Button */
+        .contact-toggle {
+            margin-top: 30px;
+        }
+        
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #3b82f6;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .toggle-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Right Column - Personal Info */
+        .profile-right {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .section-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
+            color: #f1f5f9;
             margin-bottom: 40px;
-            color: #fff;
-            text-align: center;
             position: relative;
             padding-bottom: 15px;
         }
@@ -133,83 +151,35 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
-            border-radius: 2px;
-        }
-        
-        /* Profile Info */
-        .profile-info {
-            background: rgba(25, 25, 40, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 50px;
-            margin-bottom: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff8a00, #e52e71);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            font-weight: 800;
-            color: white;
-            box-shadow: 0 10px 25px rgba(229, 46, 113, 0.3);
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            flex-shrink: 0;
-        }
-        
-        .profile-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        
-        .profile-text p {
-            font-size: 1.2rem;
-            color: #a0aec0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
         }
         
         /* Info Grid */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
         }
         
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         .info-item {
-            background: rgba(255, 255, 255, 0.05);
             padding: 25px;
-            border-radius: 15px;
-            border-left: 4px solid #ff8a00;
-            transition: transform 0.3s, background 0.3s;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            border-left: 3px solid #3b82f6;
         }
         
-        .info-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .info-category {
+        .info-label {
             font-size: 0.9rem;
-            color: #a0aec0;
+            color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 10px;
@@ -217,152 +187,129 @@
         }
         
         .info-content {
-            font-size: 1.3rem;
-            color: #fff;
-            font-weight: 600;
+            font-size: 1.2rem;
+            color: #f1f5f9;
+            font-weight: 500;
             line-height: 1.5;
         }
         
-        /* Contact Section - Moved before tools */
-        .contact-section {
-            background: rgba(25, 25, 40, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 50px;
-            margin-bottom: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .contact-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s, background 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 138, 0, 0.1);
-        }
-        
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 138, 0, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #ff8a00;
-            margin: 0 auto 20px;
-        }
-        
-        .contact-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        
-        .contact-card p {
-            color: #a0aec0;
-            line-height: 1.6;
-            font-size: 1rem;
-        }
-        
-        .contact-link {
-            color: #ff8a00;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        
-        .contact-link:hover {
-            color: #e52e71;
-            text-decoration: underline;
-        }
-        
-        /* Donate Section */
-        .donate-card {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, rgba(255, 138, 0, 0.1), rgba(229, 46, 113, 0.1));
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px dashed rgba(255, 138, 0, 0.3);
-        }
-        
-        .donate-qr {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 20px;
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .donate-qr:before {
-            content: '';
-            position: absolute;
+        /* Contact Modal */
+        .contact-modal {
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            padding: 20px;
         }
         
-        .qr-placeholder {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-weight: bold;
-            font-size: 0.9rem;
+        .contact-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        
+        .contact-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: #f1f5f9;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            color: #f1f5f9;
+            margin-bottom: 30px;
             text-align: center;
         }
         
-        .qr-placeholder i {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #666;
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         
-        .donate-text {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            transition: background 0.3s;
         }
         
-        .donate-subtext {
-            color: #a0aec0;
+        .contact-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #3b82f6;
+            flex-shrink: 0;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-type {
             font-size: 0.9rem;
-            max-width: 400px;
-            margin: 0 auto;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            font-size: 1.1rem;
+            color: #f1f5f9;
+            font-weight: 500;
         }
         
         /* Tools Section */
+        .tools-section {
+            margin-top: 80px;
+        }
+        
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -371,10 +318,10 @@
         }
         
         .tool-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(30, 41, 59, 0.5);
             border-radius: 15px;
             padding: 30px;
-            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
@@ -387,37 +334,37 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71, #9d4edd);
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
         }
         
         .tool-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 138, 0, 0.1);
-            box-shadow: 0 15px 30px rgba(229, 46, 113, 0.2);
+            transform: translateY(-5px);
+            background: rgba(59, 130, 246, 0.1);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
         }
         
         .tool-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 138, 0, 0.15);
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            color: #ff8a00;
+            font-size: 1.5rem;
+            color: #3b82f6;
             margin-bottom: 20px;
         }
         
         .tool-card h3 {
             font-size: 1.4rem;
+            color: #f1f5f9;
             margin-bottom: 15px;
-            color: #fff;
             min-height: 60px;
         }
         
         .tool-card p {
-            color: #a0aec0;
+            color: #94a3b8;
             line-height: 1.6;
             margin-bottom: 25px;
         }
@@ -428,531 +375,439 @@
             justify-content: center;
             gap: 8px;
             padding: 12px 24px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             color: white;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
             transition: all 0.3s;
+            width: 100%;
             border: none;
             cursor: pointer;
-            width: 100%;
         }
         
         .tool-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(229, 46, 113, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
         }
         
         .tool-btn.coming-soon {
-            background: linear-gradient(90deg, #64748b, #94a3b8);
+            background: linear-gradient(90deg, #475569, #64748b);
             cursor: not-allowed;
         }
         
         .tool-status {
             display: inline-block;
-            padding: 4px 12px;
-            background: rgba(76, 175, 80, 0.2);
-            color: #4caf50;
-            border-radius: 20px;
+            padding: 4px 10px;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border-radius: 4px;
             font-size: 0.8rem;
             margin-left: 10px;
             font-weight: 600;
         }
         
         .tool-status.coming-soon {
-            background: rgba(255, 152, 0, 0.2);
-            color: #ff9800;
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
         }
         
         /* Footer */
         .footer {
             text-align: center;
-            padding: 40px 20px;
-            color: #a0aec0;
+            padding: 60px 20px 40px;
+            color: #64748b;
             font-size: 0.9rem;
+            margin-top: 80px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 60px;
         }
         
         .highlight {
-            color: #ff8a00;
+            color: #3b82f6;
             font-weight: 600;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .name-tag {
-                font-size: 2.5rem;
+            .name-main {
+                font-size: 3rem;
             }
             
-            .tagline {
-                font-size: 1.2rem;
-                margin-bottom: 40px;
-            }
-            
-            .profile-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-            
-            .profile-info,
-            .contact-section {
+            .profile-right {
                 padding: 30px 20px;
             }
             
-            .profile-text h2 {
-                font-size: 2rem;
+            .avatar {
+                width: 150px;
+                height: 150px;
+                font-size: 4rem;
             }
             
-            .tools-grid,
-            .contact-grid {
+            .name-title {
+                font-size: 1.8rem;
+            }
+            
+            .tools-grid {
                 grid-template-columns: 1fr;
             }
             
             .tool-card h3 {
                 min-height: auto;
             }
-            
-            .donate-qr {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .qr-placeholder {
-                width: 130px;
-                height: 130px;
-            }
         }
         
         @media (max-width: 480px) {
-            .name-tag {
-                font-size: 2rem;
+            .name-main {
+                font-size: 2.5rem;
             }
             
-            .avatar {
-                width: 120px;
-                height: 120px;
-                font-size: 3rem;
+            .title-main {
+                font-size: 1.2rem;
             }
             
             .section-title {
                 font-size: 1.5rem;
             }
             
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .donate-qr {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .qr-placeholder {
-                width: 110px;
-                height: 110px;
-                font-size: 0.8rem;
+            .modal-content {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
-        <div class="scroll-progress" id="scrollProgress"></div>
-    </div>
-    
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-background"></div>
-        
-        <h1 class="name-tag">baotg10</h1>
-        <p class="tagline">Developer • Creator • Chuyên Gia Công Cụ Ngân Hàng</p>
-        
-        <div class="scroll-hint">
-            <span>Cuộn xuống để khám phá</span>
-            <i class="fas fa-chevron-down"></i>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="name-main">baotg10</h1>
+            <p class="title-main">Developer • Creator • Chuyên Gia Công Cụ Ngân Hàng</p>
         </div>
-    </section>
-    
-    <!-- Divider -->
-    <div class="divider"></div>
-    
-    <!-- Content Section -->
-    <div class="content-section">
-        <!-- Profile Info -->
-        <div class="profile-info">
-            <div class="profile-header">
-                <div class="avatar">B</div>
-                <div class="profile-text">
-                    <h2>Bao Tran</h2>
-                    <p>Digital Creator</p>
+        
+        <!-- Main Content -->
+        <div class="profile-section">
+            <!-- Left Column -->
+            <div class="profile-left">
+                <div class="avatar-container">
+                    <div class="avatar">B</div>
+                    <h2 class="name-title">Bao Tran</h2>
+                    <p class="subtitle">Digital Creator</p>
+                </div>
+                
+                <!-- Contact Toggle Button -->
+                <div class="contact-toggle">
+                    <button class="toggle-btn" id="contactToggle">
+                        <i class="fas fa-address-card"></i>
+                        <span>Kết nối với tôi</span>
+                    </button>
                 </div>
             </div>
             
-            <h2 class="section-title">Thông Tin Cá Nhân</h2>
-            
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="info-category">Tên</span>
-                    <div class="info-content">baotg10 (Bao Tran)</div>
-                </div>
+            <!-- Right Column -->
+            <div class="profile-right">
+                <h2 class="section-title">Thông Tin Cá Nhân</h2>
                 
-                <div class="info-item">
-                    <span class="info-category">Mục Tiêu</span>
-                    <div class="info-content">Tạo ra những sản phẩm công nghệ đột phá</div>
-                </div>
-                
-                <div class="info-item">
-                    <span class="info-category">Địa Điểm</span>
-                    <div class="info-content">Thành phố Hồ Chí Minh, Việt Nam</div>
-                </div>
-                
-                <div class="info-item">
-                    <span class="info-category">Chuyên Môn</span>
-                    <div class="info-content">Full-stack Development & UI/UX Design</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Divider -->
-        <div class="divider"></div>
-        
-        <!-- Contact Section - Đã chuyển lên trên -->
-        <div class="contact-section">
-            <h2 class="section-title">Kết Nối Với Tôi</h2>
-            
-            <div class="contact-grid">
-                <!-- Email -->
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email</h3>
-                    <p>
-                        <a href="mailto:baotg10@vpbank.com.vn" class="contact-link">
-                            baotg10@vpbank.com.vn
-                        </a>
-                    </p>
-                </div>
-                
-                <!-- Điện thoại -->
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <h3>Điện Thoại</h3>
-                    <p>
-                        <a href="tel:+84336620689" class="contact-link">
-                            0336 620 689
-                        </a>
-                    </p>
-                </div>
-                
-                <!-- GitHub -->
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <h3>GitHub</h3>
-                    <p>
-                        <a href="https://github.com/giabao1881" class="contact-link" target="_blank">
-                            github.com/giabao1881
-                        </a>
-                    </p>
-                </div>
-                
-                <!-- Donate Section -->
-                <div class="donate-card">
-                    <div class="donate-qr">
-                        <div class="qr-placeholder">
-                            <i class="fas fa-qrcode"></i>
-                            <span>QR Code Donate</span>
-                        </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Tên</span>
+                        <div class="info-content">baotg10 (Bao Tran)</div>
                     </div>
                     
-                    <h3 class="donate-text">Ủng Hộ Tác Giả ❤️</h3>
-                    <p class="donate-subtext">
-                        Scan QR code để ủng hộ và giúp tôi tiếp tục phát triển thêm nhiều công cụ hữu ích!
-                    </p>
-                    <p class="donate-subtext" style="margin-top: 10px; color: #ff8a00; font-weight: 600;">
-                        <i class="fas fa-coins"></i> Mọi đóng góp đều được trân trọng!
-                    </p>
+                    <div class="info-item">
+                        <span class="info-label">Mục Tiêu</span>
+                        <div class="info-content">Tạo ra những sản phẩm công nghệ đột phá</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Địa Điểm</span>
+                        <div class="info-content">Thành phố Hồ Chí Minh, Việt Nam</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Chuyên Môn</span>
+                        <div class="info-content">Full-stack Development & UI/UX Design</div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- Divider -->
-        <div class="divider"></div>
+        <!-- Contact Modal -->
+        <div class="contact-modal" id="contactModal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <h3 class="modal-title">Kết Nối Với Tôi</h3>
+                
+                <div class="contact-list">
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-type">Email</div>
+                            <div class="contact-value">baotg10@vpbank.com.vn</div>
+                        </div>
+                        <button class="copy-btn" data-text="baotg10@vpbank.com.vn">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Phone -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-type">Điện Thoại</div>
+                            <div class="contact-value">0336 620 689</div>
+                        </div>
+                        <button class="copy-btn" data-text="0336620689">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Donate -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-type">Ủng Hộ</div>
+                            <div class="contact-value">Donate & Ủng hộ tác giả</div>
+                        </div>
+                        <button class="donate-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <!-- Tools Section -->
-        <h2 class="section-title">Công Cụ Hỗ Trợ</h2>
-        <div class="tools-grid">
-            <!-- Tool 1: Bảng kê tính lãi -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <h3>Tool Bảng Kê Tính Lãi VPBANK
-                    <span class="tool-status">LIVE</span>
-                </h3>
-                <p>Công cụ tính toán lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
-                <a href="https://giabao1881.github.io/BKTL/" class="tool-btn" target="_blank">
-                    <i class="fas fa-external-link-alt"></i>
-                    <span>Truy Cập Tool</span>
-                </a>
-            </div>
+        <div class="tools-section">
+            <h2 class="section-title">Công Cụ Hỗ Trợ</h2>
             
-            <!-- Tool 2: Đơn khởi kiện -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-gavel"></i>
+            <div class="tools-grid">
+                <!-- Tool 1: Bảng kê tính lãi -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Tool Bảng Kê Tính Lãi VPBANK
+                        <span class="tool-status">LIVE</span>
+                    </h3>
+                    <p>Công cụ tính toán lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
+                    <a href="https://giabao1881.github.io/BKTL/" class="tool-btn" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Truy Cập Tool</span>
+                    </a>
                 </div>
-                <h3>Tool Đơn Khởi Kiện Tín Chấp VPBANK
-                    <span class="tool-status coming-soon">SOON</span>
-                </h3>
-                <p>Mẫu đơn khởi kiện và hướng dẫn chi tiết cho các tranh chấp liên quan đến tín chấp tại VPBANK.</p>
-                <button class="tool-btn coming-soon" disabled>
-                    <i class="fas fa-clock"></i>
-                    <span>Đang Phát Triển</span>
-                </button>
-            </div>
-            
-            <!-- Tool 3: Bảng tự khai -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-file-contract"></i>
+                
+                <!-- Tool 2: Đơn khởi kiện -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Tool Đơn Khởi Kiện Tín Chấp VPBANK
+                        <span class="tool-status coming-soon">SOON</span>
+                    </h3>
+                    <p>Mẫu đơn khởi kiện và hướng dẫn chi tiết cho các tranh chấp liên quan đến tín chấp tại VPBANK.</p>
+                    <button class="tool-btn coming-soon" disabled>
+                        <i class="fas fa-clock"></i>
+                        <span>Đang Phát Triển</span>
+                    </button>
                 </div>
-                <h3>Tool Bảng Tự Khai Tín Chấp VPBANK
-                    <span class="tool-status coming-soon">SOON</span>
-                </h3>
-                <p>Công cụ tạo bảng tự khai thông tin tín chấp theo chuẩn VPBANK, hỗ trợ thủ tục vay vốn.</p>
-                <button class="tool-btn coming-soon" disabled>
-                    <i class="fas fa-clock"></i>
-                    <span>Đang Phát Triển</span>
-                </button>
-            </div>
-            
-            <!-- Tool 4: Tính KPI -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-chart-line"></i>
+                
+                <!-- Tool 3: Bảng tự khai -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Tool Bảng Tự Khai Tín Chấp VPBANK
+                        <span class="tool-status coming-soon">SOON</span>
+                    </h3>
+                    <p>Công cụ tạo bảng tự khai thông tin tín chấp theo chuẩn VPBANK, hỗ trợ thủ tục vay vốn.</p>
+                    <button class="tool-btn coming-soon" disabled>
+                        <i class="fas fa-clock"></i>
+                        <span>Đang Phát Triển</span>
+                    </button>
                 </div>
-                <h3>Tool Tính KPI Theo Tháng VPBANK
-                    <span class="tool-status">LIVE</span>
-                </h3>
-                <p>Hệ thống tính toán và theo dõi chỉ số KPI hàng tháng cho nhân viên VPBANK.</p>
-                <a href="https://giabao1881.github.io/KPI/" class="tool-btn" target="_blank">
-                    <i class="fas fa-external-link-alt"></i>
-                    <span>Truy Cập Tool</span>
-                </a>
-            </div>
-            
-            <!-- Tool 5: Tính án phí -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-balance-scale"></i>
+                
+                <!-- Tool 4: Tính KPI -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Tool Tính KPI Theo Tháng VPBANK
+                        <span class="tool-status">LIVE</span>
+                    </h3>
+                    <p>Hệ thống tính toán và theo dõi chỉ số KPI hàng tháng cho nhân viên VPBANK.</p>
+                    <a href="https://giabao1881.github.io/KPI/" class="tool-btn" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Truy Cập Tool</span>
+                    </a>
                 </div>
-                <h3>Tool Tính Án Phí Của Tòa Án
-                    <span class="tool-status">LIVE</span>
-                </h3>
-                <p>Công cụ tính toán án phí, lệ phí tòa án theo quy định pháp luật hiện hành.</p>
-                <a href="https://giabao1881.github.io/ANPHI/" class="tool-btn" target="_blank">
-                    <i class="fas fa-external-link-alt"></i>
-                    <span>Truy Cập Tool</span>
-                </a>
+                
+                <!-- Tool 5: Tính án phí -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Tool Tính Án Phí Của Tòa Án
+                        <span class="tool-status">LIVE</span>
+                    </h3>
+                    <p>Công cụ tính toán án phí, lệ phí tòa án theo quy định pháp luật hiện hành.</p>
+                    <a href="https://giabao1881.github.io/ANPHI/" class="tool-btn" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Truy Cập Tool</span>
+                    </a>
+                </div>
             </div>
         </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2024 <span class="highlight">baotg10</span>. Tất cả các quyền được bảo lưu.</p>
+            <p style="margin-top: 10px;">Digital Creator & Chuyên gia công cụ ngân hàng</p>
+        </footer>
     </div>
     
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2024 <span class="highlight">baotg10</span>. Tất cả các quyền được bảo lưu.</p>
-        <p style="margin-top: 10px;">Designed with <i class="fas fa-heart" style="color: #e52e71;"></i> và <i class="fas fa-code" style="color: #ff8a00;"></i></p>
-    </footer>
-    
     <script>
-        // Scroll progress indicator
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercent = (scrollTop / scrollHeight) * 100;
-            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
-        });
-        
         // Hiệu ứng gõ chữ cho tên
-        const nameTag = document.querySelector('.name-tag');
-        const originalText = nameTag.textContent;
-        nameTag.textContent = '';
+        const nameMain = document.querySelector('.name-main');
+        const originalText = nameMain.textContent;
+        nameMain.textContent = '';
         
         let i = 0;
         function typeWriter() {
             if (i < originalText.length) {
-                nameTag.textContent += originalText.charAt(i);
+                nameMain.textContent += originalText.charAt(i);
                 i++;
                 setTimeout(typeWriter, 100);
             }
         }
         
-        // Smooth scroll cho các link nội bộ
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Contact Modal
+        const contactModal = document.getElementById('contactModal');
+        const contactToggle = document.getElementById('contactToggle');
+        const modalClose = document.getElementById('modalClose');
+        
+        contactToggle.addEventListener('click', () => {
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        modalClose.addEventListener('click', () => {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Đóng modal khi click ra ngoài
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Copy to clipboard function
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const text = this.getAttribute('data-text');
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalIcon = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.style.color = '#22c55e';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalIcon;
+                        this.style.color = '';
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Donate button
+        document.querySelector('.donate-btn').addEventListener('click', () => {
+            const donateModal = document.createElement('div');
+            donateModal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+                padding: 20px;
+            `;
+            
+            donateModal.innerHTML = `
+                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+                    border-radius: 20px; padding: 40px; max-width: 400px; width: 100%;
+                    border: 1px solid rgba(59, 130, 246, 0.3); text-align: center;">
+                    <h3 style="color: #f1f5f9; margin-bottom: 20px;">
+                        <i class="fas fa-heart" style="color: #ec4899; margin-right: 10px;"></i>
+                        Ủng Hộ Tác Giả
+                    </h3>
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <div style="width: 200px; height: 200px; margin: 0 auto; background: #f1f5f9; 
+                            display: flex; flex-direction: column; align-items: center; justify-content: center;
+                            border-radius: 5px; color: #333; font-weight: bold;">
+                            <i class="fas fa-qrcode" style="font-size: 3rem; color: #666; margin-bottom: 10px;"></i>
+                            QR Code Donate
+                        </div>
+                    </div>
+                    <p style="color: #94a3b8; margin-bottom: 30px; line-height: 1.6;">
+                        Scan QR code để ủng hộ và giúp tôi tiếp tục phát triển thêm nhiều công cụ hữu ích!
+                    </p>
+                    <button id="closeDonate" style="padding: 12px 25px; background: linear-gradient(90deg, #3b82f6, #8b5cf6); 
+                        color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                        Đóng
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(donateModal);
+            document.body.style.overflow = 'hidden';
+            
+            document.getElementById('closeDonate').addEventListener('click', () => {
+                document.body.removeChild(donateModal);
+                document.body.style.overflow = 'auto';
+            });
+            
+            donateModal.addEventListener('click', (e) => {
+                if (e.target === donateModal) {
+                    document.body.removeChild(donateModal);
+                    document.body.style.overflow = 'auto';
                 }
             });
         });
         
-        // Hiệu ứng scroll reveal
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Tool coming soon
+        document.querySelectorAll('.tool-btn.coming-soon').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.disabled) {
+                    e.preventDefault();
+                    alert('Công cụ này đang được phát triển. Vui lòng quay lại sau!');
                 }
             });
-        }, observerOptions);
+        });
         
-        // Áp dụng hiệu ứng cho các phần tử
+        // Hiệu ứng scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            document.querySelector('.avatar').style.transform = `translateY(${rate}px)`;
+        });
+        
+        // Khởi tạo
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeWriter, 300);
-            
-            // Áp dụng animation cho các phần tử
-            const animatedElements = document.querySelectorAll('.profile-info, .contact-section, .tool-card, .info-item, .contact-card');
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-            
-            // Xử lý tool đang phát triển
-            document.querySelectorAll('.tool-btn.coming-soon').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    if (this.disabled) {
-                        e.preventDefault();
-                        
-                        const toolCard = this.closest('.tool-card');
-                        const toolTitle = toolCard.querySelector('h3').textContent.replace('SOON', '').trim();
-                        
-                        // Tạo modal
-                        const modal = document.createElement('div');
-                        modal.style.cssText = `
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background: rgba(0,0,0,0.9);
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            z-index: 2000;
-                            padding: 20px;
-                        `;
-                        
-                        const modalContent = document.createElement('div');
-                        modalContent.style.cssText = `
-                            background: rgba(25, 25, 40, 0.95);
-                            padding: 40px;
-                            border-radius: 20px;
-                            max-width: 500px;
-                            width: 100%;
-                            border: 1px solid rgba(255, 152, 0, 0.3);
-                            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-                            animation: modalFadeIn 0.3s ease;
-                        `;
-                        
-                        modalContent.innerHTML = `
-                            <h3 style="color: #ff9800; margin-bottom: 20px; font-size: 1.5rem;">
-                                <i class="fas fa-tools" style="margin-right: 10px;"></i>${toolTitle}
-                            </h3>
-                            <p style="color: #a0aec0; margin-bottom: 30px; line-height: 1.6;">
-                                Công cụ này đang trong quá trình phát triển. Phiên bản đầy đủ sẽ sớm được cập nhật!
-                            </p>
-                            <p style="color: #ff9800; margin-bottom: 30px; font-style: italic;">
-                                <i class="fas fa-clock" style="margin-right: 8px;"></i>
-                                Dự kiến ra mắt: Quý 2/2024
-                            </p>
-                            <div style="display: flex; justify-content: center;">
-                                <button id="closeModal" style="padding: 12px 25px; background: linear-gradient(90deg, #ff9800, #ffb74d); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                                    Đóng
-                                </button>
-                            </div>
-                        `;
-                        
-                        modal.appendChild(modalContent);
-                        document.body.appendChild(modal);
-                        
-                        // Thêm CSS animation
-                        const style = document.createElement('style');
-                        style.textContent = `
-                            @keyframes modalFadeIn {
-                                from { opacity: 0; transform: scale(0.9); }
-                                to { opacity: 1; transform: scale(1); }
-                            }
-                        `;
-                        document.head.appendChild(style);
-                        
-                        // Đóng modal
-                        document.getElementById('closeModal').addEventListener('click', function() {
-                            modal.style.animation = 'modalFadeOut 0.3s ease';
-                            setTimeout(() => {
-                                document.body.removeChild(modal);
-                            }, 300);
-                        });
-                        
-                        // Đóng khi click ra ngoài
-                        modal.addEventListener('click', function(e) {
-                            if (e.target === modal) {
-                                modal.style.animation = 'modalFadeOut 0.3s ease';
-                                setTimeout(() => {
-                                    document.body.removeChild(modal);
-                                }, 300);
-                            }
-                        });
-                    }
-                });
-            });
-            
-            // Thêm hiệu ứng hover cho card
-            document.querySelectorAll('.tool-card, .info-item, .contact-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    if (!this.querySelector('.tool-btn')?.disabled) {
-                        this.style.transform = 'translateY(-8px)';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // QR Code Animation
-            const qrPlaceholder = document.querySelector('.qr-placeholder');
-            if (qrPlaceholder) {
-                setInterval(() => {
-                    qrPlaceholder.style.transform = 'scale(1.05)';
-                    setTimeout(() => {
-                        qrPlaceholder.style.transform = 'scale(1)';
-                    }, 300);
-                }, 5000);
-            }
         });
     </script>
 </body>
