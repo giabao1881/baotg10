@@ -156,7 +156,7 @@
             font-weight: 500;
         }
         
-        /* ĐÃ SỬA: Công cụ hỗ trợ */
+        /* Công cụ hỗ trợ */
         .tools-section {
             padding: 40px;
         }
@@ -179,6 +179,9 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .tool-card:before {
@@ -215,8 +218,6 @@
             margin-bottom: 12px;
             color: #fff;
             min-height: 60px;
-            display: flex;
-            align-items: center;
         }
         
         .tool-card p {
@@ -224,13 +225,15 @@
             line-height: 1.6;
             margin-bottom: 20px;
             font-size: 0.95rem;
+            flex-grow: 1;
         }
         
         .tool-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: linear-gradient(90deg, #ff8a00, #e52e71);
             color: white;
             text-decoration: none;
@@ -239,12 +242,41 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            width: 100%;
+            margin-top: auto;
         }
         
         .tool-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(229, 46, 113, 0.3);
+        }
+        
+        .tool-btn.coming-soon {
+            background: linear-gradient(90deg, #64748b, #94a3b8);
+        }
+        
+        .tool-btn.coming-soon:hover {
+            background: linear-gradient(90deg, #64748b, #94a3b8);
+            transform: translateY(0);
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        
+        .tool-status {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+        
+        .tool-status.coming-soon {
+            background: rgba(255, 152, 0, 0.2);
+            color: #ff9800;
         }
         
         .separator {
@@ -331,6 +363,10 @@
             .tools-container {
                 grid-template-columns: 1fr;
             }
+            
+            .tool-card h3 {
+                min-height: auto;
+            }
         }
     </style>
 </head>
@@ -380,73 +416,83 @@
             
             <div class="separator"></div>
             
-            <!-- ĐÃ SỬA: Thay kỹ năng bằng công cụ hỗ trợ -->
+            <!-- Công cụ hỗ trợ -->
             <div class="tools-section">
                 <h2 class="section-title">Công Cụ Hỗ Trợ</h2>
                 <div class="tools-container">
-                    <!-- Tool 1 -->
+                    <!-- Tool 1: Bảng kê tính lãi -->
                     <div class="tool-card">
                         <div class="tool-icon">
                             <i class="fas fa-calculator"></i>
                         </div>
-                        <h3>Tool Bảng Kê Tính Lãi VPBANK</h3>
+                        <h3>Tool Bảng Kê Tính Lãi VPBANK
+                            <span class="tool-status">LIVE</span>
+                        </h3>
                         <p>Công cụ tính toán lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
-                        <button class="tool-btn" data-tool="1">
-                            <i class="fas fa-play-circle"></i>
-                            <span>Sử Dụng Ngay</span>
-                        </button>
+                        <a href="https://giabao1881.github.io/BKTL/" class="tool-btn" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Truy Cập Tool</span>
+                        </a>
                     </div>
                     
-                    <!-- Tool 2 -->
+                    <!-- Tool 2: Đơn khởi kiện -->
                     <div class="tool-card">
                         <div class="tool-icon">
                             <i class="fas fa-gavel"></i>
                         </div>
-                        <h3>Tool Đơn Khởi Kiện Tín Chấp VPBANK</h3>
+                        <h3>Tool Đơn Khởi Kiện Tín Chấp VPBANK
+                            <span class="tool-status coming-soon">SOON</span>
+                        </h3>
                         <p>Mẫu đơn khởi kiện và hướng dẫn chi tiết cho các tranh chấp liên quan đến tín chấp tại VPBANK.</p>
-                        <button class="tool-btn" data-tool="2">
-                            <i class="fas fa-download"></i>
-                            <span>Tải Mẫu Đơn</span>
+                        <button class="tool-btn coming-soon" disabled>
+                            <i class="fas fa-clock"></i>
+                            <span>Đang Phát Triển</span>
                         </button>
                     </div>
                     
-                    <!-- Tool 3 -->
+                    <!-- Tool 3: Bảng tự khai -->
                     <div class="tool-card">
                         <div class="tool-icon">
                             <i class="fas fa-file-contract"></i>
                         </div>
-                        <h3>Tool Bảng Tự Khai Tín Chấp VPBANK</h3>
+                        <h3>Tool Bảng Tự Khai Tín Chấp VPBANK
+                            <span class="tool-status coming-soon">SOON</span>
+                        </h3>
                         <p>Công cụ tạo bảng tự khai thông tin tín chấp theo chuẩn VPBANK, hỗ trợ thủ tục vay vốn.</p>
-                        <button class="tool-btn" data-tool="3">
-                            <i class="fas fa-edit"></i>
-                            <span>Tạo Bảng Tự Khai</span>
+                        <button class="tool-btn coming-soon" disabled>
+                            <i class="fas fa-clock"></i>
+                            <span>Đang Phát Triển</span>
                         </button>
                     </div>
                     
-                    <!-- Tool 4 -->
+                    <!-- Tool 4: Tính KPI -->
                     <div class="tool-card">
                         <div class="tool-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <h3>Tool Tính KPI Theo Tháng VPBANK</h3>
+                        <h3>Tool Tính KPI Theo Tháng VPBANK
+                            <span class="tool-status">LIVE</span>
+                        </h3>
                         <p>Hệ thống tính toán và theo dõi chỉ số KPI hàng tháng cho nhân viên VPBANK.</p>
-                        <button class="tool-btn" data-tool="4">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Xem Báo Cáo</span>
-                        </button>
+                        <a href="https://giabao1881.github.io/KPI/" class="tool-btn" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Truy Cập Tool</span>
+                        </a>
                     </div>
                     
-                    <!-- Tool 5 -->
+                    <!-- Tool 5: Tính án phí -->
                     <div class="tool-card">
                         <div class="tool-icon">
                             <i class="fas fa-balance-scale"></i>
                         </div>
-                        <h3>Tool Tính Án Phí Của Tòa Án</h3>
+                        <h3>Tool Tính Án Phí Của Tòa Án
+                            <span class="tool-status">LIVE</span>
+                        </h3>
                         <p>Công cụ tính toán án phí, lệ phí tòa án theo quy định pháp luật hiện hành.</p>
-                        <button class="tool-btn" data-tool="5">
-                            <i class="fas fa-calculator"></i>
-                            <span>Tính Án Phí</span>
-                        </button>
+                        <a href="https://giabao1881.github.io/ANPHI/" class="tool-btn" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Truy Cập Tool</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -471,7 +517,7 @@
                         <span>LinkedIn</span>
                     </a>
                     
-                    <a href="#" class="contact-button">
+                    <a href="mailto:contact@baotg10.com" class="contact-button">
                         <i class="fas fa-envelope contact-icon"></i>
                         <span>Email</span>
                     </a>
@@ -508,7 +554,9 @@
             const toolCards = document.querySelectorAll('.tool-card');
             toolCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
+                    if (!this.querySelector('.tool-btn').disabled) {
+                        this.style.transform = 'translateY(-8px)';
+                    }
                 });
                 
                 card.addEventListener('mouseleave', function() {
@@ -526,75 +574,83 @@
                 this.style.transform = 'rotate(0deg) scale(1)';
             });
             
-            // Xử lý click vào các nút công cụ
-            const toolButtons = document.querySelectorAll('.tool-btn');
-            toolButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const toolNumber = this.getAttribute('data-tool');
-                    const toolTitles = [
-                        "Tool Bảng Kê Tính Lãi VPBANK",
-                        "Tool Đơn Khởi Kiện Tín Chấp VPBANK",
-                        "Tool Bảng Tự Khai Tín Chấp VPBANK",
-                        "Tool Tính KPI Theo Tháng VPBANK",
-                        "Tool Tính Án Phí Của Tòa Án"
-                    ];
-                    
-                    const toolTitle = toolTitles[toolNumber - 1];
-                    
-                    // Hiển thị thông báo demo
-                    const modal = document.createElement('div');
-                    modal.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background: rgba(0,0,0,0.8);
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        z-index: 1000;
-                    `;
-                    
-                    const modalContent = document.createElement('div');
-                    modalContent.style.cssText = `
-                        background: rgba(25, 25, 40, 0.95);
-                        padding: 40px;
-                        border-radius: 15px;
-                        max-width: 500px;
-                        width: 90%;
-                        border: 1px solid rgba(255, 138, 0, 0.3);
-                        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-                    `;
-                    
-                    modalContent.innerHTML = `
-                        <h3 style="color: #ff8a00; margin-bottom: 20px; font-size: 1.5rem;">${toolTitle}</h3>
-                        <p style="color: #a0aec0; margin-bottom: 30px; line-height: 1.6;">
-                            Công cụ này đang trong quá trình phát triển. Phiên bản đầy đủ sẽ sớm được cập nhật!
-                        </p>
-                        <div style="display: flex; gap: 15px; justify-content: center;">
-                            <button id="closeModal" style="padding: 12px 25px; background: linear-gradient(90deg, #ff8a00, #e52e71); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                                Đóng
-                            </button>
-                        </div>
-                    `;
-                    
-                    modal.appendChild(modalContent);
-                    document.body.appendChild(modal);
-                    
-                    // Đóng modal
-                    document.getElementById('closeModal').addEventListener('click', function() {
-                        document.body.removeChild(modal);
-                    });
-                    
-                    // Đóng khi click ra ngoài
-                    modal.addEventListener('click', function(e) {
-                        if (e.target === modal) {
+            // Xử lý các tool đang phát triển
+            const comingSoonBtns = document.querySelectorAll('.tool-btn.coming-soon');
+            comingSoonBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    if (this.disabled) {
+                        e.preventDefault();
+                        
+                        // Hiển thị thông báo
+                        const toolCard = this.closest('.tool-card');
+                        const toolTitle = toolCard.querySelector('h3').textContent.replace('SOON', '').trim();
+                        
+                        const modal = document.createElement('div');
+                        modal.style.cssText = `
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: rgba(0,0,0,0.8);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            z-index: 1000;
+                        `;
+                        
+                        const modalContent = document.createElement('div');
+                        modalContent.style.cssText = `
+                            background: rgba(25, 25, 40, 0.95);
+                            padding: 40px;
+                            border-radius: 15px;
+                            max-width: 500px;
+                            width: 90%;
+                            border: 1px solid rgba(255, 152, 0, 0.3);
+                            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+                        `;
+                        
+                        modalContent.innerHTML = `
+                            <h3 style="color: #ff9800; margin-bottom: 20px; font-size: 1.5rem;">
+                                <i class="fas fa-tools" style="margin-right: 10px;"></i>${toolTitle}
+                            </h3>
+                            <p style="color: #a0aec0; margin-bottom: 30px; line-height: 1.6;">
+                                Công cụ này đang trong quá trình phát triển. Phiên bản đầy đủ sẽ sớm được cập nhật!
+                            </p>
+                            <p style="color: #ff9800; margin-bottom: 30px; font-style: italic;">
+                                <i class="fas fa-clock" style="margin-right: 8px;"></i>
+                                Dự kiến ra mắt: Quý 2/2024
+                            </p>
+                            <div style="display: flex; gap: 15px; justify-content: center;">
+                                <button id="closeModal" style="padding: 12px 25px; background: linear-gradient(90deg, #ff9800, #ffb74d); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                    Đóng
+                                </button>
+                            </div>
+                        `;
+                        
+                        modal.appendChild(modalContent);
+                        document.body.appendChild(modal);
+                        
+                        // Đóng modal
+                        document.getElementById('closeModal').addEventListener('click', function() {
                             document.body.removeChild(modal);
-                        }
-                    });
+                        });
+                        
+                        // Đóng khi click ra ngoài
+                        modal.addEventListener('click', function(e) {
+                            if (e.target === modal) {
+                                document.body.removeChild(modal);
+                            }
+                        });
+                    }
                 });
             });
+            
+            // Thống kê truy cập các tool (demo)
+            console.log('Các công cụ đang hoạt động:');
+            console.log('1. Bảng Kê Tính Lãi: https://giabao1881.github.io/BKTL/');
+            console.log('2. Tính KPI: https://giabao1881.github.io/KPI/');
+            console.log('3. Tính Án Phí: https://giabao1881.github.io/ANPHI/');
         });
     </script>
 </body>
