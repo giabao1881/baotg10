@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>baotg10 | Tools & Projects</title>
-  <meta name="description" content="baotg10 - Landing page tổng hợp công cụ: BKTL, KPI, Án phí và các tool hỗ trợ công việc." />
+  <title>baotg10 | Digital Creator</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
@@ -17,18 +16,21 @@
       --text:#e5e7eb;
       --muted:#94a3b8;
       --muted2:#64748b;
+
       --p1:#3b82f6;
       --p2:#8b5cf6;
       --p3:#ec4899;
-      --shadow: 0 18px 44px rgba(0,0,0,.35);
-      --ring: 0 0 0 4px rgba(59,130,246,.18);
+
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
       --radius: 18px;
       --radius2: 14px;
+      --gap: 18px;
+
       --container: 1120px;
+      --ring: 0 0 0 4px rgba(59,130,246,.18);
     }
 
     *{margin:0;padding:0;box-sizing:border-box;font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
-    html{scroll-behavior:smooth}
     body{
       min-height:100vh;
       color:var(--text);
@@ -40,167 +42,148 @@
       overflow-x:hidden;
     }
 
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--container);margin:0 auto;padding:18px 18px 70px}
-
-    /* NAV */
-    .nav{
-      position:sticky; top:14px; z-index:20;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:12px 14px;
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
-    }
-    .brand{display:flex;align-items:center;gap:12px;min-width: 220px}
-    .logo{
-      width:40px;height:40px;border-radius:12px;
-      display:grid;place-items:center;
-      font-weight:950;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 12px 25px rgba(59,130,246,.22);
-    }
-    .brand .t1{font-weight:950;letter-spacing:.2px}
-    .brand .t2{font-size:.85rem;color:var(--muted);margin-top:2px}
-
-    .navlinks{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .navlinks a{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid transparent;
-      color: var(--muted);
-      background: rgba(255,255,255,.04);
-      font-weight:800;
-      font-size:.92rem;
-      transition:.2s ease;
-      display:inline-flex;align-items:center;gap:8px;
-    }
-    .navlinks a:hover{background: rgba(59,130,246,.10); color: var(--text); transform: translateY(-1px)}
-    .navlinks a.primary{
-      background: linear-gradient(90deg, rgba(59,130,246,.92), rgba(139,92,246,.92));
-      color:white;
-      border: none;
-    }
-
-    /* HERO */
-    .hero{
-      margin-top:14px;
+    a{color:inherit}
+    .container{max-width:var(--container);margin:0 auto;padding:28px 18px 60px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
       border:1px solid var(--border);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       box-shadow: var(--shadow);
-      padding: 22px 18px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items:center;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
     }
-    @media(max-width: 900px){ .hero{grid-template-columns:1fr} }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      display:grid;place-items:center;
+      font-weight:900;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      box-shadow: 0 12px 25px rgba(59,130,246,.25);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .brand h1{
+      font-size:1.05rem;line-height:1.1;
+      letter-spacing:.2px;
+    }
+    .brand p{font-size:.85rem;color:var(--muted)}
+    .top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      color: var(--muted);
+      font-size:.9rem;
+    }
+    .pill i{color: rgba(226,232,240,.85)}
+    .pill strong{color: var(--text);font-weight:700}
 
-    .heroTitle{
-      font-size: clamp(2.0rem, 4.7vw, 3.2rem);
-      font-weight: 950;
+    .hero{
+      margin-top:18px;
+      padding:22px 18px;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .hero-title{
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 900;
       letter-spacing: -1px;
       line-height: 1.05;
       background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
       -webkit-background-clip:text;background-clip:text;color:transparent;
       margin-bottom: 8px;
     }
-    .heroSub{
+    .hero-sub{
       color: var(--muted);
-      font-size: clamp(.98rem, 1.4vw, 1.12rem);
-      line-height: 1.65;
-      max-width: 780px;
+      font-size: clamp(.98rem, 1.4vw, 1.1rem);
+      line-height: 1.6;
+      max-width: 860px;
     }
-    .heroBadges{
-      display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;
-    }
-    @media(max-width: 900px){ .heroBadges{justify-content:flex-start} }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:999px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      color: var(--muted);
-      font-size:.9rem;
-      font-weight:800;
-    }
-    .pill i{opacity:.9}
-    .pill strong{color: var(--text)}
 
-    /* SECTIONS */
-    .grid{
-      margin-top: 14px;
+    .layout{
+      margin-top:18px;
       display:grid;
       grid-template-columns: 360px 1fr;
-      gap: 14px;
+      gap: 18px;
       align-items:start;
     }
-    @media(max-width: 980px){ .grid{grid-template-columns:1fr} }
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+    }
 
     .card{
       border:1px solid var(--border);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
     }
 
-    /* LEFT */
+    /* LEFT PANEL */
     .left{
-      position: sticky; top: 92px;
-      padding: 14px;
+      position: sticky; top: 18px;
+      padding: 18px;
     }
-    @media(max-width: 980px){ .left{position:relative; top:0} }
+    @media (max-width: 980px){
+      .left{position:relative; top:0}
+    }
 
     .profile{
-      display:flex;align-items:center;gap:12px;
-      padding: 14px;
+      display:flex;align-items:center;gap:14px;
+      padding: 16px;
       border-radius: var(--radius2);
       background: rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .avatar{
       width:56px;height:56px;border-radius:16px;
       display:grid;place-items:center;
-      font-size:1.6rem;font-weight:950;color:white;
+      font-size:1.6rem;font-weight:900;color:white;
       background: linear-gradient(135deg, var(--p1), var(--p2));
       border:1px solid rgba(255,255,255,.14);
-      box-shadow: 0 12px 25px rgba(139,92,246,.18);
+      box-shadow: 0 12px 25px rgba(139,92,246,.20);
       flex: 0 0 auto;
     }
-    .profile h2{font-size:1.15rem;font-weight:950}
-    .profile p{color:var(--muted);font-size:.92rem;margin-top:3px}
+    .profile h2{font-size:1.15rem}
+    .profile p{color:var(--muted);font-size:.92rem;margin-top:2px}
 
     .tabs{
-      display:flex; gap:10px; padding:10px;
-      border-radius: 14px;
+      display:flex;
+      gap:10px;
+      padding: 10px;
       background: rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.08);
-      overflow:auto; scrollbar-width:none;
-      margin-bottom: 10px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow:auto;
+      scrollbar-width: none;
     }
     .tabs::-webkit-scrollbar{display:none}
     .tab-btn{
       display:inline-flex;align-items:center;gap:8px;
       padding:10px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
+      border-radius: 999px;
       border:1px solid transparent;
+      background: rgba(255,255,255,.04);
       color: var(--muted);
       cursor:pointer;
-      font-weight:850;
-      font-size:.92rem;
-      transition:.2s ease;
-      white-space: nowrap;
+      user-select:none;
+      white-space:nowrap;
+      transition: .2s ease;
+      font-weight:650;
+      font-size: .92rem;
     }
-    .tab-btn:hover{background: rgba(59,130,246,.10); color: var(--text)}
+    .tab-btn i{opacity:.9}
+    .tab-btn:hover{background: rgba(59,130,246,.10); color: var(--text);}
     .tab-btn.active{
       background: linear-gradient(90deg, rgba(59,130,246,.22), rgba(139,92,246,.20));
       border-color: rgba(59,130,246,.35);
@@ -208,7 +191,7 @@
       box-shadow: var(--ring);
     }
 
-    .panel{
+    .tab-panel{
       display:none;
       padding: 14px;
       border-radius: var(--radius2);
@@ -216,13 +199,20 @@
       background: rgba(15,23,42,.35);
       animation: fadeUp .18s ease;
     }
-    .panel.active{display:block}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    .tab-panel.active{display:block}
+    @keyframes fadeUp{
+      from{opacity:0; transform: translateY(6px)}
+      to{opacity:1; transform: translateY(0)}
+    }
 
     /* Donate */
-    .qrwrap{display:flex;justify-content:center;margin:6px 0 10px}
+    .qrbox{
+      width:100%;
+      display:flex; align-items:center; justify-content:center;
+      margin: 6px 0 12px;
+    }
     .qrframe{
-      width: 215px; height: 215px;
+      width: 220px; height: 220px;
       border-radius: 18px;
       padding: 12px;
       background: #fff;
@@ -241,16 +231,34 @@
       opacity:.95;
     }
     @keyframes glow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-    .qrinner{width:100%;height:100%;border-radius:12px;overflow:hidden;position:relative}
-    .qrinner img{width:100%;height:100%;display:block;object-fit:cover;transform:scale(1.15);transform-origin:center}
-    .qrph{
-      position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;
-      background:linear-gradient(45deg,#f8fafc,#f1f5f9);
-      border:2px dashed #cbd5e1;color:#0f172a;font-weight:950;text-align:center;padding:10px
+    .qrinner{
+      width:100%;height:100%;
+      border-radius: 12px;
+      overflow:hidden;
+      position:relative;
     }
-    .qrph i{font-size:2.3rem;color:#64748b}
-    .donateTitle{font-weight:950;text-align:center}
-    .donateDesc{color:var(--muted);font-size:.92rem;line-height:1.6;text-align:center;margin-top:6px}
+    .qrinner img{
+      width:100%;height:100%;
+      display:block;
+      object-fit: cover;
+      transform: scale(1.18);
+      transform-origin:center;
+    }
+    .qr-placeholder{
+      position:absolute; inset:0;
+      display:none;
+      align-items:center; justify-content:center;
+      flex-direction:column;
+      gap:8px;
+      background: linear-gradient(45deg,#f8fafc,#f1f5f9);
+      border:2px dashed #cbd5e1;
+      color:#0f172a;
+      font-weight:800;
+    }
+    .qr-placeholder i{font-size:2.4rem;color:#64748b}
+    .donate-title{font-size:1.05rem;font-weight:900;margin-top:6px;text-align:center}
+    .donate-desc{color:var(--muted);font-size:.92rem;line-height:1.6;text-align:center;margin-top:6px}
+
     .bank{
       margin-top: 12px;
       padding: 12px;
@@ -262,12 +270,15 @@
     .bank .bname{font-weight:950;color:rgba(147,197,253,.95);letter-spacing:.4px}
     .bank .acc{
       margin-top:8px;
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius: 12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius: 12px;
       background: rgba(0,0,0,.22);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 1.12rem;
-      font-weight:950;
+      font-weight:900;
       letter-spacing: 1.2px;
     }
     .bank .owner{margin-top:6px;color:var(--muted);font-size:.86rem}
@@ -278,7 +289,7 @@
       border-radius: 12px;
       padding: 11px 14px;
       cursor:pointer;
-      font-weight:950;
+      font-weight:850;
       font-size:.92rem;
       display:inline-flex;align-items:center;gap:8px;
       color:white;
@@ -293,30 +304,30 @@
       color: var(--text);
     }
     .btn:hover{transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,.25)}
+    .minihelp{margin-top:10px;color:var(--muted2);font-size:.85rem;text-align:center}
 
+    /* Email / Phone */
     .centerBox{text-align:center;padding: 6px 2px}
     .centerBox .label{color:var(--muted);font-size:.85rem}
-    .centerBox .value{margin-top:6px;font-size:1.08rem;font-weight:950}
+    .centerBox .value{margin-top:6px;font-size:1.08rem;font-weight:900}
     .centerBox .note{margin-top:10px;color:var(--muted);font-size:.86rem}
 
-    /* RIGHT CONTENT */
-    .right{padding: 16px}
+    /* RIGHT */
+    .right{padding: 22px}
     .section{
-      padding: 16px;
+      margin-bottom: 18px;
+      padding: 18px;
       border-radius: var(--radius2);
       border:1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
-      margin-bottom: 12px;
     }
-    .sectionHeader{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    .section h3{
+      font-size:1.2rem;
+      font-weight:950;
       margin-bottom: 12px;
-    }
-    .sectionTitle{
       display:flex;align-items:center;gap:10px;
-      font-size:1.15rem;font-weight:950;
     }
-    .dot{
+    .section h3 .dot{
       width:10px;height:10px;border-radius:999px;
       background: linear-gradient(90deg, var(--p1), var(--p2));
       box-shadow: 0 0 0 4px rgba(59,130,246,.14);
@@ -328,12 +339,15 @@
       gap: 12px;
     }
     @media (max-width: 640px){ .infoGrid{grid-template-columns:1fr} }
+
     .infoItem{
       padding: 14px;
       border-radius: 14px;
       border:1px solid rgba(255,255,255,.08);
       background: rgba(15,23,42,.35);
+      transition: .2s ease;
     }
+    .infoItem:hover{transform: translateY(-2px); background: rgba(59,130,246,.08)}
     .infoItem .k{
       color: var(--muted);
       font-size: .78rem;
@@ -341,59 +355,14 @@
       text-transform: uppercase;
       margin-bottom: 8px;
     }
-    .infoItem .v{font-weight:950;line-height:1.35}
+    .infoItem .v{font-weight:900;line-height:1.35}
 
-    /* TOOL CONTROLS */
-    .controls{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-    }
-    .search{
-      flex: 1 1 260px;
-      display:flex;align-items:center;gap:10px;
-      padding: 11px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,23,42,.30);
-      color: var(--text);
-    }
-    .search i{color: var(--muted)}
-    .search input{
-      width:100%;
-      border:none;outline:none;
-      background: transparent;
-      color: var(--text);
-      font-weight:750;
-    }
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{
-      padding:9px 11px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-weight:900;
-      font-size:.86rem;
-      cursor:pointer;
-      transition:.2s ease;
-      user-select:none;
-      display:inline-flex;align-items:center;gap:8px;
-    }
-    .chip:hover{background: rgba(59,130,246,.10); color: var(--text)}
-    .chip.active{
-      background: linear-gradient(90deg, rgba(59,130,246,.22), rgba(139,92,246,.20));
-      border-color: rgba(59,130,246,.35);
-      color: var(--text);
-      box-shadow: var(--ring);
-    }
-
-    /* Tools grid */
     .toolsGrid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 12px;
     }
-    @media (max-width: 840px){ .toolsGrid{grid-template-columns:1fr} }
+    @media (max-width: 820px){ .toolsGrid{grid-template-columns:1fr} }
 
     .tool{
       padding: 16px;
@@ -411,7 +380,6 @@
       opacity:.9;
     }
     .tool:hover{transform: translateY(-2px); background: rgba(59,130,246,.08)}
-
     .toolTop{display:flex;gap:12px;align-items:flex-start}
     .tico{
       width:44px;height:44px;border-radius: 14px;
@@ -436,16 +404,6 @@
     .live{background: rgba(34,197,94,.12); color: #22c55e; border-color: rgba(34,197,94,.25)}
     .soon{background: rgba(245,158,11,.12); color: #f59e0b; border-color: rgba(245,158,11,.25)}
 
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .tag{
-      padding:6px 10px;border-radius:999px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      color: rgba(203,213,225,.9);
-      font-size:.82rem;
-      font-weight:900;
-    }
-
     .toolLink, .toolBtn{
       margin-top: 12px;
       width:100%;
@@ -453,6 +411,7 @@
       padding: 12px 14px;
       border-radius: 14px;
       font-weight: 950;
+      text-decoration:none;
       transition:.2s ease;
     }
     .toolLink{
@@ -469,71 +428,20 @@
       opacity:.85;
     }
 
-    /* Changelog */
-    .logList{display:flex;flex-direction:column;gap:10px}
-    .log{
-      padding: 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,23,42,.35);
-      display:flex;gap:10px;align-items:flex-start;
-    }
-    .log .d{
-      flex:0 0 auto;
-      padding:7px 10px;border-radius:999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      color: var(--muted);
-      font-weight:950;
-      font-size:.82rem;
-      margin-top:2px;
-    }
-    .log .t{font-weight:950}
-    .log .p{color:var(--muted);margin-top:4px;line-height:1.55;font-size:.92rem}
-
-    /* Downloads */
-    .dlGrid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 10px;
-    }
-    @media (max-width: 840px){ .dlGrid{grid-template-columns:1fr} }
-    .dl{
-      padding: 14px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,23,42,.35);
-    }
-    .dl h4{font-weight:950}
-    .dl p{color:var(--muted);margin-top:6px;line-height:1.55;font-size:.92rem}
-    .dl a{
-      display:inline-flex;align-items:center;gap:10px;justify-content:center;
-      margin-top:12px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-weight: 950;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.14);
-      transition:.2s ease;
-    }
-    .dl a:hover{transform: translateY(-2px); background: rgba(59,130,246,.10)}
-
-    /* Footer */
     .footer{
-      margin-top: 14px;
+      margin-top: 22px;
       text-align:center;
       color: var(--muted2);
       font-size: .9rem;
-      padding-top: 12px;
+      padding-top: 18px;
     }
-    .hl{
+    .footer .hl{
       font-weight: 950;
       background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
       -webkit-background-clip:text;background-clip:text;color:transparent;
     }
 
-    /* Modal */
+    /* Modal QR */
     .modal{
       position:fixed; inset:0;
       display:none;
@@ -545,7 +453,7 @@
     }
     .modal.active{display:flex}
     .modalCard{
-      width: min(560px, 100%);
+      width: min(520px, 100%);
       border-radius: 22px;
       border:1px solid rgba(255,255,255,.14);
       background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
@@ -580,7 +488,7 @@
       border-radius: 12px;
       object-fit: cover;
       display:block;
-      transform: scale(1.08);
+      transform: scale(1.10);
       transform-origin:center;
     }
     .modalFoot{
@@ -592,7 +500,7 @@
     .btnSmall{
       padding: 10px 12px;
       border-radius: 12px;
-      font-weight: 950;
+      font-weight: 900;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       color: var(--text);
@@ -603,78 +511,71 @@
       background: linear-gradient(90deg, var(--p1), var(--p2));
       color:white;
     }
-
-    /* Small helper */
-    .muted{color:var(--muted)}
   </style>
 </head>
 
 <body>
   <div class="container">
-    <!-- NAV -->
-    <div class="nav">
+    <!-- TOPBAR -->
+    <div class="topbar card">
       <div class="brand">
         <div class="logo">B</div>
         <div>
-          <div class="t1">baotg10</div>
-          <div class="t2">Tools • Projects • Downloads</div>
+          <h1>baotg10</h1>
+          <p>Developer • Creator • Chuyên gia công cụ</p>
         </div>
       </div>
 
-      <div class="navlinks">
-        <a href="#tools"><i class="fa-solid fa-screwdriver-wrench"></i> Tools</a>
-        <a href="#downloads"><i class="fa-solid fa-cloud-arrow-down"></i> Tải file</a>
-        <a href="#changelog"><i class="fa-solid fa-rotate"></i> Changelog</a>
-        <a class="primary" href="#donate"><i class="fa-solid fa-hand-holding-heart"></i> Donate</a>
+      <div class="top-actions">
+        <div class="pill"><i class="fa-solid fa-location-dot"></i> <strong>HCM</strong> <span style="opacity:.8;">Việt Nam</span></div>
+        <div class="pill"><i class="fa-solid fa-bolt"></i> <strong>Tools</strong> <span style="opacity:.8;">KPI • BKTL • Án phí</span></div>
       </div>
     </div>
 
     <!-- HERO -->
-    <section class="hero" id="top">
-      <div>
-        <div class="heroTitle">baotg10</div>
-        <div class="heroSub">
-          Landing page tổng hợp công cụ phục vụ công việc: <b>BKTL</b>, <b>KPI</b>, <b>Án phí</b>…
-          Có <b>Search/Filter</b>, mục <b>Downloads</b>, và <b>Changelog</b> để bạn cập nhật nhanh.
-        </div>
+    <div class="hero card">
+      <div class="hero-title">baotg10</div>
+      <div class="hero-sub">
+        Nơi tổng hợp các công cụ hỗ trợ công việc (ngân hàng, biểu mẫu, tính toán) — giao diện gọn gàng, dễ dùng và cập nhật liên tục.
       </div>
-      <div class="heroBadges">
-        <div class="pill"><i class="fa-solid fa-location-dot"></i> <strong>HCM</strong> <span class="muted">VN</span></div>
-        <div class="pill"><i class="fa-solid fa-bolt"></i> <strong>Live</strong> <span class="muted">BKTL • KPI • Án phí</span></div>
-        <div class="pill"><i class="fa-solid fa-shield-halved"></i> <strong>Gọn</strong> <span class="muted">Pro UI</span></div>
-      </div>
-    </section>
+    </div>
 
-    <!-- MAIN GRID -->
-    <div class="grid">
+    <!-- MAIN -->
+    <div class="layout">
       <!-- LEFT -->
-      <aside class="left card" id="donate">
+      <aside class="left card">
         <div class="profile">
           <div class="avatar">B</div>
           <div>
             <h2>Bao Tran</h2>
-            <p>Digital Creator • Chuyên gia công cụ</p>
+            <p>Digital Creator</p>
           </div>
         </div>
 
-        <div class="tabs" role="tablist">
-          <button class="tab-btn active" data-tab="donatePanel"><i class="fa-solid fa-hand-holding-heart"></i> Donate</button>
-          <button class="tab-btn" data-tab="emailPanel"><i class="fa-solid fa-envelope"></i> Email</button>
-          <button class="tab-btn" data-tab="phonePanel"><i class="fa-solid fa-phone"></i> Phone</button>
+        <div class="tabs" role="tablist" aria-label="Liên hệ & Donate">
+          <button class="tab-btn active" data-tab="donate" role="tab" aria-selected="true">
+            <i class="fa-solid fa-hand-holding-heart"></i> Ủng hộ
+          </button>
+          <button class="tab-btn" data-tab="email" role="tab" aria-selected="false">
+            <i class="fa-solid fa-envelope"></i> Email
+          </button>
+          <button class="tab-btn" data-tab="phone" role="tab" aria-selected="false">
+            <i class="fa-solid fa-phone"></i> Điện thoại
+          </button>
         </div>
 
-        <!-- Donate panel -->
-        <section class="panel active" id="donatePanel">
-          <div class="qrwrap">
+        <!-- Donate -->
+        <section class="tab-panel active" id="donate-tab" role="tabpanel">
+          <div class="qrbox">
             <div class="qrframe">
               <div class="qrinner">
                 <img
                   id="qrImg"
                   src="./qr-donate.png?v=10"
                   alt="QR Donate"
-                  onerror="this.style.display='none';document.getElementById('qrph').style.display='flex';"
+                  onerror="this.style.display='none';document.getElementById('qrPh').style.display='flex';"
                 />
-                <div id="qrph" class="qrph">
+                <div id="qrPh" class="qr-placeholder">
                   <i class="fa-solid fa-qrcode"></i>
                   <div>Không tải được ảnh QR</div>
                 </div>
@@ -682,13 +583,13 @@
             </div>
           </div>
 
-          <div class="donateTitle">Ủng hộ tác giả 💖</div>
-          <div class="donateDesc">
-            Đóng góp giúp mình duy trì và phát triển công cụ miễn phí cho cộng đồng.
+          <div class="donate-title">Hỗ trợ phát triển công cụ 💖</div>
+          <div class="donate-desc">
+            Mọi đóng góp giúp mình duy trì & nâng cấp các tool miễn phí cho cộng đồng.
           </div>
 
           <div class="bank">
-            <div class="bname">NGÂN HÀNG VPBANK</div>
+            <div class="bname">VPBANK</div>
             <div class="acc" id="accNo"><i class="fa-solid fa-building-columns" style="opacity:.9"></i> 0336 620 689</div>
             <div class="owner">Chủ tài khoản: BAO TRAN</div>
           </div>
@@ -699,16 +600,14 @@
             <button class="btn btn-ghost" id="openQR"><i class="fa-solid fa-magnifying-glass-plus"></i> Xem QR lớn</button>
           </div>
 
-          <div style="text-align:center;margin-top:10px;color:var(--muted2);font-size:.85rem">
-            Muốn QR to/nhỏ: chỉnh <b>transform: scale(...)</b> ở CSS ảnh.
-          </div>
+          <div class="minihelp">Muốn QR to hơn/nhỏ hơn: chỉnh <b>transform: scale(...)</b> trong CSS của ảnh.</div>
         </section>
 
-        <!-- Email panel -->
-        <section class="panel" id="emailPanel">
+        <!-- Email -->
+        <section class="tab-panel" id="email-tab" role="tabpanel">
           <div class="centerBox">
             <div class="label">Email làm việc</div>
-            <div class="value">baotg10@vpbank.com.vn</div>
+            <div class="value" id="emailText">baotg10@vpbank.com.vn</div>
             <div class="btnrow" style="margin-top:12px">
               <button class="btn btn-primary copy-btn" data-text="baotg10@vpbank.com.vn">
                 <i class="fa-regular fa-copy"></i> Sao chép Email
@@ -718,11 +617,11 @@
           </div>
         </section>
 
-        <!-- Phone panel -->
-        <section class="panel" id="phonePanel">
+        <!-- Phone -->
+        <section class="tab-panel" id="phone-tab" role="tabpanel">
           <div class="centerBox">
             <div class="label">Số điện thoại</div>
-            <div class="value">0336 620 689</div>
+            <div class="value" id="phoneText">0336 620 689</div>
             <div class="btnrow" style="margin-top:12px">
               <button class="btn btn-primary copy-btn" data-text="0336620689">
                 <i class="fa-regular fa-copy"></i> Sao chép SĐT
@@ -738,12 +637,8 @@
 
       <!-- RIGHT -->
       <main class="right card">
-        <!-- ABOUT -->
-        <section class="section" id="about">
-          <div class="sectionHeader">
-            <div class="sectionTitle"><span class="dot"></span> Thông tin</div>
-          </div>
-
+        <section class="section">
+          <h3><span class="dot"></span> Thông tin cá nhân</h3>
           <div class="infoGrid">
             <div class="infoItem">
               <div class="k">Tên</div>
@@ -759,100 +654,74 @@
             </div>
             <div class="infoItem">
               <div class="k">Mục tiêu</div>
-              <div class="v">Tối ưu hoá công việc bằng công cụ tự động</div>
+              <div class="v">Tạo công cụ hữu ích, tối ưu hiệu suất công việc</div>
             </div>
           </div>
         </section>
 
-        <!-- TOOLS -->
-        <section class="section" id="tools">
-          <div class="sectionHeader">
-            <div class="sectionTitle"><span class="dot"></span> Tools / Projects</div>
-            <div class="controls">
-              <div class="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input id="searchInput" type="text" placeholder="Tìm tool... (BKTL, KPI, án phí, đơn...)" />
+        <section class="section" style="margin-bottom:0">
+          <h3><span class="dot"></span> Công cụ hỗ trợ</h3>
+
+          <div class="toolsGrid">
+            <div class="tool">
+              <div class="toolTop">
+                <div class="tico"><i class="fa-solid fa-calculator"></i></div>
+                <div>
+                  <h4>Tool Bảng Kê Tính Lãi VPBANK <span class="badge live">LIVE</span></h4>
+                  <p>Tính lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
+                </div>
               </div>
-              <div class="chips" id="chips">
-                <div class="chip active" data-tag="all"><i class="fa-solid fa-layer-group"></i> Tất cả</div>
-                <div class="chip" data-tag="bank"><i class="fa-solid fa-building-columns"></i> Bank</div>
-                <div class="chip" data-tag="kpi"><i class="fa-solid fa-chart-line"></i> KPI</div>
-                <div class="chip" data-tag="legal"><i class="fa-solid fa-gavel"></i> Legal</div>
-                <div class="chip" data-tag="soon"><i class="fa-solid fa-clock"></i> Soon</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="toolsGrid" id="toolsGrid">
-            <!-- Tool items injected by JS -->
-          </div>
-
-          <div style="margin-top:10px;color:var(--muted2);font-size:.88rem">
-            Tip: Gõ từ khóa hoặc chọn tag để lọc tool.
-          </div>
-        </section>
-
-        <!-- DOWNLOADS -->
-        <section class="section" id="downloads">
-          <div class="sectionHeader">
-            <div class="sectionTitle"><span class="dot"></span> Tải file</div>
-            <div class="muted" style="font-weight:800">Tổng hợp file / bản phát hành</div>
-          </div>
-
-          <div class="dlGrid">
-            <div class="dl">
-              <h4>BKTL (Trang Tool)</h4>
-              <p>Vào trang BKTL để dùng tool online. Nếu bạn có file Excel macro riêng, có thể đặt link tải tại đây.</p>
-              <a href="https://giabao1881.github.io/BKTL/" target="_blank" rel="noopener">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở BKTL
+              <a href="https://giabao1881.github.io/BKTL/" class="toolLink" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập Tool
               </a>
             </div>
 
-            <div class="dl">
-              <h4>KPI (Trang Tool)</h4>
-              <p>Tool KPI theo tháng. Có thể cập nhật config/phiên bản trực tiếp trên GitHub Pages.</p>
-              <a href="https://giabao1881.github.io/KPI/" target="_blank" rel="noopener">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở KPI
+            <div class="tool">
+              <div class="toolTop">
+                <div class="tico"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                  <h4>Tool Tính KPI Theo Tháng VPBANK <span class="badge live">LIVE</span></h4>
+                  <p>Hệ thống tính toán & theo dõi chỉ số KPI hằng tháng cho nhân viên.</p>
+                </div>
+              </div>
+              <a href="https://giabao1881.github.io/KPI/" class="toolLink" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập Tool
               </a>
             </div>
 
-            <div class="dl">
-              <h4>Án phí (Trang Tool)</h4>
-              <p>Tính án phí/lệ phí theo quy định hiện hành.</p>
-              <a href="https://giabao1881.github.io/ANPHI/" target="_blank" rel="noopener">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở Án phí
+            <div class="tool">
+              <div class="toolTop">
+                <div class="tico"><i class="fa-solid fa-balance-scale"></i></div>
+                <div>
+                  <h4>Tool Tính Án Phí Của Tòa Án <span class="badge live">LIVE</span></h4>
+                  <p>Tính án phí, lệ phí theo quy định pháp luật hiện hành.</p>
+                </div>
+              </div>
+              <a href="https://giabao1881.github.io/ANPHI/" class="toolLink" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập Tool
               </a>
             </div>
 
-            <div class="dl">
-              <h4>Gợi ý: Thêm link “Release”</h4>
-              <p>Nếu bạn có file .xlsm để tải: hãy up GitHub Releases và dán link vào đây (mình sẽ chỉnh giúp đúng chuẩn).</p>
-              <a href="#donate"><i class="fa-solid fa-pen"></i> Tôi muốn thêm link tải</a>
-            </div>
-          </div>
-        </section>
-
-        <!-- CHANGELOG -->
-        <section class="section" id="changelog">
-          <div class="sectionHeader">
-            <div class="sectionTitle"><span class="dot"></span> Changelog</div>
-            <div class="muted" style="font-weight:800">Ghi chú cập nhật</div>
-          </div>
-
-          <div class="logList">
-            <div class="log">
-              <div class="d">2024</div>
-              <div>
-                <div class="t">Ra mắt landing page + search/filter</div>
-                <div class="p">Tối ưu giao diện, thêm mục tải file & changelog, donate QR modal, tabs liên hệ.</div>
+            <div class="tool">
+              <div class="toolTop">
+                <div class="tico"><i class="fa-solid fa-gavel"></i></div>
+                <div>
+                  <h4>Tool Đơn Khởi Kiện Tín Chấp VPBANK <span class="badge soon">SOON</span></h4>
+                  <p>Mẫu đơn khởi kiện & hướng dẫn cho các tranh chấp liên quan đến tín chấp.</p>
+                </div>
               </div>
+              <div class="toolBtn"><i class="fa-solid fa-clock"></i> Đang phát triển</div>
             </div>
-            <div class="log">
-              <div class="d">Soon</div>
-              <div>
-                <div class="t">Tool Đơn khởi kiện / Bảng tự khai</div>
-                <div class="p">Đang phát triển. Sẽ có link truy cập & hướng dẫn khi hoàn thiện.</div>
+
+            <div class="tool">
+              <div class="toolTop">
+                <div class="tico"><i class="fa-solid fa-file-contract"></i></div>
+                <div>
+                  <h4>Tool Bảng Tự Khai Tín Chấp VPBANK <span class="badge soon">SOON</span></h4>
+                  <p>Tạo bảng tự khai theo chuẩn, hỗ trợ hồ sơ/tài liệu nhanh.</p>
+                </div>
               </div>
+              <div class="toolBtn"><i class="fa-solid fa-clock"></i> Đang phát triển</div>
             </div>
           </div>
 
@@ -885,25 +754,33 @@
   </div>
 
   <script>
-    // ===== Tabs (Left) =====
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const panels = document.querySelectorAll('.panel');
-    tabBtns.forEach(btn=>{
+    // Tabs
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(btn=>{
       btn.addEventListener('click', ()=>{
         const id = btn.dataset.tab;
-        tabBtns.forEach(b=>b.classList.remove('active'));
+
+        tabButtons.forEach(b=>{
+          b.classList.remove('active');
+          b.setAttribute('aria-selected','false');
+        });
         panels.forEach(p=>p.classList.remove('active'));
+
         btn.classList.add('active');
-        document.getElementById(id).classList.add('active');
+        btn.setAttribute('aria-selected','true');
+        document.getElementById(id+'-tab').classList.add('active');
       });
     });
 
-    // ===== Copy helper =====
+    // Copy helper
     async function copyText(t){
       try{
         await navigator.clipboard.writeText(t);
         alert('Đã sao chép!');
       }catch(e){
+        // fallback
         const ta = document.createElement('textarea');
         ta.value = t;
         document.body.appendChild(ta);
@@ -913,6 +790,8 @@
         alert('Đã sao chép!');
       }
     }
+
+    // Copy buttons
     document.querySelectorAll('.copy-btn').forEach(b=>{
       b.addEventListener('click', ()=> copyText(b.dataset.text));
     });
@@ -920,10 +799,11 @@
     function getAccRaw(){
       return document.getElementById('accNo').textContent.replace(/\s+/g,'').replace(/[^\d]/g,'');
     }
+
     document.getElementById('copyAcc').addEventListener('click', ()=> copyText(getAccRaw()));
     document.getElementById('copyAcc2').addEventListener('click', ()=> copyText(getAccRaw()));
 
-    // ===== Download QR =====
+    // Download QR
     function downloadQR(){
       const a=document.createElement('a');
       a.href='./qr-donate.png?v=10';
@@ -935,7 +815,7 @@
     document.getElementById('downloadQR').addEventListener('click', downloadQR);
     document.getElementById('downloadQR2').addEventListener('click', downloadQR);
 
-    // ===== Modal QR =====
+    // Modal QR
     const modal = document.getElementById('qrModal');
     const openQR = document.getElementById('openQR');
     const closeModal = document.getElementById('closeModal');
@@ -948,141 +828,15 @@
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden','true');
     }
+
     openQR.addEventListener('click', openModal);
     closeModal.addEventListener('click', closeModalFn);
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModalFn(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModalFn(); });
 
-    // ===== Tools data =====
-    const tools = [
-      {
-        title: "Tool Bảng Kê Tính Lãi VPBANK",
-        status: "LIVE",
-        statusType: "live",
-        icon: "fa-calculator",
-        desc: "Tính lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.",
-        link: "https://giabao1881.github.io/BKTL/",
-        tags: ["bank"]
-      },
-      {
-        title: "Tool Tính KPI Theo Tháng VPBANK",
-        status: "LIVE",
-        statusType: "live",
-        icon: "fa-chart-line",
-        desc: "Hệ thống tính toán & theo dõi KPI hằng tháng cho nhân viên VPBANK.",
-        link: "https://giabao1881.github.io/KPI/",
-        tags: ["kpi","bank"]
-      },
-      {
-        title: "Tool Tính Án Phí Của Tòa Án",
-        status: "LIVE",
-        statusType: "live",
-        icon: "fa-balance-scale",
-        desc: "Công cụ tính toán án phí, lệ phí tòa án theo quy định pháp luật hiện hành.",
-        link: "https://giabao1881.github.io/ANPHI/",
-        tags: ["legal"]
-      },
-      {
-        title: "Tool Đơn Khởi Kiện Tín Chấp VPBANK",
-        status: "SOON",
-        statusType: "soon",
-        icon: "fa-gavel",
-        desc: "Mẫu đơn khởi kiện & hướng dẫn chi tiết cho các tranh chấp liên quan đến tín chấp.",
-        link: "",
-        tags: ["legal","soon","bank"]
-      },
-      {
-        title: "Tool Bảng Tự Khai Tín Chấp VPBANK",
-        status: "SOON",
-        statusType: "soon",
-        icon: "fa-file-contract",
-        desc: "Tạo bảng tự khai thông tin theo chuẩn, hỗ trợ hồ sơ/tài liệu nhanh.",
-        link: "",
-        tags: ["bank","soon"]
-      },
-    ];
-
-    const toolsGrid = document.getElementById('toolsGrid');
-
-    function renderTools(list){
-      toolsGrid.innerHTML = "";
-      if(list.length === 0){
-        toolsGrid.innerHTML = `
-          <div class="tool" style="grid-column:1/-1">
-            <div style="font-weight:950">Không tìm thấy tool phù hợp.</div>
-            <div style="margin-top:6px;color:var(--muted);line-height:1.6">
-              Thử đổi từ khóa hoặc chọn tag khác.
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      list.forEach(t=>{
-        const badgeClass = t.statusType === "live" ? "badge live" : "badge soon";
-        const action = t.link
-          ? `<a class="toolLink" href="${t.link}" target="_blank" rel="noopener">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập Tool
-            </a>`
-          : `<div class="toolBtn"><i class="fa-solid fa-clock"></i> Đang phát triển</div>`;
-
-        const tagsHtml = t.tags.map(x=>`<span class="tag">#${x}</span>`).join("");
-
-        toolsGrid.innerHTML += `
-          <div class="tool" data-tags="${t.tags.join(",")}" data-title="${(t.title + " " + t.desc).toLowerCase()}">
-            <div class="toolTop">
-              <div class="tico"><i class="fa-solid ${t.icon}"></i></div>
-              <div>
-                <h4>${t.title} <span class="${badgeClass}">${t.status}</span></h4>
-                <p>${t.desc}</p>
-                <div class="tags">${tagsHtml}</div>
-              </div>
-            </div>
-            ${action}
-          </div>
-        `;
-      });
-    }
-
-    renderTools(tools);
-
-    // ===== Filter logic (search + tag) =====
-    let activeTag = "all";
-
-    const chips = document.querySelectorAll('.chip');
-    const searchInput = document.getElementById('searchInput');
-
-    function applyFilters(){
-      const q = (searchInput.value || "").trim().toLowerCase();
-
-      const filtered = tools.filter(t=>{
-        const text = (t.title + " " + t.desc).toLowerCase();
-        const matchQ = q === "" ? true : text.includes(q);
-
-        const matchTag =
-          activeTag === "all" ? true :
-          activeTag === "soon" ? t.tags.includes("soon") :
-          t.tags.includes(activeTag);
-
-        return matchQ && matchTag;
-      });
-
-      renderTools(filtered);
-    }
-
-    chips.forEach(c=>{
-      c.addEventListener('click', ()=>{
-        chips.forEach(x=>x.classList.remove('active'));
-        c.classList.add('active');
-        activeTag = c.dataset.tag;
-        applyFilters();
-      });
+    modal.addEventListener('click', (e)=>{
+      if(e.target === modal) closeModalFn();
     });
-
-    let typingTimer = null;
-    searchInput.addEventListener('input', ()=>{
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(applyFilters, 120);
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeModalFn();
     });
   </script>
 </body>
