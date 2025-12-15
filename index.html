@@ -184,7 +184,7 @@
       .name-main{font-size:2.8rem}
       .title-main{font-size:1.2rem}
       .section-title{font-size:1.6rem}
-      .donate-qr{width:200px;height:200px}
+      width:200px;height:200px}
     }
   </style>
 </head>
@@ -236,13 +236,16 @@
         <div class="tab-content active" id="donate-tab">
           <div class="donate-container">
             <div class="donate-qr-container">
-              <div class="donate-qr">
+              <div class="donate-qr" style="overflow:hidden;">
+
                 <!-- ✅ DÙNG ẢNH BẠN UP: qr-donate.png -->
                 <img
-                  src="./qr-donate.png?v=2"
-                  alt="QR Code Donate"
-                  class="qr-image"
-                  onerror="this.style.display='none';document.getElementById('qr-placeholder').style.display='flex';"
+                 src="./qr-donate.png?v=3"
+  alt="QR Code Donate"
+  class="qr-image"
+  style="position:absolute;top:50%;left:50%;width:calc(100% - 30px);height:calc(100% - 30px);
+         object-fit:cover;transform:translate(-50%,-50%) scale(1.25);transform-origin:center;border-radius:8px;"
+  onerror="this.style.display='none';document.getElementById('qr-placeholder').style.display='flex';"
                 >
                 <div id="qr-placeholder" class="qr-placeholder">
                   <i class="fas fa-qrcode"></i>
