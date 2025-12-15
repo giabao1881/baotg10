@@ -1,1071 +1,945 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>baotg10 | Digital Creator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 40px 20px 60px;
-        }
-        
-        .name-main {
-            font-size: 5rem;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -2px;
-            line-height: 1;
-        }
-        
-        .title-main {
-            font-size: 1.4rem;
-            color: #94a3b8;
-            font-weight: 300;
-        }
-        
-        /* Main Content */
-        .main-content {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-        
-        @media (max-width: 900px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-        
-        /* Left Column */
-        .left-column {
-            position: sticky;
-            top: 40px;
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .avatar-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 5rem;
-            font-weight: 800;
-            color: white;
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
-            border: 4px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .name-title {
-            font-size: 2rem;
-            color: #f1f5f9;
-            margin-bottom: 8px;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            color: #94a3b8;
-        }
-        
-        /* Contact Tabs */
-        .contact-tabs {
-            margin-top: 30px;
-        }
-        
-        .tab-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-        
-        .tab-btn {
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: #94a3b8;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-align: left;
-        }
-        
-        .tab-btn:hover {
-            background: rgba(59, 130, 246, 0.1);
-            color: #f1f5f9;
-            transform: translateX(5px);
-        }
-        
-        .tab-btn.active {
-            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
-            border-color: rgba(59, 130, 246, 0.3);
-            color: #3b82f6;
-            font-weight: 600;
-        }
-        
-        .tab-icon {
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-        }
-        
-        .tab-content {
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 200px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        
-        .tab-content.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Donate Tab - QR Code Chất lượng cao */
-        .donate-container {
-            text-align: center;
-        }
-        
-        .donate-qr-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 25px;
-        }
-        
-        .donate-qr {
-            width: 250px; /* Tăng kích thước cho rõ */
-            height: 250px;
-            background: white;
-            border-radius: 16px;
-            padding: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            position: relative;
-            border: 3px solid #3b82f6;
-        }
-        
-        .donate-qr:before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
-            border-radius: 19px;
-            z-index: -1;
-            animation: borderGlow 3s linear infinite;
-            background-size: 400% 400%;
-        }
-        
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .qr-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Giữ nguyên tỷ lệ */
-            border-radius: 8px;
-            image-rendering: -webkit-optimize-contrast; /* Tối ưu cho Chrome */
-            image-rendering: crisp-edges; /* Tối ưu cho Firefox */
-            -ms-interpolation-mode: nearest-neighbor; /* Tối ưu cho IE */
-        }
-        
-        .qr-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #f8fafc, #f1f5f9);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #1e293b;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 20px;
-            border: 2px dashed #cbd5e1;
-        }
-        
-        .qr-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #64748b;
-        }
-        
-        .donate-text {
-            color: #f1f5f9;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .donate-subtext {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            text-align: center;
-            line-height: 1.6;
-            max-width: 400px;
-            margin: 0 auto 20px;
-        }
-        
-        .bank-info {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
-            border-radius: 12px;
-            padding: 18px;
-            margin: 20px 0;
-            text-align: center;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            backdrop-filter: blur(10px);
-        }
-        
-        .bank-name {
-            color: #3b82f6;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .account-number {
-            color: #f1f5f9;
-            font-family: 'Courier New', monospace;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            font-weight: 600;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 8px 15px;
-            border-radius: 6px;
-            display: inline-block;
-            margin: 5px 0;
-        }
-        
-        .qr-quality-tips {
-            background: rgba(245, 158, 11, 0.1);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 20px;
-            text-align: left;
-            border-left: 3px solid #f59e0b;
-        }
-        
-        .qr-quality-tips h4 {
-            color: #f59e0b;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        
-        .qr-quality-tips ul {
-            color: #cbd5e1;
-            font-size: 0.85rem;
-            padding-left: 20px;
-            line-height: 1.5;
-        }
-        
-        .qr-quality-tips li {
-            margin-bottom: 5px;
-        }
-        
-        /* Email/Phone Tab */
-        .contact-info {
-            text-align: center;
-        }
-        
-        .contact-item {
-            margin-bottom: 25px;
-        }
-        
-        .contact-label {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            display: block;
-        }
-        
-        .contact-value {
-            color: #f1f5f9;
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-        
-        .copy-btn {
-            padding: 10px 20px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
-        }
-        
-        /* Right Column */
-        .right-column {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: #f1f5f9;
-            margin-bottom: 40px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-        }
-        
-        /* Info Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-        
-        @media (max-width: 600px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .info-item {
-            padding: 25px;
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 12px;
-            border-left: 3px solid #3b82f6;
-            transition: transform 0.3s;
-        }
-        
-        .info-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .info-label {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            display: block;
-        }
-        
-        .info-content {
-            font-size: 1.2rem;
-            color: #f1f5f9;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-        
-        /* Tools Section */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        
-        .tool-card {
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .tool-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-            background: rgba(59, 130, 246, 0.1);
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
-        }
-        
-        .tool-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #3b82f6;
-            margin-bottom: 20px;
-        }
-        
-        .tool-card h3 {
-            font-size: 1.3rem;
-            color: #f1f5f9;
-            margin-bottom: 12px;
-            min-height: 60px;
-        }
-        
-        .tool-card p {
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-        
-        .tool-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-            width: 100%;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-        
-        .tool-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
-        }
-        
-        .tool-btn.coming-soon {
-            background: linear-gradient(90deg, #475569, #64748b);
-            cursor: not-allowed;
-        }
-        
-        .tool-status {
-            display: inline-block;
-            padding: 4px 10px;
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-left: 8px;
-            font-weight: 600;
-        }
-        
-        .tool-status.coming-soon {
-            background: rgba(245, 158, 11, 0.2);
-            color: #f59e0b;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 60px 20px 40px;
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-top: 80px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .highlight {
-            color: #3b82f6;
-            font-weight: 600;
-        }
-        
-        /* Animation */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .float {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .name-main {
-                font-size: 3.5rem;
-            }
-            
-            .left-column,
-            .right-column {
-                padding: 30px;
-            }
-            
-            .avatar {
-                width: 120px;
-                height: 120px;
-                font-size: 4rem;
-            }
-            
-            .name-title {
-                font-size: 1.8rem;
-            }
-            
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .tool-card h3 {
-                min-height: auto;
-            }
-            
-            .donate-qr {
-                width: 220px;
-                height: 220px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .name-main {
-                font-size: 2.8rem;
-            }
-            
-            .title-main {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .donate-qr {
-                width: 200px;
-                height: 200px;
-            }
-        }
-        
-        /* Download Button */
-        .download-btn {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: linear-gradient(90deg, #10b981, #059669);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="baotg10 | Developer • Creator • Chuyên gia công cụ ngân hàng" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>baotg10 | Digital Creator</title>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#1e293b;
+      --card:rgba(30,41,59,.55);
+      --card2:rgba(15,23,42,.55);
+      --stroke:rgba(255,255,255,.10);
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --muted2:#64748b;
+      --brand:#3b82f6;
+      --brand2:#8b5cf6;
+      --brand3:#ec4899;
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --radius:20px;
+      --shadow:0 20px 40px rgba(0,0,0,.35);
+      --shadow2:0 12px 24px rgba(0,0,0,.35);
+      --ring:0 0 0 4px rgba(59,130,246,.25);
+      --speed:280ms;
+    }
+
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(59,130,246,.18), transparent 60%),
+                  radial-gradient(1000px 600px at 90% 30%, rgba(139,92,246,.14), transparent 55%),
+                  linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; }
+    .container{ max-width:1200px; margin:0 auto; padding:42px 18px; }
+
+    /* Header */
+    .header{ text-align:center; padding:34px 18px 52px; }
+    .name-main{
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      line-height: 1;
+      letter-spacing:-2px;
+      font-weight:900;
+      background: linear-gradient(90deg, var(--brand), var(--brand2), var(--brand3));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow: 0 0 24px rgba(59,130,246,.10);
+      user-select:none;
+    }
+    .title-main{
+      margin-top:10px;
+      font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+      color: var(--muted);
+      font-weight: 350;
+    }
+
+    /* Layout */
+    .main-content{
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      gap: 46px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .main-content{ grid-template-columns:1fr; gap: 28px; }
+    }
+
+    /* Panels */
+    .panel{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+    .left-column{
+      position: sticky;
+      top: 22px;
+      padding: 34px;
+    }
+    @media (max-width: 980px){
+      .left-column{ position: relative; top: 0; }
+    }
+    .right-column{
+      padding: 44px;
+    }
+    @media (max-width: 768px){
+      .left-column,.right-column{ padding: 28px; }
+    }
+
+    /* Avatar */
+    .avatar-section{ text-align:center; margin-bottom: 28px; }
+    .avatar{
+      width: 140px; height: 140px; border-radius: 50%;
+      display:flex; align-items:center; justify-content:center;
+      margin: 0 auto 18px;
+      font-size: 4.6rem; font-weight: 900; color:#fff;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 18px 35px rgba(59,130,246,.25);
+      border: 4px solid rgba(255,255,255,.10);
+      position: relative;
+      overflow:hidden;
+    }
+    .avatar:after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 45%);
+      transform: rotate(20deg);
+    }
+    .name-title{ font-size: 1.95rem; color:#f1f5f9; margin-bottom:6px; }
+    .subtitle{ font-size: 1.05rem; color: var(--muted); }
+
+    /* Tabs */
+    .contact-tabs{ margin-top: 18px; }
+    .tab-buttons{ display:flex; flex-direction:column; gap: 12px; margin-bottom: 18px; }
+
+    .tab-btn{
+      width:100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      color: var(--muted);
+      cursor:pointer;
+      transition: transform var(--speed), background var(--speed), color var(--speed), border-color var(--speed);
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      text-align:left;
+      outline:none;
+    }
+    .tab-btn:hover{
+      background: rgba(59,130,246,.10);
+      color:#f1f5f9;
+      transform: translateX(6px);
+      border-color: rgba(59,130,246,.25);
+    }
+    .tab-btn:focus-visible{ box-shadow: var(--ring); }
+    .tab-btn.active{
+      background: linear-gradient(90deg, rgba(59,130,246,.18), rgba(139,92,246,.16));
+      border-color: rgba(59,130,246,.30);
+      color: var(--brand);
+      font-weight: 650;
+      transform:none;
+    }
+    .tab-icon{
+      width: 36px; height: 36px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius: 10px;
+      background: rgba(59,130,246,.10);
+      color: var(--brand);
+      flex: 0 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .tab-content{
+      background: var(--card2);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 22px;
+      min-height: 210px;
+      box-shadow: var(--shadow2);
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity var(--speed), transform var(--speed);
+    }
+    .tab-content.active{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Donate */
+    .donate-container{ text-align:center; }
+    .donate-qr-container{ display:inline-block; margin-bottom: 18px; }
+    .donate-qr{
+      width: 240px; height: 240px;
+      background:#fff;
+      border-radius: 18px;
+      padding: 14px;
+      position: relative;
+      border: 3px solid rgba(59,130,246,.65);
+      box-shadow: 0 18px 40px rgba(0,0,0,.40);
+      overflow:hidden;
+    }
+    .donate-qr:before{
+      content:"";
+      position:absolute;
+      inset:-3px;
+      background: linear-gradient(45deg, var(--brand), var(--brand2), var(--brand3), var(--brand));
+      background-size: 400% 400%;
+      animation: borderGlow 3s linear infinite;
+      border-radius: 20px;
+      z-index:-1;
+    }
+    @keyframes borderGlow{
+      0%,100%{ background-position:0% 50%; }
+      50%{ background-position:100% 50%; }
+    }
+    .qr-image{
+      width:100%; height:100%;
+      object-fit: contain;
+      border-radius: 10px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    .qr-placeholder{
+      width:100%; height:100%;
+      background: linear-gradient(45deg, #f8fafc, #f1f5f9);
+      border-radius: 10px;
+      display:none;
+      flex-direction: column;
+      align-items:center;
+      justify-content:center;
+      color:#1e293b;
+      font-weight: 800;
+      font-size:.95rem;
+      padding: 18px;
+      border: 2px dashed #cbd5e1;
+    }
+    .qr-placeholder i{ font-size: 2.6rem; margin-bottom: 10px; color:#64748b; }
+
+    .donate-text{
+      color:#f1f5f9;
+      font-size: 1.16rem;
+      font-weight: 750;
+      margin: 8px 0 10px;
+    }
+    .donate-subtext{
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.65;
+      max-width: 420px;
+      margin: 0 auto 14px;
+    }
+
+    .bank-info{
+      background: linear-gradient(135deg, rgba(59,130,246,.14), rgba(139,92,246,.14));
+      border: 1px solid rgba(59,130,246,.30);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 14px 0 10px;
+      text-align:center;
+    }
+    .bank-name{
+      color: var(--brand);
+      font-weight: 900;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      letter-spacing:.2px;
+    }
+    .account-number{
+      color:#f1f5f9;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 1.26rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      background: rgba(0,0,0,.22);
+      padding: 8px 14px;
+      border-radius: 10px;
+      display:inline-block;
+    }
+
+    .qr-quality-tips{
+      background: rgba(245,158,11,.10);
+      border-left: 3px solid var(--warn);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 14px;
+      text-align:left;
+    }
+    .qr-quality-tips h4{
+      color: var(--warn);
+      margin-bottom: 8px;
+      font-size: .92rem;
+    }
+    .qr-quality-tips ul{
+      color: #cbd5e1;
+      font-size: .85rem;
+      padding-left: 18px;
+      line-height: 1.55;
+    }
+    .qr-quality-tips li{ margin: 6px 0; }
+
+    /* Contact */
+    .contact-info{ text-align:center; }
+    .contact-item{ margin-bottom: 18px; }
+    .contact-label{ color: var(--muted); font-size:.9rem; display:block; margin-bottom: 6px; }
+    .contact-value{ color:#f1f5f9; font-size:1.15rem; font-weight: 650; margin-bottom: 10px; }
+
+    /* Buttons */
+    .btn{
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      cursor:pointer;
+      transition: transform var(--speed), box-shadow var(--speed), background var(--speed), border-color var(--speed);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      font-weight: 650;
+      user-select:none;
+      outline:none;
+    }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 18px rgba(0,0,0,.25); }
+    .btn:focus-visible{ box-shadow: var(--ring); }
+    .btn-primary{
+      border: none;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+    }
+    .btn-green{
+      border:none;
+      background: linear-gradient(90deg, #10b981, #059669);
+    }
+    .btn-pink{
+      border:none;
+      background: linear-gradient(90deg, var(--brand2), var(--brand3));
+    }
+    .btn-disabled{
+      background: linear-gradient(90deg, #475569, #64748b);
+      cursor:not-allowed;
+      opacity:.9;
+    }
+
+    /* Right side sections */
+    .section-title{
+      font-size: 1.95rem;
+      color:#f1f5f9;
+      margin-bottom: 26px;
+      padding-bottom: 12px;
+      position: relative;
+    }
+    .section-title:after{
+      content:"";
+      position:absolute; left:0; bottom:0;
+      width: 68px; height: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      border-radius: 10px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+      margin-bottom: 46px;
+    }
+    @media (max-width: 640px){
+      .info-grid{ grid-template-columns:1fr; }
+    }
+
+    .info-item{
+      padding: 18px;
+      background: var(--card2);
+      border: 1px solid rgba(255,255,255,.08);
+      border-left: 3px solid var(--brand);
+      border-radius: 14px;
+      transition: transform var(--speed), background var(--speed), border-color var(--speed);
+    }
+    .info-item:hover{
+      transform: translateY(-4px);
+      background: rgba(59,130,246,.08);
+      border-color: rgba(59,130,246,.20);
+    }
+    .info-label{
+      font-size: .82rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      display:block;
+    }
+    .info-content{
+      font-size: 1.12rem;
+      color:#f1f5f9;
+      font-weight: 650;
+      line-height: 1.55;
+    }
+
+    /* Tools */
+    .tools-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 18px;
+    }
+    .tool-card{
+      background: var(--card2);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+      overflow:hidden;
+      transition: transform var(--speed), background var(--speed), box-shadow var(--speed), border-color var(--speed);
+    }
+    .tool-card:before{
+      content:"";
+      position:absolute; left:0; right:0; top:0; height: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--brand2), var(--brand3));
+    }
+    .tool-card:hover{
+      transform: translateY(-5px);
+      background: rgba(59,130,246,.10);
+      border-color: rgba(59,130,246,.25);
+      box-shadow: 0 16px 30px rgba(59,130,246,.15);
+    }
+    .tool-icon{
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(59,130,246,.12);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--brand);
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+    .tool-card h3{
+      font-size: 1.18rem;
+      color:#f1f5f9;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .tool-card p{
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+      font-size: .95rem;
+    }
+    .tool-btn{
+      width:100%;
+      text-decoration:none;
+      border:none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      transition: transform var(--speed), box-shadow var(--speed), opacity var(--speed);
+      outline:none;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      color:#fff;
+    }
+    .tool-btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 18px rgba(59,130,246,.25); }
+    .tool-btn:focus-visible{ box-shadow: var(--ring); }
+    .tool-btn.coming-soon{ background: linear-gradient(90deg, #475569, #64748b); cursor:not-allowed; opacity:.95; }
+
+    .tool-status{
+      display:inline-flex;
+      align-items:center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-left: 8px;
+      vertical-align: middle;
+      letter-spacing: .3px;
+      background: rgba(34,197,94,.18);
+      color: var(--good);
+      border: 1px solid rgba(34,197,94,.22);
+    }
+    .tool-status.coming-soon{
+      background: rgba(245,158,11,.18);
+      color: var(--warn);
+      border-color: rgba(245,158,11,.25);
+    }
+
+    /* Footer */
+    .footer{
+      text-align:center;
+      padding: 56px 18px 34px;
+      color: var(--muted2);
+      font-size: .92rem;
+      margin-top: 70px;
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    .highlight{ color: var(--brand); font-weight: 800; }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(15,23,42,.86);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #e2e8f0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity var(--speed), transform var(--speed);
+      z-index: 9999;
+      max-width: min(520px, calc(100% - 24px));
+    }
+    .toast.show{
+      opacity:1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast i{ color: var(--brand); }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
+      .donate-qr:before{ animation:none !important; }
+      .tab-content{ transition:none !important; }
+      .tool-card,.tool-btn,.tab-btn,.btn{ transition:none !important; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1 class="name-main">baotg10</h1>
-            <p class="title-main">Developer • Creator • Chuyên Gia Công Cụ Ngân Hàng</p>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="name-main" id="nameMain">baotg10</h1>
+      <p class="title-main">Developer • Creator • Chuyên Gia Công Cụ Ngân Hàng</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Left -->
+      <aside class="left-column panel" aria-label="Thông tin liên hệ">
+        <div class="avatar-section">
+          <div class="avatar" aria-hidden="true">B</div>
+          <h2 class="name-title">Bao Tran</h2>
+          <p class="subtitle">Digital Creator</p>
         </div>
-        
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Left Column -->
-            <div class="left-column">
-                <div class="avatar-section">
-                    <div class="avatar">B</div>
-                    <h2 class="name-title">Bao Tran</h2>
-                    <p class="subtitle">Digital Creator</p>
+
+        <!-- Tabs -->
+        <div class="contact-tabs">
+          <div class="tab-buttons" role="tablist" aria-label="Chọn mục liên hệ">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="donate-tab" id="tab-donate" data-tab="donate">
+              <div class="tab-icon" aria-hidden="true">💰</div>
+              <div>
+                <div style="font-weight:800;">Ủng hộ tác giả</div>
+                <div style="font-size:.85rem; color:var(--muted);">Donate & Support</div>
+              </div>
+            </button>
+
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="email-tab" id="tab-email" data-tab="email">
+              <div class="tab-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div style="font-weight:700;">Liên hệ Email</div>
+                <div style="font-size:.85rem; color:var(--muted);">baotg10@vpbank.com.vn</div>
+              </div>
+            </button>
+
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="phone-tab" id="tab-phone" data-tab="phone">
+              <div class="tab-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
+              <div>
+                <div style="font-weight:700;">Điện thoại</div>
+                <div style="font-size:.85rem; color:var(--muted);">0336 620 689</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Donate -->
+          <section class="tab-content active" id="donate-tab" role="tabpanel" aria-labelledby="tab-donate">
+            <div class="donate-container">
+              <div class="donate-qr-container">
+                <div class="donate-qr" aria-label="QR Code Donate">
+                  <img
+                    id="qrImage"
+                    class="qr-image"
+                    alt="QR Code Donate"
+                    crossorigin="anonymous"
+                    src=""
+                  />
+                  <div id="qrPlaceholder" class="qr-placeholder">
+                    <i class="fas fa-qrcode"></i>
+                    <span>QR Code Donate</span>
+                    <small style="font-size:.72rem; margin-top:10px; color:#64748b;">
+                      Đang tải QR code...
+                    </small>
+                  </div>
                 </div>
-                
-                <!-- Contact Tabs -->
-                <div class="contact-tabs">
-                    <div class="tab-buttons">
-                        <button class="tab-btn active" data-tab="donate">
-                            <div class="tab-icon">💰</div>
-                            <div>
-                                <div style="font-weight: 600;">Ủng hộ tác giả</div>
-                                <div style="font-size: 0.85rem; color: #94a3b8;">Donate & Support</div>
-                            </div>
-                        </button>
-                        
-                        <button class="tab-btn" data-tab="email">
-                            <div class="tab-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <div>Liên hệ Email</div>
-                                <div style="font-size: 0.85rem; color: #94a3b8;">baotg10@vpbank.com.vn</div>
-                            </div>
-                        </button>
-                        
-                        <button class="tab-btn" data-tab="phone">
-                            <div class="tab-icon"><i class="fas fa-phone"></i></div>
-                            <div>
-                                <div>Điện thoại</div>
-                                <div style="font-size: 0.85rem; color: #94a3b8;">0336 620 689</div>
-                            </div>
-                        </button>
-                    </div>
-                    
-                    <!-- Tab Contents -->
-                    <div class="tab-content active" id="donate-tab">
-                        <div class="donate-container">
-                            <!-- QR Code Container với hiệu ứng border -->
-                            <div class="donate-qr-container float">
-                                <div class="donate-qr pulse">
-                                    <!-- QR Code Thật - Chất lượng cao -->
-                                    <img src="https://quickchart.io/qr?text=https://giabao1881.github.io/baotg10/donate&size=500&margin=0&dark=3b82f6&light=ffffff&format=png"
-                                         alt="QR Code Donate" 
-                                         class="qr-image"
-                                         crossorigin="anonymous"
-                                         onerror="this.style.display='none'; document.getElementById('qr-placeholder').style.display='flex';">
-                                    
-                                    <!-- Placeholder nếu QR code lỗi -->
-                                    <div id="qr-placeholder" class="qr-placeholder" style="display: none;">
-                                        <i class="fas fa-qrcode"></i>
-                                        <span>QR Code Donate</span>
-                                        <small style="font-size: 0.7rem; margin-top: 10px; color: #64748b;">
-                                            Đang tải QR code...
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <h3 class="donate-text">Hỗ trợ phát triển công cụ! 💖</h3>
-                            <p class="donate-subtext">
-                                Mọi đóng góp của bạn sẽ giúp tôi tiếp tục tạo ra những công cụ hữu ích miễn phí cho cộng đồng.
-                            </p>
-                            
-                            <!-- Thông tin chuyển khoản -->
-                            <div class="bank-info">
-                                <div class="bank-name">NGÂN HÀNG VPBANK</div>
-                                <div class="account-number">0336 620 689</div>
-                                <div style="color: #94a3b8; font-size: 0.85rem; margin-top: 8px;">
-                                    Chủ tài khoản: BAO TRAN
-                                </div>
-                            </div>
-                            
-                            <!-- Tips cho QR code chất lượng cao -->
-                            <div class="qr-quality-tips">
-                                <h4><i class="fas fa-lightbulb"></i> Để QR code rõ nét:</h4>
-                                <ul>
-                                    <li>Xuất file PNG độ phân giải cao (1000x1000px)</li>
-                                    <li>Nền trắng, mã đen hoặc màu tương phản</li>
-                                    <li>Không làm mờ hay nén chất lượng</li>
-                                    <li>Test scan trước khi upload</li>
-                                </ul>
-                            </div>
-                            
-                            <!-- Nút tải QR code mẫu -->
-                            <div style="text-align: center; margin-top: 20px;">
-                                <button class="download-btn" id="downloadSampleQR">
-                                    <i class="fas fa-download"></i>
-                                    Tải QR Code Mẫu
-                                </button>
-                                <button class="download-btn" id="refreshQR" style="margin-left: 10px; background: linear-gradient(90deg, #8b5cf6, #ec4899);">
-                                    <i class="fas fa-sync-alt"></i>
-                                    Làm Mới QR
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="email-tab">
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <span class="contact-label">Email làm việc</span>
-                                <div class="contact-value">baotg10@vpbank.com.vn</div>
-                                <button class="copy-btn" data-text="baotg10@vpbank.com.vn">
-                                    <i class="far fa-copy"></i>
-                                    Sao chép Email
-                                </button>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <span class="contact-label">Thời gian làm việc</span>
-                                <div class="contact-value">Thứ 2 - Thứ 6: 8:00 - 17:00</div>
-                            </div>
-                            
-                            <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 20px;">
-                                <i class="fas fa-info-circle"></i>
-                                Phản hồi trong vòng 24h làm việc
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="phone-tab">
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <span class="contact-label">Số điện thoại</span>
-                                <div class="contact-value">0336 620 689</div>
-                                <button class="copy-btn" data-text="0336620689">
-                                    <i class="far fa-copy"></i>
-                                    Sao chép Số điện thoại
-                                </button>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <span class="contact-label">Thời gian gọi</span>
-                                <div class="contact-value">8:00 - 20:00 hàng ngày</div>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <span class="contact-label">Ưu tiên</span>
-                                <div class="contact-value">Zalo / Messenger</div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+
+              <h3 class="donate-text">Hỗ trợ phát triển công cụ! 💖</h3>
+              <p class="donate-subtext">
+                Mọi đóng góp của bạn sẽ giúp tôi tiếp tục tạo ra những công cụ hữu ích miễn phí cho cộng đồng.
+              </p>
+
+              <div class="bank-info">
+                <div class="bank-name">NGÂN HÀNG VPBANK</div>
+                <div class="account-number" id="accountNumber">0336 620 689</div>
+                <div style="color:var(--muted); font-size:.86rem; margin-top:8px;">
+                  Chủ tài khoản: <b>BAO TRAN</b>
                 </div>
+              </div>
+
+              <div class="qr-quality-tips">
+                <h4><i class="fas fa-lightbulb"></i> Để QR code rõ nét:</h4>
+                <ul>
+                  <li>Xuất PNG độ phân giải cao (>= 1000×1000)</li>
+                  <li>Nền trắng, mã đen hoặc màu tương phản</li>
+                  <li>Không làm mờ hoặc nén chất lượng</li>
+                  <li>Test quét trước khi đăng</li>
+                </ul>
+              </div>
+
+              <div style="text-align:center; margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                <button class="btn btn-green" id="downloadSampleQR" type="button">
+                  <i class="fas fa-download"></i> Tải QR Code Mẫu
+                </button>
+                <button class="btn btn-pink" id="refreshQR" type="button">
+                  <i class="fas fa-sync-alt"></i> Làm mới QR
+                </button>
+                <button class="btn btn-primary" id="copyAccount" type="button" title="Sao chép số tài khoản">
+                  <i class="far fa-copy"></i> Sao chép STK
+                </button>
+              </div>
             </div>
-            
-            <!-- Right Column -->
-            <div class="right-column">
-                <h2 class="section-title">Thông Tin Cá Nhân</h2>
-                
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">Tên</span>
-                        <div class="info-content">baotg10 (Bao Tran)</div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <span class="info-label">Mục Tiêu</span>
-                        <div class="info-content">Tạo ra những sản phẩm công nghệ đột phá</div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <span class="info-label">Địa Điểm</span>
-                        <div class="info-content">Thành phố Hồ Chí Minh, Việt Nam</div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <span class="info-label">Chuyên Môn</span>
-                        <div class="info-content">Full-stack Development & UI/UX Design</div>
-                    </div>
-                </div>
-                
-                <h2 class="section-title">Công Cụ Hỗ Trợ</h2>
-                
-                <div class="tools-grid">
-                    <!-- Tool 1: Bảng kê tính lãi -->
-                    <div class="tool-card">
-                        <div class="tool-icon">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <h3>Tool Bảng Kê Tính Lãi VPBANK
-                            <span class="tool-status">LIVE</span>
-                        </h3>
-                        <p>Công cụ tính toán lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
-                        <a href="https://giabao1881.github.io/BKTL/" class="tool-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span>Truy Cập Tool</span>
-                        </a>
-                    </div>
-                    
-                    <!-- Tool 2: Đơn khởi kiện -->
-                    <div class="tool-card">
-                        <div class="tool-icon">
-                            <i class="fas fa-gavel"></i>
-                        </div>
-                        <h3>Tool Đơn Khởi Kiện Tín Chấp VPBANK
-                            <span class="tool-status coming-soon">SOON</span>
-                        </h3>
-                        <p>Mẫu đơn khởi kiện và hướng dẫn chi tiết cho các tranh chấp liên quan đến tín chấp tại VPBANK.</p>
-                        <button class="tool-btn coming-soon" disabled>
-                            <i class="fas fa-clock"></i>
-                            <span>Đang Phát Triển</span>
-                        </button>
-                    </div>
-                    
-                    <!-- Tool 3: Bảng tự khai -->
-                    <div class="tool-card">
-                        <div class="tool-icon">
-                            <i class="fas fa-file-contract"></i>
-                        </div>
-                        <h3>Tool Bảng Tự Khai Tín Chấp VPBANK
-                            <span class="tool-status coming-soon">SOON</span>
-                        </h3>
-                        <p>Công cụ tạo bảng tự khai thông tin tín chấp theo chuẩn VPBANK, hỗ trợ thủ tục vay vốn.</p>
-                        <button class="tool-btn coming-soon" disabled>
-                            <i class="fas fa-clock"></i>
-                            <span>Đang Phát Triển</span>
-                        </button>
-                    </div>
-                    
-                    <!-- Tool 4: Tính KPI -->
-                    <div class="tool-card">
-                        <div class="tool-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Tool Tính KPI Theo Tháng VPBANK
-                            <span class="tool-status">LIVE</span>
-                        </h3>
-                        <p>Hệ thống tính toán và theo dõi chỉ số KPI hàng tháng cho nhân viên VPBANK.</p>
-                        <a href="https://giabao1881.github.io/KPI/" class="tool-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span>Truy Cập Tool</span>
-                        </a>
-                    </div>
-                    
-                    <!-- Tool 5: Tính án phí -->
-                    <div class="tool-card">
-                        <div class="tool-icon">
-                            <i class="fas fa-balance-scale"></i>
-                        </div>
-                        <h3>Tool Tính Án Phí Của Tòa Án
-                            <span class="tool-status">LIVE</span>
-                        </h3>
-                        <p>Công cụ tính toán án phí, lệ phí tòa án theo quy định pháp luật hiện hành.</p>
-                        <a href="https://giabao1881.github.io/ANPHI/" class="tool-btn" target="_blank">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span>Truy Cập Tool</span>
-                        </a>
-                    </div>
-                </div>
+          </section>
+
+          <!-- Email -->
+          <section class="tab-content" id="email-tab" role="tabpanel" aria-labelledby="tab-email" hidden>
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="contact-label">Email làm việc</span>
+                <div class="contact-value" id="emailValue">baotg10@vpbank.com.vn</div>
+                <button class="btn btn-primary copy-btn" data-text="baotg10@vpbank.com.vn" type="button">
+                  <i class="far fa-copy"></i> Sao chép Email
+                </button>
+              </div>
+
+              <div class="contact-item">
+                <span class="contact-label">Thời gian làm việc</span>
+                <div class="contact-value">Thứ 2 - Thứ 6: 8:00 - 17:00</div>
+              </div>
+
+              <p style="color:var(--muted); font-size:.9rem; margin-top:12px;">
+                <i class="fas fa-info-circle"></i> Phản hồi trong vòng 24h làm việc
+              </p>
             </div>
+          </section>
+
+          <!-- Phone -->
+          <section class="tab-content" id="phone-tab" role="tabpanel" aria-labelledby="tab-phone" hidden>
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="contact-label">Số điện thoại</span>
+                <div class="contact-value" id="phoneValue">0336 620 689</div>
+                <button class="btn btn-primary copy-btn" data-text="0336620689" type="button">
+                  <i class="far fa-copy"></i> Sao chép Số điện thoại
+                </button>
+              </div>
+
+              <div class="contact-item">
+                <span class="contact-label">Thời gian gọi</span>
+                <div class="contact-value">8:00 - 20:00 hằng ngày</div>
+              </div>
+
+              <div class="contact-item">
+                <span class="contact-label">Ưu tiên</span>
+                <div class="contact-value">Zalo / Messenger</div>
+              </div>
+            </div>
+          </section>
         </div>
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <p>© 2024 <span class="highlight">baotg10</span>. Tất cả các quyền được bảo lưu.</p>
-            <p style="margin-top: 10px;">Digital Creator & Chuyên gia công cụ ngân hàng</p>
-        </footer>
-    </div>
-    
-    <script>
-        // Hiệu ứng gõ chữ cho tên
-        const nameMain = document.querySelector('.name-main');
-        const originalText = nameMain.textContent;
-        nameMain.textContent = '';
-        
-        let i = 0;
-        function typeWriter() {
-            if (i < originalText.length) {
-                nameMain.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
+      </aside>
+
+      <!-- Right -->
+      <section class="right-column panel">
+        <h2 class="section-title">Thông tin cá nhân</h2>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Tên</span>
+            <div class="info-content">baotg10 (Bao Tran)</div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Mục tiêu</span>
+            <div class="info-content">Tạo ra những sản phẩm công nghệ đột phá</div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Địa điểm</span>
+            <div class="info-content">Thành phố Hồ Chí Minh, Việt Nam</div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Chuyên môn</span>
+            <div class="info-content">Full-stack Development & UI/UX Design</div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Công cụ hỗ trợ</h2>
+
+        <div class="tools-grid">
+          <!-- Tool 1 -->
+          <article class="tool-card">
+            <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+            <h3>Tool Bảng Kê Tính Lãi VPBANK <span class="tool-status">LIVE</span></h3>
+            <p>Công cụ tính toán lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
+            <a class="tool-btn" href="https://giabao1881.github.io/BKTL/" target="_blank" rel="noopener">
+              <i class="fas fa-external-link-alt"></i> Truy cập Tool
+            </a>
+          </article>
+
+          <!-- Tool 2 -->
+          <article class="tool-card">
+            <div class="tool-icon"><i class="fas fa-gavel"></i></div>
+            <h3>Tool Đơn Khởi Kiện Tín Chấp VPBANK <span class="tool-status coming-soon">SOON</span></h3>
+            <p>Mẫu đơn khởi kiện và hướng dẫn chi tiết cho các tranh chấp liên quan đến tín chấp tại VPBANK.</p>
+            <button class="tool-btn coming-soon" type="button" data-coming-soon="1">
+              <i class="fas fa-clock"></i> Đang phát triển
+            </button>
+          </article>
+
+          <!-- Tool 3 -->
+          <article class="tool-card">
+            <div class="tool-icon"><i class="fas fa-file-contract"></i></div>
+            <h3>Tool Bảng Tự Khai Tín Chấp VPBANK <span class="tool-status coming-soon">SOON</span></h3>
+            <p>Công cụ tạo bảng tự khai thông tin tín chấp theo chuẩn VPBANK, hỗ trợ thủ tục vay vốn.</p>
+            <button class="tool-btn coming-soon" type="button" data-coming-soon="1">
+              <i class="fas fa-clock"></i> Đang phát triển
+            </button>
+          </article>
+
+          <!-- Tool 4 -->
+          <article class="tool-card">
+            <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Tool Tính KPI Theo Tháng VPBANK <span class="tool-status">LIVE</span></h3>
+            <p>Hệ thống tính toán và theo dõi chỉ số KPI hằng tháng cho nhân viên VPBANK.</p>
+            <a class="tool-btn" href="https://giabao1881.github.io/KPI/" target="_blank" rel="noopener">
+              <i class="fas fa-external-link-alt"></i> Truy cập Tool
+            </a>
+          </article>
+
+          <!-- Tool 5 -->
+          <article class="tool-card">
+            <div class="tool-icon"><i class="fas fa-balance-scale"></i></div>
+            <h3>Tool Tính Án Phí Của Tòa Án <span class="tool-status">LIVE</span></h3>
+            <p>Công cụ tính toán án phí, lệ phí tòa án theo quy định pháp luật hiện hành.</p>
+            <a class="tool-btn" href="https://giabao1881.github.io/ANPHI/" target="_blank" rel="noopener">
+              <i class="fas fa-external-link-alt"></i> Truy cập Tool
+            </a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2024 <span class="highlight">baotg10</span>. Tất cả các quyền được bảo lưu.</p>
+      <p style="margin-top:10px;">Digital Creator & Chuyên gia công cụ ngân hàng</p>
+    </footer>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <i class="fas fa-check-circle" aria-hidden="true"></i>
+    <div id="toastText">Đã sao chép!</div>
+  </div>
+
+  <script>
+    // ===== Helpers =====
+    const $ = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+    const toast = $('#toast');
+    const toastText = $('#toastText');
+    let toastTimer = null;
+
+    function showToast(msg, iconClass = 'fa-check-circle') {
+      toastText.textContent = msg;
+      const icon = toast.querySelector('i');
+      icon.className = `fas ${iconClass}`;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Đã sao chép!');
+      } catch (e) {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast('Đã sao chép!');
+      }
+    }
+
+    // ===== Typewriter (nhẹ) =====
+    (function typeWriter(){
+      const el = $('#nameMain');
+      const original = el.textContent.trim();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return; // tôn trọng reduce-motion
+
+      el.textContent = '';
+      let i = 0;
+      function tick(){
+        el.textContent += original.charAt(i++);
+        if (i < original.length) setTimeout(tick, 70);
+      }
+      setTimeout(tick, 220);
+    })();
+
+    // ===== Tabs (a11y chuẩn) =====
+    const tabButtons = $$('.tab-btn');
+    const tabPanels = $$('.tab-content');
+
+    function activateTab(tabId){
+      tabButtons.forEach(btn => {
+        const active = btn.dataset.tab === tabId;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      tabPanels.forEach(panel => {
+        const active = panel.id === `${tabId}-tab`;
+        panel.classList.toggle('active', active);
+        panel.hidden = !active;
+      });
+    }
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+      btn.addEventListener('keydown', (e) => {
+        // mũi tên lên/xuống chuyển tab cho tiện
+        const idx = tabButtons.indexOf(btn);
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          tabButtons[(idx + 1) % tabButtons.length].focus();
         }
-        
-        // Tab switching functionality
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabId = button.getAttribute('data-tab');
-                
-                // Remove active class from all buttons and contents
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding content
-                button.classList.add('active');
-                document.getElementById(`${tabId}-tab`).classList.add('active');
-            });
-        });
-        
-        // Copy to clipboard functionality
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const text = this.getAttribute('data-text');
-                navigator.clipboard.writeText(text).then(() => {
-                    const originalHTML = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
-                    this.style.background = 'linear-gradient(90deg, #10b981, #059669)';
-                    
-                    setTimeout(() => {
-                        this.innerHTML = originalHTML;
-                        this.style.background = '';
-                    }, 2000);
-                });
-            });
-        });
-        
-        // Tải QR code mẫu chất lượng cao
-        document.getElementById('downloadSampleQR').addEventListener('click', function() {
-            // Tạo QR code mẫu chất lượng cao
-            const qrUrl = 'https://quickchart.io/qr?text=https%3A%2F%2Fgiabao1881.github.io%2Fbaotg10%2Fdonate&size=500&margin=0&dark=3b82f6&light=ffffff&format=png&qzone=2';
-            
-            const link = document.createElement('a');
-            link.href = qrUrl;
-            link.download = 'qr-donate-sample.png';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Hiển thị thông báo
-            this.innerHTML = '<i class="fas fa-check"></i> Đã tải mẫu!';
-            setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-download"></i> Tải QR Code Mẫu';
-            }, 2000);
-        });
-        
-        // Làm mới QR code
-        document.getElementById('refreshQR').addEventListener('click', function() {
-            const qrImage = document.querySelector('.qr-image');
-            const timestamp = new Date().getTime();
-            
-            // Thêm timestamp để tránh cache
-            qrImage.src = `https://quickchart.io/qr?text=https://giabao1881.github.io/baotg10/donate&size=500&margin=0&dark=3b82f6&light=ffffff&format=png&t=${timestamp}`;
-            
-            // Hiển thị loading
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang làm mới...';
-            
-            // Kiểm tra khi ảnh load xong
-            qrImage.onload = () => {
-                this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm Mới QR';
-                
-                // Ẩn placeholder nếu có
-                const placeholder = document.getElementById('qr-placeholder');
-                if (placeholder) {
-                    placeholder.style.display = 'none';
-                }
-            };
-            
-            qrImage.onerror = () => {
-                this.innerHTML = '<i class="fas fa-sync-alt"></i> Làm Mới QR';
-                alert('Không thể tải QR code. Vui lòng thử lại sau!');
-            };
-        });
-        
-        // Tự động ẩn placeholder khi QR code load thành công
-        const qrImage = document.querySelector('.qr-image');
-        const placeholder = document.getElementById('qr-placeholder');
-        
-        if (qrImage) {
-            qrImage.onload = function() {
-                if (placeholder) {
-                    placeholder.style.display = 'none';
-                }
-            };
-            
-            qrImage.onerror = function() {
-                if (placeholder) {
-                    placeholder.style.display = 'flex';
-                }
-            };
-            
-            // Kiểm tra nếu ảnh đã load sẵn
-            if (qrImage.complete) {
-                if (qrImage.naturalHeight !== 0) {
-                    if (placeholder) {
-                        placeholder.style.display = 'none';
-                    }
-                }
-            }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          tabButtons[(idx - 1 + tabButtons.length) % tabButtons.length].focus();
         }
-        
-        // Tool coming soon
-        document.querySelectorAll('.tool-btn.coming-soon').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                if (this.disabled) {
-                    e.preventDefault();
-                    alert('Công cụ này đang được phát triển. Vui lòng quay lại sau!');
-                }
-            });
-        });
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(typeWriter, 300);
-            
-            // Auto-switch to donate tab after 2 seconds
-            setTimeout(() => {
-                const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
-                if (activeTab !== 'donate') {
-                    document.querySelector('[data-tab="donate"]').click();
-                }
-            }, 2000);
-        });
-    </script>
+      });
+    });
+
+    // ===== QR =====
+    const donateUrl = 'https://giabao1881.github.io/baotg10/donate';
+    function buildQrUrl(extraParams = '') {
+      // size=800 để in/scan rõ, hiển thị vẫn fit
+      const base = 'https://quickchart.io/qr';
+      const params = new URLSearchParams({
+        text: donateUrl,
+        size: '800',
+        margin: '0',
+        dark: '3b82f6',
+        light: 'ffffff',
+        format: 'png',
+        qzone: '2'
+      });
+      if (extraParams) params.set('t', extraParams);
+      return `${base}?${params.toString()}`;
+    }
+
+    const qrImage = $('#qrImage');
+    const qrPlaceholder = $('#qrPlaceholder');
+
+    function loadQr(withBustCache=false){
+      qrPlaceholder.style.display = 'flex';
+      const t = withBustCache ? String(Date.now()) : '';
+      qrImage.src = buildQrUrl(t);
+    }
+
+    qrImage.addEventListener('load', () => {
+      qrPlaceholder.style.display = 'none';
+    });
+
+    qrImage.addEventListener('error', () => {
+      qrPlaceholder.style.display = 'flex';
+      showToast('Không tải được QR. Thử lại nhé!', 'fa-triangle-exclamation');
+    });
+
+    // init QR
+    loadQr(false);
+
+    // Refresh QR
+    $('#refreshQR').addEventListener('click', () => {
+      showToast('Đang làm mới QR...', 'fa-rotate');
+      loadQr(true);
+    });
+
+    // Download QR (blob) - tránh tải lỗi tên file / cache
+    $('#downloadSampleQR').addEventListener('click', async () => {
+      const url = buildQrUrl(String(Date.now()));
+      try{
+        const res = await fetch(url, { mode: 'cors' });
+        const blob = await res.blob();
+        const objectUrl = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = objectUrl;
+        a.download = 'qr-donate.png';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        URL.revokeObjectURL(objectUrl);
+        showToast('Đã tải QR mẫu!');
+      }catch(e){
+        // fallback: mở tab mới
+        window.open(url, '_blank', 'noopener');
+        showToast('Mở QR ở tab mới (fallback).', 'fa-arrow-up-right-from-square');
+      }
+    });
+
+    // Copy buttons
+    $$('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => copyText(btn.dataset.text));
+    });
+
+    $('#copyAccount').addEventListener('click', () => {
+      copyText($('#accountNumber').textContent.trim().replace(/\s+/g,''));
+    });
+
+    // Coming soon
+    $$('[data-coming-soon="1"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        showToast('Công cụ đang phát triển. Vui lòng quay lại sau!', 'fa-clock');
+      });
+    });
+  </script>
 </body>
 </html>
