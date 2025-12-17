@@ -391,7 +391,18 @@
       margin-top: 2px;
     }
     .tool h4{font-size:1.05rem;font-weight:950;line-height:1.25}
-    .tool p{margin-top:8px;color:var(--muted);font-size:.92rem;line-height:1.6}
+    .tool p{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.6;
+
+      /* gọn hơn */
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
 
     .badge{
       display:inline-flex;align-items:center;gap:6px;
@@ -403,9 +414,10 @@
     }
     .live{background: rgba(34,197,94,.12); color: #22c55e; border-color: rgba(34,197,94,.25)}
     .soon{background: rgba(245,158,11,.12); color: #f59e0b; border-color: rgba(245,158,11,.25)}
+    .new {background: rgba(59,130,246,.12); color:#93c5fd; border-color: rgba(59,130,246,.25)}
 
     .toolLink, .toolBtn{
-      margin-top: 12px;
+      margin-top: 14px;
       width:100%;
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding: 12px 14px;
@@ -678,7 +690,7 @@
               </a>
             </div>
 
-            <!-- 2) DKK (moved right after BKTL + added link) -->
+            <!-- 2) DKK -->
             <div class="tool">
               <div class="toolTop">
                 <div class="tico"><i class="fa-solid fa-gavel"></i></div>
@@ -692,7 +704,7 @@
               </a>
             </div>
 
-            <!-- 3) BTK (moved right after DKK + added link) -->
+            <!-- 3) BTK -->
             <div class="tool">
               <div class="toolTop">
                 <div class="tico"><i class="fa-solid fa-file-contract"></i></div>
@@ -706,7 +718,21 @@
               </a>
             </div>
 
-            <!-- 4) KPI -->
+            <!-- 4) PDF SPLIT + RENAME (NEW) -->
+            <div class="tool">
+              <div class="toolTop">
+                <div class="tico"><i class="fa-solid fa-file-pdf"></i></div>
+                <div>
+                  <h4>Tool Tự Động Tách File + Đặt Tên File PDF <span class="badge new">NEW</span></h4>
+                  <p>Tách lẻ từng trang / tách theo nhóm / tách theo dung lượng, hỗ trợ dán danh sách tên (mỗi dòng = 1 file) và nén ZIP tải về.</p>
+                </div>
+              </div>
+              <a href="https://giabao1881.github.io/PDF_SPLIT/" class="toolLink" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập Tool
+              </a>
+            </div>
+
+            <!-- 5) KPI -->
             <div class="tool">
               <div class="toolTop">
                 <div class="tico"><i class="fa-solid fa-chart-line"></i></div>
@@ -720,7 +746,7 @@
               </a>
             </div>
 
-            <!-- 5) ANPHI -->
+            <!-- 6) ANPHI -->
             <div class="tool">
               <div class="toolTop">
                 <div class="tico"><i class="fa-solid fa-balance-scale"></i></div>
@@ -791,7 +817,6 @@
         await navigator.clipboard.writeText(t);
         alert('Đã sao chép!');
       }catch(e){
-        // fallback
         const ta = document.createElement('textarea');
         ta.value = t;
         document.body.appendChild(ta);
