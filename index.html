@@ -3,818 +3,517 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>baotg10 | Digital Creator</title>
+  <title>baotg10 | Digital Creator Tools</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#f6f7ff;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --muted2:#94a3b8;
-      --line: rgba(15,23,42,.10);
+    :root {
+      /* Palette Dark Mode */
+      --bg-body: #0f1014;
+      --bg-card: #181920;
+      --bg-card-hover: #1e2029;
+      --border: #2a2d3a;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      
+      /* Accents */
+      --accent-primary: #3b82f6; /* Blue */
+      --accent-glow: rgba(59, 130, 246, 0.5);
+      --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      
+      /* Status Colors */
+      --tag-new: #10b981;
+      --tag-live: #f43f5e;
 
-      --p1:#6c63ff;
-      --p2:#7c3aed;
-      --p3:#ec4899;
-
-      --shadow: 0 18px 55px rgba(15,23,42,.10);
-      --shadow2: 0 10px 26px rgba(15,23,42,.08);
-
-      --r:22px;
-      --r2:16px;
-
-      --container: 1120px;
-      --ring: 0 0 0 4px rgba(108,99,255,.12);
-    }
-
-    *{margin:0;padding:0;box-sizing:border-box;font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;}
-    body{
-      min-height:100vh;
-      color:var(--text);
-      background:
-        radial-gradient(900px 520px at 15% 12%, rgba(108,99,255,.14), transparent 55%),
-        radial-gradient(900px 520px at 88% 18%, rgba(236,72,153,.10), transparent 55%),
-        radial-gradient(900px 520px at 52% 112%, rgba(124,58,237,.12), transparent 60%),
-        linear-gradient(180deg, var(--bg), #ffffff);
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--container);margin:0 auto;padding:22px 16px 60px}
-
-    /* TOPBAR */
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;
-      padding:14px 16px;
-      border:1px solid var(--line);
-      border-radius: var(--r);
-      background: rgba(255,255,255,.85);
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(10px);
-    }
-    .brand{display:flex;align-items:center;gap:12px;}
-    .logo{
-      width:44px;height:44px;border-radius:16px;
-      display:grid;place-items:center;
-      font-weight:950;color:white;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
-      box-shadow: 0 14px 30px rgba(108,99,255,.22);
-      user-select:none;
-    }
-    .brand h1{font-size:1.08rem;line-height:1.05;font-weight:950}
-    .brand p{font-size:.88rem;color:var(--muted);margin-top:3px;font-weight:700}
-    .chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:9px 11px;border-radius:999px;
-      background: rgba(255,255,255,.92);
-      border:1px solid var(--line);
-      color: var(--muted);
-      font-weight:800;
-      font-size:.9rem;
-      white-space:nowrap;
-    }
-    .chip i{color: rgba(15,23,42,.70)}
-    .chip b{color: var(--text)}
-
-    /* HERO */
-    .hero{
-      margin-top:14px;
-      padding: 18px 18px;
-      border:1px solid var(--line);
-      border-radius: var(--r);
-      background: rgba(255,255,255,.92);
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:-120px -180px auto auto;
-      width:380px;height:380px;border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, rgba(108,99,255,.28), transparent 60%),
-                  radial-gradient(circle at 70% 70%, rgba(236,72,153,.18), transparent 55%);
-      filter: blur(0px);
-      opacity:.8;
-    }
-    .hero h2{
-      margin:0;
-      font-size: clamp(1.7rem, 4vw, 2.65rem);
-      font-weight: 980;
-      letter-spacing: -0.9px;
-      line-height:1.05;
-      background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-      position:relative;
-      z-index:1;
-    }
-    .hero p{
-      margin-top:10px;
-      color:var(--muted);
-      font-weight:750;
-      line-height:1.65;
-      max-width: 920px;
-      position:relative;
-      z-index:1;
+      /* Spacing & Radius */
+      --radius: 20px;
+      --container: 1100px;
     }
 
-    .layout{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: 360px 1fr;
-      gap: 14px;
-      align-items:start;
-    }
-    @media (max-width: 980px){ .layout{grid-template-columns:1fr} }
-
-    .card{
-      border:1px solid var(--line);
-      border-radius: var(--r);
-      background: rgba(255,255,255,.90);
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(10px);
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+      padding: 20px;
     }
 
-    /* LEFT */
-    .left{position: sticky; top: 14px; padding: 14px;}
-    @media (max-width: 980px){ .left{position:relative; top:0} }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; outline: none; background: none; cursor: pointer; }
 
-    .profile{
-      display:flex;align-items:center;gap:12px;
-      padding: 14px;
-      border-radius: var(--r2);
-      background: rgba(108,99,255,.06);
-      border:1px solid rgba(108,99,255,.18);
-      margin-bottom: 12px;
+    /* LAYOUT GRID */
+    .wrapper {
+      max-width: var(--container);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      align-items: start;
     }
-    .avatar{
-      width:54px;height:54px;border-radius:18px;
-      display:grid;place-items:center;
-      font-size:1.45rem;font-weight:980;color:white;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
-      box-shadow: 0 12px 25px rgba(124,58,237,.18);
-      user-select:none;
-      flex: 0 0 auto;
-    }
-    .profile h3{font-size:1.08rem;font-weight:950}
-    .profile .role{color:var(--muted);font-size:.9rem;font-weight:750;margin-top:2px}
 
-    .tabs{
-      display:flex;gap:10px;padding:10px;
-      background: rgba(15,23,42,.02);
-      border:1px solid var(--line);
-      border-radius: 14px;
-      margin-bottom: 12px;
-      overflow:auto;
-      scrollbar-width: none;
+    @media (max-width: 900px) {
+      .wrapper { grid-template-columns: 1fr; }
     }
-    .tabs::-webkit-scrollbar{display:none}
-    .tab-btn{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:999px;
-      border:1px solid transparent;
-      background: rgba(15,23,42,.03);
-      color: var(--muted);
-      cursor:pointer;
-      user-select:none;
-      white-space:nowrap;
-      transition: .2s ease;
-      font-weight:900;
-      font-size: .92rem;
-    }
-    .tab-btn:hover{background: rgba(108,99,255,.10); color: var(--text);}
-    .tab-btn.active{
-      background: linear-gradient(90deg, rgba(108,99,255,.18), rgba(124,58,237,.16));
-      border-color: rgba(108,99,255,.35);
-      color: var(--text);
-      box-shadow: var(--ring);
-    }
-    .tab-panel{
-      display:none;
-      padding: 12px;
-      border-radius: var(--r2);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.86);
-      animation: fadeUp .18s ease;
-    }
-    .tab-panel.active{display:block}
-    @keyframes fadeUp{from{opacity:0; transform: translateY(6px)}to{opacity:1; transform: translateY(0)}}
 
-    /* Donate */
-    .qrbox{width:100%;display:flex;align-items:center;justify-content:center;margin: 6px 0 12px;}
-    .qrframe{
-      width: 220px; height: 220px;
-      border-radius: 18px;
-      padding: 12px;
-      background: #fff;
-      border: 2px solid rgba(108,99,255,.45);
-      box-shadow: 0 18px 40px rgba(15,23,42,.12);
-      position:relative;
+    /* CARDS GENERIC */
+    .b-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    .qrinner{width:100%;height:100%;border-radius: 12px;overflow:hidden;position:relative;}
-    .qrinner img{
-      width:100%;height:100%;
-      object-fit: cover;
-      display:block;
-      transform: scale(1.06);
-      transform-origin:center;
-    }
-    .qr-placeholder{
-      position:absolute; inset:0;
-      display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;
-      background:#f8fafc;border:2px dashed #cbd5e1;color:#0f172a;font-weight:950;
-    }
-    .donate-title{font-size:1.02rem;font-weight:980;text-align:center}
-    .donate-desc{color:var(--muted);font-size:.92rem;line-height:1.6;text-align:center;margin-top:6px;font-weight:750}
 
-    .bank{
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(108,99,255,.10), rgba(236,72,153,.06));
-      border:1px solid rgba(108,99,255,.18);
-      text-align:center;
+    /* SIDEBAR (LEFT) */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px; }
+    @media (max-width: 900px) { .sidebar { position: relative; top: 0; } }
+
+    /* PROFILE CARD */
+    .profile-card {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .bank .bname{font-weight:980;color:rgba(15,23,42,.88);letter-spacing:.3px}
-    .bank .acc{
-      margin-top:8px;
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;
+    .profile-card::before {
+      content:''; position: absolute; top:0; left:0; width:100%; height:80px;
+      background: var(--accent-gradient);
+      opacity: 0.8; z-index: 0;
+    }
+    .avatar-wrapper {
+      width: 80px; height: 80px;
+      margin: 30px auto 10px;
+      position: relative; z-index: 1;
+      background: var(--bg-card);
+      padding: 4px; border-radius: 50%;
+    }
+    .avatar {
+      width: 100%; height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 1.5rem; color: #fff;
+    }
+    .p-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; z-index: 1; position: relative;}
+    .p-role { color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 12px; }
+    .p-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px; }
+    
+    .social-chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .chip {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 99px; font-size: 0.8rem; color: var(--text-muted);
+    }
+    .chip i { color: var(--accent-primary); margin-right: 4px; }
+
+    /* INTERACTIVE TABS CARD */
+    .contact-card { padding: 0; overflow: hidden; }
+    .tab-nav {
+      display: flex; background: rgba(0,0,0,0.2);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      flex: 1; padding: 16px; color: var(--text-muted);
+      font-size: 1rem; transition: 0.2s; position: relative;
+    }
+    .tab-btn:hover { color: var(--text-main); background: rgba(255,255,255,0.02); }
+    .tab-btn.active { color: var(--accent-primary); background: rgba(59, 130, 246, 0.05); }
+    .tab-btn.active::after {
+      content:''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+      background: var(--accent-primary); box-shadow: 0 -4px 10px var(--accent-glow);
+    }
+
+    .tab-content { padding: 20px; min-height: 250px; }
+    .tab-panel { display: none; animation: fadeIn 0.3s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+
+    /* QR STYLES */
+    .qr-box {
+      background: #fff; padding: 10px; border-radius: 12px;
+      width: 160px; height: 160px; margin: 0 auto 15px;
+      border: 4px solid rgba(59, 130, 246, 0.2);
+    }
+    .qr-box img { width: 100%; height: 100%; object-fit: contain; }
+    .bank-info {
+      background: rgba(255,255,255,0.03); border: 1px dashed var(--border);
+      padding: 12px; border-radius: 12px; margin-bottom: 12px;
+    }
+    .bank-num {
+      font-family: monospace; font-size: 1.1rem; color: var(--text-main);
+      font-weight: 700; letter-spacing: 1px; display: block; margin: 4px 0;
+    }
+    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    
+    /* BUTTONS */
+    .btn {
+      padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.9rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      transition: 0.2s; text-align: center;
+    }
+    .btn-primary {
+      background: var(--accent-gradient); color: white;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); transform: translateY(-2px); }
+    
+    .btn-ghost {
+      background: rgba(255,255,255,0.05); color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: var(--text-muted); }
+
+    /* INFO ROW (Email/Phone) */
+    .info-row {
+      text-align: center; padding: 20px 0;
+    }
+    .info-val { font-size: 1.3rem; font-weight: 700; margin: 10px 0; display: block; }
+    
+    /* MAIN CONTENT (RIGHT) */
+    .main-content { display: flex; flex-direction: column; gap: 20px; }
+    
+    .hero-header {
+      background: linear-gradient(to right, var(--bg-card), transparent);
+      border-left: 4px solid var(--accent-primary);
+      padding: 20px; border-radius: 4px;
+    }
+    .hero-header h2 { font-size: 1.8rem; margin-bottom: 5px; }
+    .hero-header p { color: var(--text-muted); }
+
+    /* TOOL GRID */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      transition: 0.3s;
+      display: flex; flex-direction: column; height: 100%;
+    }
+    .tool-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      border-color: var(--accent-primary);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    }
+
+    .tool-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.03);
       border-radius: 12px;
-      background: rgba(15,23,42,.06);
-      border: 1px solid rgba(15,23,42,.10);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 1.08rem;
-      font-weight:980;
-      letter-spacing: .7px;
+      display: grid; place-items: center;
+      font-size: 1.2rem; color: var(--accent-primary);
+      margin-bottom: 15px;
+      border: 1px solid var(--border);
     }
-    .bank .owner{margin-top:6px;color:var(--muted);font-size:.86rem;font-weight:750}
+    
+    .tool-card h3 { font-size: 1.1rem; margin-bottom: 8px; line-height: 1.3; }
+    .tool-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
 
-    .btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-    .btn{
-      border:none;border-radius: 12px;
-      padding: 11px 14px;
-      cursor:pointer;
-      font-weight:950;
-      font-size:.92rem;
-      display:inline-flex;align-items:center;gap:8px;
-      transition:.18s ease;
-      user-select:none;
+    .badge {
+      font-size: 0.65rem; padding: 2px 8px; border-radius: 4px;
+      font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      vertical-align: middle; margin-left: 6px;
     }
-    .btn.primary{
-      color:white;
-      background: linear-gradient(90deg, var(--p1), var(--p2));
-      box-shadow: 0 14px 28px rgba(108,99,255,.18);
-    }
-    .btn.ghost{
-      background: rgba(15,23,42,.04);
-      border:1px solid rgba(15,23,42,.12);
-      color: var(--text);
-    }
-    .btn:hover{transform: translateY(-2px); box-shadow: 0 16px 30px rgba(15,23,42,.12)}
-    .minihelp{margin-top:10px;color:var(--muted);font-size:.85rem;text-align:center;font-weight:750}
+    .b-new { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .b-live { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
 
-    /* Email/Phone */
-    .centerBox{text-align:center;padding: 6px 2px}
-    .centerBox .label{color:var(--muted);font-size:.85rem;font-weight:800}
-    .centerBox .value{margin-top:6px;font-size:1.06rem;font-weight:980}
-    .centerBox .note{margin-top:10px;color:var(--muted);font-size:.86rem;font-weight:750}
+    .tool-footer { margin-top: auto; display: flex; gap: 8px; }
+    .tool-btn {
+      flex: 1; padding: 8px; font-size: 0.85rem; border-radius: 8px;
+      font-weight: 600; text-align: center;
+      transition: 0.2s;
+    }
+    .tb-main { background: var(--accent-primary); color: white; }
+    .tb-main:hover { background: #2563eb; }
+    .tb-copy { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+    .tb-copy:hover { color: var(--text-main); border-color: var(--text-main); }
 
-    /* RIGHT - TOOLS */
-    .right{padding: 16px;}
-    .section{
-      padding: 16px;
-      border-radius: var(--r2);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.88);
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+      z-index: 100; display: none; place-items: center;
+      padding: 20px;
     }
-    .secTitle{
-      display:flex;align-items:center;gap:10px;
-      font-size:1.12rem;font-weight:980;
-      margin-bottom: 12px;
+    .modal-overlay.open { display: grid; }
+    .modal-box {
+      background: var(--bg-card); border: 1px solid var(--border);
+      width: 100%; max-width: 450px;
+      padding: 25px; border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      text-align: center;
     }
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background: linear-gradient(90deg, var(--p1), var(--p2));
-      box-shadow: 0 0 0 4px rgba(108,99,255,.10);
+    .modal-qr-big {
+      width: 100%; border-radius: 12px;
+      border: 4px solid var(--accent-primary);
+      margin-bottom: 20px;
+    }
+    .close-modal {
+      position: absolute; top: 20px; right: 20px;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); color: #fff;
+      display: grid; place-items: center;
     }
 
-    .toolsGrid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    @media (max-width: 820px){ .toolsGrid{grid-template-columns:1fr} }
-
-    .tool{
-      border:1px solid var(--line);
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      transition: .18s ease;
-      position:relative;
-    }
-    .tool:hover{transform: translateY(-2px); box-shadow: var(--shadow);}
-    .tool::before{
-      content:"";
-      position:absolute;left:0;top:0;right:0;height:3px;
-      background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
-      opacity:.95;
-    }
-    .toolTop{
-      display:flex;gap:12px;align-items:flex-start;
-      padding: 14px 14px 10px;
-    }
-    .tico{
-      width:44px;height:44px;border-radius: 14px;
-      display:grid;place-items:center;
-      background: rgba(108,99,255,.10);
-      border:1px solid rgba(108,99,255,.18);
-      color: rgba(108,99,255,.95);
-      flex:0 0 auto;
-      margin-top: 2px;
-    }
-    .tool h4{font-size:1.02rem;font-weight:980;line-height:1.25;margin:0}
-    .tool p{
-      margin-top:8px;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.6;
-      font-weight:750;
-      display:-webkit-box;
-      -webkit-line-clamp:3;
-      -webkit-box-orient:vertical;
-      overflow:hidden;
-    }
-    .badge{
-      display:inline-flex;align-items:center;gap:6px;
-      padding:4px 10px;border-radius:999px;
-      font-size:.78rem;font-weight:980;
-      border:1px solid;
-      margin-left:8px;
-      vertical-align: middle;
-    }
-    .live{background: rgba(34,197,94,.10); color:#15803d; border-color: rgba(34,197,94,.25)}
-    .new {background: rgba(108,99,255,.10); color:#4338ca; border-color: rgba(108,99,255,.25)}
-
-    .toolActions{
-      padding: 0 14px 14px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .toolLink{
-      flex: 1 1 180px;
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding: 12px 14px;border-radius: 14px;
-      font-weight:980;
-      background: linear-gradient(90deg, rgba(108,99,255,.95), rgba(124,58,237,.95));
-      color:white;
-      transition:.18s ease;
-      box-shadow: 0 14px 28px rgba(108,99,255,.18);
-    }
-    .toolLink:hover{transform: translateY(-2px); box-shadow: 0 18px 34px rgba(108,99,255,.22);}
-    .toolGhost{
-      flex: 1 1 180px;
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding: 12px 14px;border-radius: 14px;
-      font-weight:980;
-      border:1px solid rgba(15,23,42,.12);
-      background: rgba(15,23,42,.03);
-      color: var(--text);
-    }
-
-    .footer{
-      margin-top: 14px;
-      text-align:center;
-      color: var(--muted);
-      font-size: .92rem;
-      font-weight:800;
-    }
-    .footer .hl{
-      font-weight: 980;
-      background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3));
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-
-    /* Modal QR */
-    .modal{
-      position:fixed; inset:0;
-      display:none;
-      align-items:center; justify-content:center;
-      padding: 18px;
-      background: rgba(2,6,23,.55);
-      backdrop-filter: blur(10px);
-      z-index: 50;
-    }
-    .modal.active{display:flex}
-    .modalCard{
-      width: min(520px, 100%);
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.35);
-      background: rgba(255,255,255,.92);
-      box-shadow: 0 30px 70px rgba(15,23,42,.30);
-      overflow:hidden;
-    }
-    .modalHead{
-      display:flex;align-items:center;justify-content:space-between;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(15,23,42,.10);
-    }
-    .modalHead .t{font-weight:980}
-    .xbtn{
-      width:38px;height:38px;border-radius:12px;
-      border:1px solid rgba(15,23,42,.12);
-      background: rgba(15,23,42,.04);
-      color: var(--text);
-      cursor:pointer;
-    }
-    .modalBody{padding: 16px}
-    .bigQR{
-      width:100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 18px;
-      background:#fff;
-      padding: 12px;
-      border: 2px solid rgba(108,99,255,.45);
-    }
-    .bigQR img{
-      width:100%;height:100%;
-      border-radius: 12px;
-      object-fit: cover;
-      display:block;
-      transform: scale(1.06);
-      transform-origin:center;
-    }
-    .modalFoot{
-      padding: 14px 16px;
-      display:flex;gap:10px;flex-wrap:wrap;
-      border-top: 1px solid rgba(15,23,42,.10);
-      justify-content:flex-end;
-    }
-    .btnSmall{
-      padding: 10px 12px;
-      border-radius: 12px;
-      font-weight: 980;
-      border:1px solid rgba(15,23,42,.12);
-      background: rgba(15,23,42,.04);
-      color: var(--text);
-      cursor:pointer;
-    }
-    .btnSmall.primary{
-      border:none;
-      background: linear-gradient(90deg, var(--p1), var(--p2));
-      color:white;
+    /* FOOTER */
+    .site-footer {
+      grid-column: 1 / -1;
+      text-align: center; color: var(--text-muted);
+      font-size: 0.85rem; padding-top: 40px; border-top: 1px solid var(--border);
+      margin-top: 20px;
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
 
-    <!-- TOPBAR -->
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo">B</div>
-        <div>
-          <h1>baotg10</h1>
-          <p>Digital Creator • Developer • Tool gọn, dễ dùng</p>
+  <div class="wrapper">
+    
+    <aside class="sidebar">
+      <div class="b-card profile-card">
+        <div class="avatar-wrapper"><div class="avatar">B</div></div>
+        <div class="p-name">Bao Tran</div>
+        <div class="p-role">Digital Creator</div>
+        <div class="p-desc">Chuyên tạo tool ngân hàng, biểu mẫu & tiện ích tối ưu công việc.</div>
+        <div class="social-chips">
+          <div class="chip"><i class="fa-solid fa-location-dot"></i> HCM</div>
+          <div class="chip"><i class="fa-solid fa-code"></i> Developer</div>
         </div>
       </div>
-      <div class="chips">
-        <div class="chip"><i class="fa-solid fa-location-dot"></i> <b>HCM</b> Việt Nam</div>
-        <div class="chip"><i class="fa-solid fa-bolt"></i> <b>Tools</b> BKTL • PDF • KPI</div>
-      </div>
-    </div>
 
-    <!-- HERO -->
-    <div class="hero">
-      <h2>Bộ công cụ baotg10</h2>
-      <p>
-        Nơi tổng hợp các công cụ hỗ trợ công việc (ngân hàng, biểu mẫu, tính toán) — giao diện gọn, dễ dùng và cập nhật liên tục.
-      </p>
-    </div>
-
-    <!-- MAIN -->
-    <div class="layout">
-      <!-- LEFT -->
-      <aside class="left card">
-        <div class="profile">
-          <div class="avatar">B</div>
-          <div>
-            <h3>Bao Tran</h3>
-            <div class="role">Digital Creator</div>
-          </div>
+      <div class="b-card contact-card">
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="donate" title="Donate"><i class="fa-solid fa-heart"></i></button>
+          <button class="tab-btn" data-tab="email" title="Email"><i class="fa-solid fa-envelope"></i></button>
+          <button class="tab-btn" data-tab="phone" title="Điện thoại"><i class="fa-solid fa-phone"></i></button>
         </div>
 
-        <div class="tabs" role="tablist" aria-label="Liên hệ & Donate">
-          <button class="tab-btn active" data-tab="donate" role="tab" aria-selected="true">
-            <i class="fa-solid fa-hand-holding-heart"></i> Ủng hộ
-          </button>
-          <button class="tab-btn" data-tab="email" role="tab" aria-selected="false">
-            <i class="fa-solid fa-envelope"></i> Email
-          </button>
-          <button class="tab-btn" data-tab="phone" role="tab" aria-selected="false">
-            <i class="fa-solid fa-phone"></i> Điện thoại
-          </button>
-        </div>
-
-        <!-- Donate -->
-        <section class="tab-panel active" id="donate-tab" role="tabpanel">
-          <div class="qrbox">
-            <div class="qrframe">
-              <div class="qrinner">
-                <img
-                  id="qrImg"
-                  src="./qr-donate.png?v=10"
-                  alt="QR Donate"
-                  onerror="this.style.display='none';document.getElementById('qrPh').style.display='flex';"
-                />
-                <div id="qrPh" class="qr-placeholder">
-                  <i class="fa-solid fa-qrcode"></i>
-                  <div>Không tải được ảnh QR</div>
-                </div>
-              </div>
+        <div class="tab-content">
+          <div class="tab-panel active" id="donate-tab">
+            <div style="text-align: center; margin-bottom:15px; font-weight:600; font-size:0.9rem; color:var(--text-muted)">Ủng hộ mình phát triển Tool ☕</div>
+            <div class="qr-box">
+              <img id="qrImg" src="./qr-donate.png?v=10" alt="QR Donate" onerror="this.src='https://placehold.co/200x200/181920/FFF?text=QR+Error'" />
             </div>
+            <div class="bank-info" style="text-align: center;">
+              <small style="color:var(--text-muted)">VPBANK</small>
+              <span class="bank-num" id="accNo">0336 620 689</span>
+              <small style="color:var(--text-muted)">Chủ TK: BAO TRAN</small>
+            </div>
+            <div class="action-row">
+              <button class="btn btn-primary" id="copyAcc"><i class="fa-regular fa-copy"></i> Copy STK</button>
+              <button class="btn btn-ghost" id="openQR"><i class="fa-solid fa-expand"></i> Zoom</button>
+            </div>
+            <button class="btn btn-ghost" id="downloadQR" style="width:100%; margin-top:10px; font-size:0.8rem">
+              <i class="fa-solid fa-download"></i> Tải ảnh QR
+            </button>
           </div>
 
-          <div class="donate-title">Ủng hộ phát triển tool 💖</div>
-          <div class="donate-desc">
-            Mọi đóng góp giúp mình duy trì & nâng cấp các công cụ miễn phí cho cộng đồng.
-          </div>
-
-          <div class="bank">
-            <div class="bname">VPBANK</div>
-            <div class="acc" id="accNo"><i class="fa-solid fa-building-columns" style="opacity:.9"></i> 0336 620 689</div>
-            <div class="owner">Chủ tài khoản: BAO TRAN</div>
-          </div>
-
-          <div class="btnrow">
-            <button class="btn primary" id="copyAcc"><i class="fa-regular fa-copy"></i> Sao chép STK</button>
-            <button class="btn ghost" id="openQR"><i class="fa-solid fa-magnifying-glass-plus"></i> Xem QR lớn</button>
-            <button class="btn ghost" id="downloadQR"><i class="fa-solid fa-download"></i> Tải QR</button>
-          </div>
-
-          <div class="minihelp">Tip: chỉnh QR to/nhỏ bằng <b>transform: scale(...)</b> trong CSS ảnh.</div>
-        </section>
-
-        <!-- Email -->
-        <section class="tab-panel" id="email-tab" role="tabpanel">
-          <div class="centerBox">
-            <div class="label">Email làm việc</div>
-            <div class="value">baotg10@vpbank.com.vn</div>
-            <div class="btnrow" style="margin-top:12px">
-              <button class="btn primary copy-btn" data-text="baotg10@vpbank.com.vn">
+          <div class="tab-panel" id="email-tab">
+            <div class="info-row">
+              <i class="fa-solid fa-envelope-open-text" style="font-size:2rem; color:var(--accent-primary); margin-bottom:10px"></i>
+              <div style="color:var(--text-muted)">Email liên hệ</div>
+              <span class="info-val">baotg10@vpbank.com.vn</span>
+              <button class="btn btn-primary copy-btn" data-text="baotg10@vpbank.com.vn">
                 <i class="fa-regular fa-copy"></i> Sao chép Email
               </button>
+              <p style="margin-top:15px; font-size:0.8rem; color:var(--text-muted)">Phản hồi trong 24h làm việc</p>
             </div>
-            <div class="note"><i class="fa-solid fa-circle-info"></i> Phản hồi trong vòng 24h làm việc</div>
-          </div>
-        </section>
-
-        <!-- Phone -->
-        <section class="tab-panel" id="phone-tab" role="tabpanel">
-          <div class="centerBox">
-            <div class="label">Số điện thoại</div>
-            <div class="value">0336 620 689</div>
-            <div class="btnrow" style="margin-top:12px">
-              <button class="btn primary copy-btn" data-text="0336620689">
-                <i class="fa-regular fa-copy"></i> Sao chép SĐT
-              </button>
-              <a class="btn ghost" href="tel:0336620689" style="text-decoration:none">
-                <i class="fa-solid fa-phone"></i> Gọi ngay
-              </a>
-            </div>
-            <div class="note">08:00 – 20:00 hằng ngày</div>
-          </div>
-        </section>
-      </aside>
-
-      <!-- RIGHT -->
-      <main class="right card">
-        <section class="section">
-          <div class="secTitle"><span class="dot"></span> Công cụ hỗ trợ</div>
-
-          <div class="toolsGrid">
-
-            <!-- 1) Address Converter (đặt trước Tách file) -->
-            <div class="tool">
-              <div class="toolTop">
-                <div class="tico"><i class="fa-solid fa-map-location-dot"></i></div>
-                <div>
-                  <h4>Chuyển đổi địa chỉ cũ → mới <span class="badge new">NEW</span></h4>
-                  <p>Dán nhiều địa chỉ (mỗi dòng 1 địa chỉ) → trả về địa chỉ mới 1 dòng, có copy dán Excel.</p>
-                </div>
-              </div>
-              <div class="toolActions">
-                <a href="https://giabao1881.github.io/diachimoivn/" class="toolLink" target="_blank" rel="noopener">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập tool
-                </a>
-                <button class="toolGhost copyLink" data-link="https://giabao1881.github.io/diachimoivn/">
-                  <i class="fa-regular fa-copy"></i> Sao chép link
-                </button>
-              </div>
-            </div>
-
-            <!-- 2) PDF -->
-            <div class="tool">
-              <div class="toolTop">
-                <div class="tico"><i class="fa-solid fa-file-pdf"></i></div>
-                <div>
-                  <h4>Tool tách file + đặt tên PDF <span class="badge live">LIVE</span></h4>
-                  <p>Tách trang/tách nhóm/tách dung lượng, dán danh sách tên, nén ZIP tải về.</p>
-                </div>
-              </div>
-              <div class="toolActions">
-                <a href="https://giabao1881.github.io/TACHFILE/" class="toolLink" target="_blank" rel="noopener">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập tool
-                </a>
-              </div>
-            </div>
-
-            <!-- 3) BKTL -->
-            <div class="tool">
-              <div class="toolTop">
-                <div class="tico"><i class="fa-solid fa-calculator"></i></div>
-                <div>
-                  <h4>Tool Bảng kê tính lãi VPBANK <span class="badge live">LIVE</span></h4>
-                  <p>Tính lãi suất, phí và tổng số tiền phải trả cho các khoản vay tại VPBANK.</p>
-                </div>
-              </div>
-              <div class="toolActions">
-                <a href="https://giabao1881.github.io/BKTL/" class="toolLink" target="_blank" rel="noopener">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập tool
-                </a>
-              </div>
-            </div>
-
-            <!-- 4) DKK/BTK -->
-            <div class="tool">
-              <div class="toolTop">
-                <div class="tico"><i class="fa-solid fa-gavel"></i></div>
-                <div>
-                  <h4>Đơn khởi kiện & Bảng tự khai (Tín chấp) <span class="badge live">LIVE</span></h4>
-                  <p>Mẫu đơn + biểu mẫu hỗ trợ tạo nhanh hồ sơ/tài liệu cho tín chấp.</p>
-                </div>
-              </div>
-              <div class="toolActions">
-                <a href="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC" class="toolLink" target="_blank" rel="noopener">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập tool
-                </a>
-              </div>
-            </div>
-
-            <!-- 5) KPI -->
-            <div class="tool">
-              <div class="toolTop">
-                <div class="tico"><i class="fa-solid fa-chart-line"></i></div>
-                <div>
-                  <h4>Tool tính KPI theo tháng VPBANK <span class="badge live">LIVE</span></h4>
-                  <p>Tính toán & theo dõi chỉ số KPI hằng tháng.</p>
-                </div>
-              </div>
-              <div class="toolActions">
-                <a href="https://giabao1881.github.io/KPI/" class="toolLink" target="_blank" rel="noopener">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập tool
-                </a>
-              </div>
-            </div>
-
-            <!-- 6) Án phí -->
-            <div class="tool">
-              <div class="toolTop">
-                <div class="tico"><i class="fa-solid fa-balance-scale"></i></div>
-                <div>
-                  <h4>Tool tính án phí tòa án <span class="badge live">LIVE</span></h4>
-                  <p>Tính án phí, lệ phí theo quy định hiện hành.</p>
-                </div>
-              </div>
-              <div class="toolActions">
-                <a href="https://giabao1881.github.io/ANPHI/" class="toolLink" target="_blank" rel="noopener">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Truy cập tool
-                </a>
-              </div>
-            </div>
-
           </div>
 
-          <div class="footer">
-            © 2024 <span class="hl">baotg10</span>. Tạo bởi <b>baotg10</b>
+          <div class="tab-panel" id="phone-tab">
+            <div class="info-row">
+              <i class="fa-solid fa-phone-volume" style="font-size:2rem; color:var(--tag-new); margin-bottom:10px"></i>
+              <div style="color:var(--text-muted)">Hotline / Zalo</div>
+              <span class="info-val">0336 620 689</span>
+              <div class="action-row">
+                <button class="btn btn-ghost copy-btn" data-text="0336620689"><i class="fa-regular fa-copy"></i> Copy</button>
+                <a href="tel:0336620689" class="btn btn-primary"><i class="fa-solid fa-phone"></i> Gọi ngay</a>
+              </div>
+            </div>
           </div>
-        </section>
-      </main>
-    </div>
-  </div>
-
-  <!-- MODAL QR -->
-  <div class="modal" id="qrModal" aria-hidden="true">
-    <div class="modalCard">
-      <div class="modalHead">
-        <div class="t"><i class="fa-solid fa-qrcode"></i> QR Donate</div>
-        <button class="xbtn" id="closeModal" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modalBody">
-        <div class="bigQR">
-          <img id="qrBig" src="./qr-donate.png?v=10" alt="QR Donate (Large)" />
         </div>
       </div>
-      <div class="modalFoot">
-        <button class="btnSmall" id="copyAcc2"><i class="fa-regular fa-copy"></i> Sao chép STK</button>
-        <button class="btnSmall primary" id="downloadQR2"><i class="fa-solid fa-download"></i> Tải QR</button>
+    </aside>
+
+    <main class="main-content">
+      
+      <div class="hero-header">
+        <h2>Danh sách công cụ</h2>
+        <p>Tổng hợp các tiện ích hỗ trợ công việc nhanh chóng & hiệu quả.</p>
+      </div>
+
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3>Chuyển đổi địa chỉ <span class="badge b-new">New</span></h3>
+          <p>Chuẩn hóa danh sách địa chỉ cũ sang định dạng mới. Hỗ trợ copy/paste hàng loạt vào Excel.</p>
+          <div class="tool-footer">
+            <a href="https://giabao1881.github.io/diachimoivn/" target="_blank" class="tool-btn tb-main">Mở Tool</a>
+            <button class="tool-btn tb-copy copyLink" data-link="https://giabao1881.github.io/diachimoivn/"><i class="fa-solid fa-link"></i></button>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <h3>Tách & Đổi tên PDF <span class="badge b-live">Hot</span></h3>
+          <p>Tách file PDF theo trang/nhóm/dung lượng và tự động đặt tên theo danh sách.</p>
+          <div class="tool-footer">
+            <a href="https://giabao1881.github.io/TACHFILE/" target="_blank" class="tool-btn tb-main">Mở Tool</a>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-calculator"></i></div>
+          <h3>Bảng kê tính lãi <span class="badge b-live">VPB</span></h3>
+          <p>Tính toán lãi suất, phí phạt và tổng tiền phải trả cho các khoản vay VPBANK.</p>
+          <div class="tool-footer">
+            <a href="https://giabao1881.github.io/BKTL/" target="_blank" class="tool-btn tb-main">Mở Tool</a>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-gavel"></i></div>
+          <h3>Đơn khởi kiện & BTK</h3>
+          <p>Tạo nhanh mẫu đơn khởi kiện và bản tự khai cho hồ sơ Tín chấp.</p>
+          <div class="tool-footer">
+            <a href="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC" target="_blank" class="tool-btn tb-main">Mở Tool</a>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Tính KPI Tháng</h3>
+          <p>Theo dõi và tính toán chỉ số KPI cá nhân theo cơ chế mới nhất.</p>
+          <div class="tool-footer">
+            <a href="https://giabao1881.github.io/KPI/" target="_blank" class="tool-btn tb-main">Mở Tool</a>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h3>Tính án phí Tòa án</h3>
+          <p>Công cụ tra cứu và tính nhanh án phí, lệ phí tòa án theo quy định.</p>
+          <div class="tool-footer">
+            <a href="https://giabao1881.github.io/ANPHI/" target="_blank" class="tool-btn tb-main">Mở Tool</a>
+          </div>
+        </div>
+
+      </div>
+
+      <footer class="site-footer">
+        © 2024 <b>baotg10</b>. Giao diện được thiết kế tối ưu trải nghiệm.
+      </footer>
+    </main>
+
+  </div>
+
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-box">
+      <button class="close-modal" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+      <h3 style="margin-bottom:15px; font-size:1.5rem">Quét mã ủng hộ</h3>
+      <img src="./qr-donate.png?v=10" alt="QR Large" class="modal-qr-big" />
+      <div style="display:flex; gap:10px; justify-content:center">
+        <button class="btn btn-ghost" id="copyAcc2"><i class="fa-regular fa-copy"></i> Copy STK</button>
+        <button class="btn btn-primary" id="downloadQR2"><i class="fa-solid fa-download"></i> Tải ảnh</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Tabs
+    // --- LOGIC GIỮ NGUYÊN TỪ CŨ ---
+
+    // 1. Tab Switching
     const tabButtons = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.tab-panel');
 
-    tabButtons.forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const id = btn.dataset.tab;
-
-        tabButtons.forEach(b=>{
-          b.classList.remove('active');
-          b.setAttribute('aria-selected','false');
-        });
-        panels.forEach(p=>p.classList.remove('active'));
-
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class
+        tabButtons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        
+        // Add active class
         btn.classList.add('active');
-        btn.setAttribute('aria-selected','true');
-        document.getElementById(id+'-tab').classList.add('active');
+        const id = btn.dataset.tab;
+        document.getElementById(id + '-tab').classList.add('active');
       });
     });
 
-    // Copy helper
-    async function copyText(t){
-      try{
-        await navigator.clipboard.writeText(t);
-        alert('Đã sao chép!');
-      }catch(e){
+    // 2. Copy Function
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Đã sao chép: ' + text);
+      } catch (err) {
+        // Fallback
         const ta = document.createElement('textarea');
-        ta.value = t;
+        ta.value = text;
         document.body.appendChild(ta);
         ta.select();
         document.execCommand('copy');
-        ta.remove();
+        document.body.removeChild(ta);
         alert('Đã sao chép!');
       }
     }
 
-    // Copy buttons generic
-    document.querySelectorAll('.copy-btn').forEach(b=>{
-      b.addEventListener('click', ()=> copyText(b.dataset.text));
+    // Attach copy events
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => copyText(btn.dataset.text));
+    });
+    
+    // Copy link tool
+    document.querySelectorAll('.copyLink').forEach(btn => {
+      btn.addEventListener('click', () => copyText(btn.dataset.link));
     });
 
-    // Copy bank
-    function getAccRaw(){
-      return document.getElementById('accNo').textContent.replace(/\s+/g,'').replace(/[^\d]/g,'');
+    // Copy Acc Logic
+    function getAcc() {
+      return document.getElementById('accNo').innerText.replace(/\s/g, '');
     }
-    document.getElementById('copyAcc').addEventListener('click', ()=> copyText(getAccRaw()));
-    document.getElementById('copyAcc2').addEventListener('click', ()=> copyText(getAccRaw()));
+    document.getElementById('copyAcc').addEventListener('click', () => copyText(getAcc()));
+    document.getElementById('copyAcc2').addEventListener('click', () => copyText(getAcc()));
 
-    // Copy link tool địa chỉ
-    document.querySelectorAll('.copyLink').forEach(b=>{
-      b.addEventListener('click', ()=> copyText(b.dataset.link));
-    });
-
-    // Download QR
-    function downloadQR(){
-      const a=document.createElement('a');
-      a.href='./qr-donate.png?v=10';
-      a.download='qr-donate.png';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+    // 3. Download QR
+    function dlQR() {
+      const link = document.createElement('a');
+      link.href = './qr-donate.png?v=10';
+      link.download = 'baotg10-donate.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-    document.getElementById('downloadQR').addEventListener('click', downloadQR);
-    document.getElementById('downloadQR2').addEventListener('click', downloadQR);
+    document.getElementById('downloadQR').addEventListener('click', dlQR);
+    document.getElementById('downloadQR2').addEventListener('click', dlQR);
 
-    // Modal QR
+    // 4. Modal Logic
     const modal = document.getElementById('qrModal');
-    const openQR = document.getElementById('openQR');
-    const closeModal = document.getElementById('closeModal');
+    const openBtn = document.getElementById('openQR');
+    const closeBtn = document.getElementById('closeModal');
 
-    function openModal(){
-      modal.classList.add('active');
-      modal.setAttribute('aria-hidden','false');
-    }
-    function closeModalFn(){
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden','true');
+    function toggleModal(show) {
+      if(show) modal.classList.add('open');
+      else modal.classList.remove('open');
     }
 
-    openQR.addEventListener('click', openModal);
-    closeModal.addEventListener('click', closeModalFn);
+    openBtn.addEventListener('click', () => toggleModal(true));
+    closeBtn.addEventListener('click', () => toggleModal(false));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) toggleModal(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') toggleModal(false);
+    });
 
-    modal.addEventListener('click', (e)=>{
-      if(e.target === modal) closeModalFn();
-    });
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape') closeModalFn();
-    });
   </script>
 </body>
 </html>
