@@ -3,88 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>baotg10 | Tool Center</title>
+  <title>baotg10 | Bộ công cụ làm việc</title>
   <style>
     :root {
-      --bg: #f4f7fb;
-      --surface: rgba(255,255,255,0.88);
-      --surface-solid: #ffffff;
-      --surface-soft: #f7faff;
-      --line: #e3e9f4;
-      --line-strong: #d4deee;
-      --text: #152238;
-      --muted: #6d7c94;
-      --primary: #246bff;
-      --primary-dark: #1857d6;
-      --primary-soft: #edf4ff;
-      --green: #11b981;
-      --amber: #f59e0b;
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f9fbff;
+      --line: #e5eaf3;
+      --line-strong: #d8e0ee;
+      --text: #142033;
+      --muted: #6e7d95;
+      --primary: #1f6fff;
+      --primary-dark: #1257d6;
+      --green: #10b981;
       --red: #ef476f;
-      --shadow: 0 14px 44px rgba(22, 40, 73, 0.08);
-      --shadow-soft: 0 8px 24px rgba(22, 40, 73, 0.06);
+      --amber: #f59e0b;
+      --shadow: 0 18px 50px rgba(18, 39, 73, 0.08);
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 16px;
-      --maxw: 1240px;
+      --maxw: 1220px;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      box-sizing: border-box;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
-
     body {
-      min-height: 100vh;
-      color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(36,107,255,0.12), transparent 22%),
-        radial-gradient(circle at top right, rgba(17,185,129,0.08), transparent 20%),
-        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+        radial-gradient(circle at top left, rgba(31,111,255,0.06), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
+      color: var(--text);
+      min-height: 100vh;
       padding: 20px;
     }
 
     a { color: inherit; text-decoration: none; }
-    button { font: inherit; border: none; cursor: pointer; background: none; color: inherit; }
-    input { font: inherit; }
+    button { border: none; background: none; color: inherit; font: inherit; cursor: pointer; }
 
     .emoji-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 1em;
-      line-height: 1;
       font-style: normal;
+      line-height: 1;
+      min-width: 1em;
     }
 
-    .container {
+    .page {
       max-width: var(--maxw);
       margin: 0 auto;
       display: grid;
       gap: 22px;
     }
 
-    .glass {
+    .card {
       background: var(--surface);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
       box-shadow: var(--shadow);
     }
 
     .topbar {
-      position: sticky;
-      top: 12px;
-      z-index: 30;
+      border-radius: 22px;
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 18px;
-      border-radius: 22px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 12px;
+      z-index: 20;
     }
 
     .brand {
@@ -99,11 +91,10 @@
       border-radius: 16px;
       display: grid;
       place-items: center;
+      font-size: 1.15rem;
       font-weight: 800;
-      font-size: 1.1rem;
       color: white;
-      background: linear-gradient(135deg, var(--primary), #71a5ff);
-      box-shadow: 0 12px 22px rgba(36,107,255,0.22);
+      background: linear-gradient(135deg, var(--primary), #5d9cff);
     }
 
     .brand-text strong {
@@ -113,8 +104,7 @@
     }
 
     .brand-text span {
-      display: block;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--muted);
     }
 
@@ -125,17 +115,17 @@
       flex-wrap: wrap;
     }
 
-    .chip {
+    .mini-chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.85);
       border: 1px solid var(--line);
+      background: var(--surface-2);
       color: var(--muted);
       font-size: 0.9rem;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .btn {
@@ -143,334 +133,258 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      border-radius: 14px;
       padding: 12px 16px;
-      transition: 0.2s ease;
-      font-weight: 800;
+      border-radius: 14px;
+      transition: 0.22s ease;
+      font-weight: 700;
     }
 
     .btn-primary {
       background: var(--primary);
-      color: white;
-      box-shadow: 0 10px 20px rgba(36,107,255,0.22);
+      color: #fff;
     }
 
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--primary-dark); }
 
     .btn-soft {
-      background: var(--surface-solid);
+      background: var(--surface-2);
       border: 1px solid var(--line);
-      color: var(--text);
     }
 
-    .btn-soft:hover { background: var(--surface-soft); }
+    .btn-soft:hover { background: #eef4ff; }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.35fr 0.65fr;
       gap: 22px;
     }
 
     .hero-main {
       border-radius: var(--radius-xl);
-      padding: 32px;
+      padding: 34px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, #1f6fff 0%, #4a8cff 52%, #8eb8ff 100%);
+      min-height: 300px;
+      background:
+        linear-gradient(135deg, #1f6fff 0%, #3d86ff 52%, #76acff 100%);
       color: white;
     }
 
-    .hero-main::before,
     .hero-main::after {
       content: "";
       position: absolute;
+      right: -50px;
+      bottom: -70px;
+      width: 240px;
+      height: 240px;
       border-radius: 50%;
       background: rgba(255,255,255,0.12);
     }
 
-    .hero-main::before {
-      width: 240px;
-      height: 240px;
-      right: -60px;
-      top: -60px;
-    }
-
-    .hero-main::after {
-      width: 180px;
-      height: 180px;
-      right: 140px;
-      bottom: -70px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .eyebrow {
+    .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 9px 14px;
       border-radius: 999px;
-      margin-bottom: 18px;
-      background: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.16);
       border: 1px solid rgba(255,255,255,0.18);
+      margin-bottom: 18px;
       font-size: 0.84rem;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .hero-main h1 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-size: clamp(2rem, 4vw, 3.45rem);
       line-height: 1.06;
-      max-width: 720px;
+      max-width: 700px;
       margin-bottom: 14px;
     }
 
     .hero-main p {
       max-width: 700px;
-      line-height: 1.75;
       font-size: 1rem;
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 22px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.86);
+      margin-bottom: 24px;
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .hero-actions .btn-soft {
-      background: rgba(255,255,255,0.13);
-      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.2);
       color: white;
     }
 
-    .hero-stats {
+    .hero-metrics {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .stat {
-      padding: 16px;
-      border-radius: 18px;
+    .metric {
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 18px;
+      padding: 16px;
     }
 
-    .stat strong {
+    .metric strong {
       display: block;
       font-size: 1.2rem;
       margin-bottom: 6px;
     }
 
-    .stat span {
-      display: block;
+    .metric span {
       font-size: 0.86rem;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.84);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 16px;
-    }
-
-    .panel {
-      border-radius: var(--radius-xl);
-      padding: 22px;
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .intro-card h2 {
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-    }
-
-    .intro-card p {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.94rem;
-    }
-
-    .bullet-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .bullet-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.92rem;
-    }
-
-    .bullet-item i { color: var(--primary); margin-top: 2px; }
-
-    .shortcut-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 12px;
-    }
-
-    .shortcut {
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #fbfdff 0%, #f7faff 100%);
-      transition: 0.2s ease;
-    }
-
-    .shortcut:hover { transform: translateY(-2px); border-color: var(--line-strong); }
-
-    .shortcut strong {
-      display: block;
-      font-size: 0.96rem;
-      margin: 10px 0 6px;
-    }
-
-    .shortcut span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.84rem;
+      color: rgba(255,255,255,0.82);
       line-height: 1.5;
     }
 
-    .shortcut-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+    .hero-side {
+      border-radius: var(--radius-xl);
+      padding: 24px;
       display: grid;
-      place-items: center;
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-size: 1rem;
+      gap: 16px;
+      align-content: start;
     }
 
-    .workspace {
+    .profile {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #1f6fff, #7bb0ff);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
+      place-items: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .profile h2 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .profile p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-item {
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      border-radius: 16px;
+      padding: 14px 15px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+
+    .info-item span { color: var(--muted); }
+    .info-item strong { text-align: right; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 330px;
       gap: 22px;
       align-items: start;
     }
 
-    .main-section,
-    .side-section {
+    .section {
       border-radius: var(--radius-xl);
-      padding: 22px;
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-soft);
+      padding: 24px;
     }
 
-    .section-header {
+    .section-head {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
+      align-items: center;
       gap: 16px;
       flex-wrap: wrap;
       margin-bottom: 18px;
     }
 
-    .section-header h3 {
+    .section-head h3 {
       font-size: 1.4rem;
       margin-bottom: 6px;
     }
 
-    .section-header p {
+    .section-head p {
       color: var(--muted);
       font-size: 0.92rem;
-      line-height: 1.6;
     }
 
-    .search-box {
-      width: min(420px, 100%);
+    .search {
+      min-width: 280px;
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 14px 16px;
-      background: var(--surface-soft);
+      padding: 12px 14px;
+      border-radius: 14px;
       border: 1px solid var(--line);
-      border-radius: 16px;
+      background: var(--surface-2);
     }
 
-    .search-box input {
-      width: 100%;
+    .search input {
       border: none;
       outline: none;
       background: transparent;
+      width: 100%;
       color: var(--text);
       font-size: 0.95rem;
     }
 
-    .search-box input::placeholder { color: #97a7bf; }
-
-    .category-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .category-btn {
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: var(--surface-soft);
-      color: var(--muted);
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .category-btn.active,
-    .category-btn:hover {
-      background: var(--primary-soft);
-      border-color: #d7e6ff;
-      color: var(--primary);
-    }
+    .search input::placeholder { color: #96a4bb; }
 
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
 
     .tool-card {
       border: 1px solid var(--line);
       border-radius: 22px;
-      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
       padding: 20px;
+      background: var(--surface);
+      transition: 0.22s ease;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      transition: 0.22s ease;
     }
 
     .tool-card:hover {
       transform: translateY(-4px);
-      border-color: var(--line-strong);
-      box-shadow: 0 16px 34px rgba(22, 40, 73, 0.08);
+      border-color: #cfdaf0;
+      box-shadow: 0 16px 38px rgba(18, 39, 73, 0.09);
     }
 
-    .tool-meta {
+    .tool-top {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
       align-items: flex-start;
-    }
-
-    .tool-left {
-      display: flex;
       gap: 14px;
-      align-items: flex-start;
     }
 
     .tool-icon {
@@ -479,23 +393,10 @@
       border-radius: 18px;
       display: grid;
       place-items: center;
-      background: var(--primary-soft);
+      background: #eef4ff;
       color: var(--primary);
       font-size: 1.2rem;
       flex-shrink: 0;
-    }
-
-    .tool-copy strong {
-      display: block;
-      font-size: 1.05rem;
-      line-height: 1.45;
-      margin-bottom: 6px;
-    }
-
-    .tool-copy p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
     }
 
     .badge-row {
@@ -506,8 +407,6 @@
     }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
       padding: 6px 10px;
       border-radius: 999px;
       font-size: 0.72rem;
@@ -518,22 +417,17 @@
     .badge.new { background: #eafaf4; color: var(--green); }
     .badge.hot { background: #fff0f4; color: var(--red); }
     .badge.vpb { background: #fff7e8; color: var(--amber); }
-    .badge.pdf { background: #eff2ff; color: #5a59d6; }
 
-    .tool-extra {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .tool-card h4 {
+      font-size: 1.08rem;
+      line-height: 1.45;
     }
 
-    .mini-tag {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      border: 1px solid var(--line);
+    .tool-card p {
       color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 700;
+      line-height: 1.7;
+      font-size: 0.92rem;
+      min-height: 78px;
     }
 
     .tool-actions {
@@ -542,39 +436,44 @@
       margin-top: auto;
     }
 
-    .tool-actions .btn { flex: 1; }
+    .tool-actions .btn {
+      flex: 1;
+      font-size: 0.92rem;
+      padding: 11px 12px;
+    }
 
     .icon-btn {
-      flex: 0 0 48px !important;
-      width: 48px;
-      padding: 0;
+      flex: 0 0 46px !important;
+      width: 46px;
+      padding: 0 !important;
     }
 
-    .empty-state {
-      display: none;
-      text-align: center;
-      padding: 34px 12px 10px;
-      color: var(--muted);
-    }
-
-    .side-section {
-      position: sticky;
-      top: 92px;
+    .sidebar {
       display: grid;
       gap: 16px;
+      position: sticky;
+      top: 90px;
     }
 
-    .contact-card h4,
-    .focus-card h4,
-    .footer-card h4 {
-      font-size: 1rem;
+    .side-card {
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .side-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       margin-bottom: 14px;
     }
+
+    .side-head h4 { font-size: 1rem; }
 
     .tab-nav {
       display: flex;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .tab-btn {
@@ -582,28 +481,45 @@
       padding: 11px 10px;
       border-radius: 12px;
       border: 1px solid var(--line);
-      background: var(--surface-soft);
+      background: var(--surface-2);
       color: var(--muted);
       font-weight: 700;
       transition: 0.2s ease;
     }
 
     .tab-btn.active {
+      background: #eaf2ff;
       color: var(--primary);
-      background: var(--primary-soft);
-      border-color: #d7e6ff;
+      border-color: #d8e6ff;
     }
 
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    .info-box {
+    .qr-box {
+      width: 175px;
+      height: 175px;
+      background: white;
+      border-radius: 22px;
+      padding: 10px;
+      margin: 0 auto 16px;
       border: 1px solid var(--line);
-      background: var(--surface-soft);
-      border-radius: 18px;
-      padding: 14px;
+    }
+
+    .qr-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 14px;
+    }
+
+    .info-box {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
       text-align: center;
-      margin-bottom: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
     }
 
     .label {
@@ -624,78 +540,73 @@
       margin-top: 6px;
       color: var(--muted);
       font-size: 0.82rem;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
 
-    .qr-box {
-      width: 172px;
-      height: 172px;
-      margin: 0 auto 14px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: white;
-      padding: 10px;
-    }
-
-    .qr-box img,
-    .modal-qr img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 14px;
-    }
-
-    .focus-list {
+    .note-list {
       display: grid;
       gap: 10px;
     }
 
-    .focus-item {
+    .note-item {
       display: flex;
       gap: 10px;
       align-items: flex-start;
       color: var(--muted);
-      line-height: 1.65;
       font-size: 0.9rem;
+      line-height: 1.65;
     }
 
-    .focus-item i { color: var(--primary); margin-top: 2px; }
+    .note-item i {
+      color: var(--primary);
+      margin-top: 3px;
+    }
 
     .footer-card {
+      text-align: center;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       line-height: 1.7;
     }
 
     .modal {
       position: fixed;
       inset: 0;
+      background: rgba(17, 24, 39, 0.5);
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(17, 24, 39, 0.52);
-      backdrop-filter: blur(6px);
-      z-index: 99;
+      z-index: 80;
       padding: 20px;
+      backdrop-filter: blur(6px);
     }
 
     .modal.open { display: flex; }
 
     .modal-box {
       width: min(460px, 100%);
-      position: relative;
-      background: white;
       border-radius: 26px;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
       padding: 24px;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      display: grid;
+      place-items: center;
     }
 
     .modal-box h3 {
@@ -707,339 +618,234 @@
     .modal-box p {
       text-align: center;
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.65;
+      line-height: 1.6;
       margin-bottom: 18px;
+      font-size: 0.92rem;
     }
 
     .modal-qr {
-      height: 280px;
-      border-radius: 20px;
       background: white;
       border: 1px solid var(--line);
+      border-radius: 20px;
       padding: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .close-modal {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--surface-soft);
-      border: 1px solid var(--line);
-      display: grid;
-      place-items: center;
+    .modal-qr img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
     }
 
-    .toast-msg {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      background: #142033;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 999px;
-      box-shadow: 0 14px 30px rgba(20,32,51,0.22);
-      z-index: 120;
-      font-size: 0.9rem;
-      font-weight: 700;
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 28px 10px 6px;
+      color: var(--muted);
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1080px) {
       .hero,
-      .workspace {
+      .layout {
         grid-template-columns: 1fr;
       }
 
-      .side-section {
-        position: static;
-      }
+      .sidebar { position: static; }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       body { padding: 14px; }
 
       .topbar,
       .hero-main,
-      .panel,
-      .main-section,
-      .side-section,
+      .hero-side,
+      .section,
+      .side-card,
       .modal-box {
         border-radius: 20px;
       }
 
       .hero-main,
-      .panel,
-      .main-section,
-      .side-section,
-      .modal-box {
-        padding: 18px;
-      }
+      .hero-side,
+      .section,
+      .side-card { padding: 18px; }
 
-      .hero-stats,
-      .shortcut-grid,
+      .hero-metrics,
       .tools-grid,
       .grid-2 {
         grid-template-columns: 1fr;
       }
 
-      .search-box { width: 100%; }
+      .search {
+        min-width: 0;
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="topbar glass">
+  <div class="page">
+    <header class="topbar card">
       <div class="brand">
         <div class="brand-logo">B</div>
         <div class="brand-text">
           <strong>baotg10 Tool Center</strong>
-          <span>Trung tâm công cụ xử lý hồ sơ, PDF, KPI và tra cứu nhanh</span>
+          <span>Bộ công cụ hỗ trợ xử lý công việc nhanh và gọn hơn</span>
         </div>
       </div>
 
       <div class="topbar-actions">
-        <div class="chip"><span class="emoji-icon">📍</span> Hồ Chí Minh</div>
-        <a href="#tool-list" class="btn btn-soft"><span class="emoji-icon">⌕</span> Tìm tool</a>
-        <button class="btn btn-primary" id="topDonateBtn"><span class="emoji-icon">❤</span> Ủng hộ</button>
+        <div class="mini-chip"><span class="emoji-icon" aria-hidden="true">📍</span> HCM</div>
+        <a href="#tools" class="btn btn-soft"><span class="emoji-icon" aria-hidden="true">▦</span> Danh sách tool</a>
+        <button class="btn btn-primary" id="topDonateBtn"><span class="emoji-icon" aria-hidden="true">❤</span> Ủng hộ</button>
       </div>
     </header>
 
     <section class="hero">
-      <div class="hero-main glass">
-        <div class="hero-content">
-          <div class="eyebrow"><span class="emoji-icon">✦</span> Giao diện mới · gọn hơn · dễ dùng hơn</div>
-          <h1>Trung tâm công cụ xử lý công việc nhanh, rõ và dễ bấm</h1>
-          <p>
-            Tập trung vào việc mở đúng tool trong vài giây: tìm nhanh, phân nhóm rõ ràng, card gọn mắt,
-            giảm phần rối để người dùng vào là biết bấm gì ngay.
-          </p>
+      <div class="hero-main card">
+        <div class="hero-tag"><span class="emoji-icon" aria-hidden="true">✦</span> Phiên bản giao diện mới</div>
+        <h1>CÔNG CỤ, TIỆN ÍCH VPBANK</h1>
+        <p>
+          Hi vọng với những công cụ này thì có thể giúp mọi người xử lý nhanh hơn, hiệu quả hơn, giảm thiểu tối đa thời gian xử lý công việc
+        </p>
 
-          <div class="hero-actions">
-            <a href="#tool-list" class="btn btn-soft"><span class="emoji-icon">↓</span> Xem danh sách tool</a>
-            <button class="btn btn-soft" id="heroDonateBtn"><span class="emoji-icon">⌘</span> Mở QR ủng hộ</button>
+        <div class="hero-actions">
+          <a href="#tools" class="btn btn-soft"><span class="emoji-icon" aria-hidden="true">↓</span> Xem công cụ</a>
+          <button class="btn btn-soft" id="heroDonateBtn"><span class="emoji-icon" aria-hidden="true">⌘</span> Mở QR ủng hộ</button>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>06+</strong>
+            <span>Công cụ hữu ích cho công việc</span>
           </div>
-
-          <div class="hero-stats">
-            <div class="stat">
-              <strong>06+</strong>
-              <span>Công cụ hữu ích cho xử lý hồ sơ hằng ngày</span>
-            </div>
-            <div class="stat">
-              <strong>Nhanh</strong>
-              <span>Tìm đúng tool chỉ sau vài giây với bộ lọc và tìm kiếm</span>
-            </div>
-            <div class="stat">
-              <strong>Dễ hiểu</strong>
-              <span>Mô tả ngắn, phân nhóm rõ, ưu tiên thao tác chính</span>
-            </div>
+          <div class="metric">
+            <strong>Nhanh</strong>
+            <span>Mở tool và copy link chỉ trong 1 chạm</span>
+          </div>
+          <div class="metric">
+            <strong>Gọn</strong>
+            <span>Liên hệ, ủng hộ và thao tác đặt cùng 1 nơi</span>
           </div>
         </div>
       </div>
 
-      <div class="hero-side">
-        <div class="panel intro-card">
-          <h2>Thiết kế lại theo hướng thực dụng</h2>
-          <p>
-            Giảm cảm giác “landing page”, tăng cảm giác “app center nội bộ”, giúp người dùng quét nhanh và thao tác ít bước hơn.
-          </p>
-          <div class="bullet-list">
-            <div class="bullet-item"><i>✓</i><span>Đưa danh sách tool lên vùng nhìn chính</span></div>
-            <div class="bullet-item"><i>✓</i><span>Thêm phân loại để đỡ phải đọc từng card</span></div>
-            <div class="bullet-item"><i>✓</i><span>Giảm độ nổi của phần donate và thông tin phụ</span></div>
+      <aside class="hero-side card">
+        <div class="profile">
+          <div class="avatar">B</div>
+          <div>
+            <h2>BAOTG10</h2>
+            <p>Chuyên viên xử lý nợ VPBANK. Châm ngôn:"càng nhanh càng tốt"</p>
           </div>
         </div>
 
-        <div class="panel">
-          <div class="section-header" style="margin-bottom:14px;">
-            <div>
-              <h3 style="font-size:1.05rem; margin-bottom:4px;">Truy cập nhanh</h3>
-              <p style="font-size:0.88rem;">4 tool thường dùng để mở một chạm.</p>
-            </div>
+        <div class="info-list">
+          <div class="info-item">
+            <span>Vai trò</span>
+            <strong>Developer / Creator</strong>
           </div>
-
-          <div class="shortcut-grid">
-            <a class="shortcut" href="https://giabao1881.github.io/TACHFILE/" target="_blank">
-              <div class="shortcut-icon"><span class="emoji-icon">📄</span></div>
-              <strong>Tách / gộp PDF</strong>
-              <span>Xử lý file PDF nhanh khi làm hồ sơ số lượng lớn</span>
-            </a>
-            <a class="shortcut" href="https://giabao1881.github.io/BKTL/" target="_blank">
-              <div class="shortcut-icon"><span class="emoji-icon">🧮</span></div>
-              <strong>Bảng kê tính lãi</strong>
-              <span>Tính lãi, phí phạt và tổng nghĩa vụ thanh toán</span>
-            </a>
-            <a class="shortcut" href="https://giabao1881.github.io/KPI/" target="_blank">
-              <div class="shortcut-icon"><span class="emoji-icon">📈</span></div>
-              <strong>Tính KPI tháng</strong>
-              <span>Theo dõi chỉ số và hiệu suất cá nhân nhanh hơn</span>
-            </a>
-            <a class="shortcut" href="https://giabao1881.github.io/ANPHI/" target="_blank">
-              <div class="shortcut-icon"><span class="emoji-icon">🏛</span></div>
-              <strong>Tính án phí</strong>
-              <span>Tra nhanh mức án phí, lệ phí theo quy định</span>
-            </a>
+          <div class="info-item">
+            <span>Chuyên môn</span>
+            <strong>PDF • KPI • Hồ sơ • Form</strong>
+          </div>
+          <div class="info-item">
+            <span>Khu vực</span>
+            <strong>Hồ Chí Minh</strong>
           </div>
         </div>
-      </div>
+      </aside>
     </section>
 
-    <section class="workspace">
-      <main class="main-section" id="tool-list">
-        <div class="section-header">
+    <section class="layout">
+      <div class="section card" id="tools">
+        <div class="section-head">
           <div>
             <h3>Danh sách công cụ</h3>
-            <p>Chọn theo nhóm nghiệp vụ hoặc tìm trực tiếp theo tên tool và chức năng.</p>
+            <p>Tổng hợp các tiện ích hỗ trợ công việc nhanh chóng và hiệu quả.</p>
           </div>
 
-          <label class="search-box">
-            <span class="emoji-icon">⌕</span>
-            <input type="text" id="toolSearch" placeholder="Tìm theo tên tool hoặc chức năng..." />
+          <label class="search">
+            <span class="emoji-icon" aria-hidden="true">⌕</span>
+            <input type="text" id="toolSearch" placeholder="Tìm theo tên tool hoặc chức năng...">
           </label>
         </div>
 
-        <div class="category-row" id="categoryRow">
-          <button class="category-btn active" data-category="all">Tất cả</button>
-          <button class="category-btn" data-category="pdf">PDF</button>
-          <button class="category-btn" data-category="hoso">Hồ sơ</button>
-          <button class="category-btn" data-category="kpi">KPI</button>
-          <button class="category-btn" data-category="tracuu">Tra cứu</button>
-        </div>
-
         <div class="tools-grid" id="toolsGrid">
-          <article class="tool-card" data-category="tracuu" data-search="chuyen doi dia chi chuan hoa danh sach dia chi excel doi dia chi cu sang moi">
-            <div class="tool-meta">
-              <div class="tool-left">
-                <div class="tool-icon"><span class="emoji-icon">📍</span></div>
-                <div class="tool-copy">
-                  <strong>Chuyển đổi địa chỉ</strong>
-                  <p>Đổi địa chỉ cũ sang định dạng mới, tiện dán nhanh vào Excel khi xử lý danh sách lớn.</p>
-                </div>
-              </div>
+          <article class="tool-card" data-search="chuyen doi dia chi chuan hoa danh sach dia chi excel">
+            <div class="tool-top">
+              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">📍</span></div>
               <div class="badge-row"><span class="badge new">New</span></div>
             </div>
-            <div class="tool-extra">
-              <span class="mini-tag">Tra cứu</span>
-              <span class="mini-tag">Excel</span>
-              <span class="mini-tag">Dùng hàng loạt</span>
-            </div>
+            <h4>Chuyển đổi địa chỉ</h4>
+            <p>Chuẩn hóa danh sách địa chỉ cũ sang định dạng mới, hỗ trợ dán nhanh vào Excel khi xử lý số lượng lớn.</p>
             <div class="tool-actions">
-              <a href="https://giabao1881.github.io/diachimoivn/" target="_blank" class="btn btn-primary"><span class="emoji-icon">↗</span> Dùng ngay</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/diachimoivn/"><span class="emoji-icon">🔗</span></button>
+              <a href="https://giabao1881.github.io/diachimoivn/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
+              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/diachimoivn/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
             </div>
           </article>
 
-          <article class="tool-card" data-category="pdf" data-search="tach doi ten gop nen chuyen anh sang pdf dung luong trang file pdf">
-            <div class="tool-meta">
-              <div class="tool-left">
-                <div class="tool-icon"><span class="emoji-icon">📄</span></div>
-                <div class="tool-copy">
-                  <strong>Tách, đổi tên, gộp, nén, chuyển ảnh sang PDF</strong>
-                  <p>Xử lý PDF theo trang, nhóm hoặc dung lượng và hỗ trợ đặt tên theo danh sách đầu vào.</p>
-                </div>
-              </div>
-              <div class="badge-row"><span class="badge hot">Hot</span><span class="badge pdf">PDF</span></div>
+          <article class="tool-card" data-search="tach doi ten gop nen pdf trang nhom dung luong">
+            <div class="tool-top">
+              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">📄</span></div>
+              <div class="badge-row"><span class="badge hot">Hot</span></div>
             </div>
-            <div class="tool-extra">
-              <span class="mini-tag">PDF</span>
-              <span class="mini-tag">Ảnh → PDF</span>
-              <span class="mini-tag">Đổi tên hàng loạt</span>
-            </div>
+            <h4>Tách, đổi tên, gộp, nén, chuyển Ảnh sang PDF</h4>
+            <p>Tách file PDF theo trang, nhóm hoặc dung lượng và hỗ trợ tự động đặt tên theo danh sách đầu vào.</p>
             <div class="tool-actions">
-              <a href="https://giabao1881.github.io/TACHFILE/" target="_blank" class="btn btn-primary"><span class="emoji-icon">↗</span> Dùng ngay</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TACHFILE/"><span class="emoji-icon">🔗</span></button>
+              <a href="https://giabao1881.github.io/TACHFILE/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
+              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TACHFILE/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
             </div>
           </article>
 
-          <article class="tool-card" data-category="tracuu" data-search="bang ke tinh lai vpbank lai suat phi phat tong tien vay khoan vay">
-            <div class="tool-meta">
-              <div class="tool-left">
-                <div class="tool-icon"><span class="emoji-icon">🧮</span></div>
-                <div class="tool-copy">
-                  <strong>Bảng kê tính lãi</strong>
-                  <p>Tính lãi suất, phí phạt và tổng số tiền phải thanh toán cho khoản vay theo nghiệp vụ VPBANK.</p>
-                </div>
-              </div>
+          <article class="tool-card" data-search="bang ke tinh lai vpbank lai suat phi phat tong tien vay">
+            <div class="tool-top">
+              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">🧮</span></div>
               <div class="badge-row"><span class="badge vpb">VPB</span></div>
             </div>
-            <div class="tool-extra">
-              <span class="mini-tag">Tính toán</span>
-              <span class="mini-tag">Khoản vay</span>
-              <span class="mini-tag">VPBANK</span>
-            </div>
+            <h4>Bảng kê tính lãi</h4>
+            <p>Tính lãi suất, phí phạt và tổng số tiền phải thanh toán cho các khoản vay theo nghiệp vụ VPBANK.</p>
             <div class="tool-actions">
-              <a href="https://giabao1881.github.io/BKTL/" target="_blank" class="btn btn-primary"><span class="emoji-icon">↗</span> Dùng ngay</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/BKTL/"><span class="emoji-icon">🔗</span></button>
+              <a href="https://giabao1881.github.io/BKTL/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
+              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/BKTL/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
             </div>
           </article>
 
-          <article class="tool-card" data-category="hoso" data-search="don khoi kien ban tu khai ho so tin chap btk toa an don mau">
-            <div class="tool-meta">
-              <div class="tool-left">
-                <div class="tool-icon"><span class="emoji-icon">⚖</span></div>
-                <div class="tool-copy">
-                  <strong>Đơn khởi kiện & BTK</strong>
-                  <p>Tạo nhanh mẫu đơn khởi kiện và bản tự khai cho hồ sơ tín chấp để rút ngắn thời gian chuẩn bị.</p>
-                </div>
-              </div>
-              <div class="badge-row"><span class="badge vpb">Hồ sơ</span></div>
+          <article class="tool-card" data-search="don khoi kien ban tu khai ho so tin chap btk">
+            <div class="tool-top">
+              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">⚖</span></div>
+              <div class="badge-row"></div>
             </div>
-            <div class="tool-extra">
-              <span class="mini-tag">Khởi kiện</span>
-              <span class="mini-tag">BTK</span>
-              <span class="mini-tag">Tín chấp</span>
-            </div>
+            <h4>Đơn khởi kiện & BTK</h4>
+            <p>Tạo nhanh mẫu đơn khởi kiện và bản tự khai cho hồ sơ tín chấp để rút ngắn thời gian chuẩn bị hồ sơ.</p>
             <div class="tool-actions">
-              <a href="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC" target="_blank" class="btn btn-primary"><span class="emoji-icon">↗</span> Dùng ngay</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC"><span class="emoji-icon">🔗</span></button>
+              <a href="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
+              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
             </div>
           </article>
 
-          <article class="tool-card" data-category="kpi" data-search="tinh kpi thang ca nhan chi so co che moi nhat hieu suat cong viec">
-            <div class="tool-meta">
-              <div class="tool-left">
-                <div class="tool-icon"><span class="emoji-icon">📈</span></div>
-                <div class="tool-copy">
-                  <strong>Tính KPI tháng</strong>
-                  <p>Theo dõi và tính toán chỉ số KPI cá nhân theo cơ chế mới, dễ kiểm soát tiến độ và hiệu suất.</p>
-                </div>
-              </div>
-              <div class="badge-row"><span class="badge new">KPI</span></div>
+          <article class="tool-card" data-search="tinh kpi thang ca nhan co che moi nhat chi so">
+            <div class="tool-top">
+              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">📈</span></div>
+              <div class="badge-row"></div>
             </div>
-            <div class="tool-extra">
-              <span class="mini-tag">KPI</span>
-              <span class="mini-tag">Cá nhân</span>
-              <span class="mini-tag">Theo dõi tiến độ</span>
-            </div>
+            <h4>Tính KPI tháng</h4>
+            <p>Theo dõi và tính toán chỉ số KPI cá nhân theo cơ chế mới, dễ kiểm soát tiến độ và hiệu suất công việc.</p>
             <div class="tool-actions">
-              <a href="https://giabao1881.github.io/KPI/" target="_blank" class="btn btn-primary"><span class="emoji-icon">↗</span> Dùng ngay</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/KPI/"><span class="emoji-icon">🔗</span></button>
+              <a href="https://giabao1881.github.io/KPI/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
+              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/KPI/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
             </div>
           </article>
 
-          <article class="tool-card" data-category="tracuu" data-search="tinh an phi toa an le phi tra cuu nhanh quy dinh ho so khoi kien">
-            <div class="tool-meta">
-              <div class="tool-left">
-                <div class="tool-icon"><span class="emoji-icon">🏛</span></div>
-                <div class="tool-copy">
-                  <strong>Tính án phí Tòa án</strong>
-                  <p>Tra cứu và tính nhanh án phí, lệ phí tòa án để hỗ trợ xử lý hồ sơ chính xác và tiết kiệm thời gian.</p>
-                </div>
-              </div>
-              <div class="badge-row"><span class="badge new">Tra cứu</span></div>
+          <article class="tool-card" data-search="tinh an phi toa an le phi tra cuu nhanh quy dinh">
+            <div class="tool-top">
+              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">🏛</span></div>
+              <div class="badge-row"></div>
             </div>
-            <div class="tool-extra">
-              <span class="mini-tag">Tòa án</span>
-              <span class="mini-tag">Án phí</span>
-              <span class="mini-tag">Lệ phí</span>
-            </div>
+            <h4>Tính án phí Tòa án</h4>
+            <p>Công cụ tra cứu và tính nhanh án phí, lệ phí tòa án theo quy định để hỗ trợ xử lý hồ sơ chính xác hơn.</p>
             <div class="tool-actions">
-              <a href="https://giabao1881.github.io/ANPHI/" target="_blank" class="btn btn-primary"><span class="emoji-icon">↗</span> Dùng ngay</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/ANPHI/"><span class="emoji-icon">🔗</span></button>
+              <a href="https://giabao1881.github.io/ANPHI/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
+              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/ANPHI/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
             </div>
           </article>
         </div>
@@ -1048,11 +854,15 @@
           <div style="font-size:2rem; margin-bottom:10px;">:(</div>
           <div>Không tìm thấy công cụ phù hợp.</div>
         </div>
-      </main>
+      </div>
 
-      <aside class="side-section">
-        <div class="panel contact-card">
-          <h4>Liên hệ nhanh</h4>
+      <aside class="sidebar">
+        <div class="side-card card">
+          <div class="side-head">
+            <h4>Liên hệ nhanh</h4>
+            <span style="font-size:0.82rem; color:var(--muted);">1 chạm</span>
+          </div>
+
           <div class="tab-nav">
             <button class="tab-btn active" data-tab="donate">Donate</button>
             <button class="tab-btn" data-tab="email">Email</button>
@@ -1069,9 +879,10 @@
               <div class="sub">Chủ TK: BAO TRAN</div>
             </div>
             <div class="grid-2">
-              <button class="btn btn-primary" id="copyAcc"><span class="emoji-icon">⧉</span> Copy STK</button>
-              <button class="btn btn-soft" id="openQR"><span class="emoji-icon">⤢</span> Zoom</button>
+              <button class="btn btn-primary" id="copyAcc"><span class="emoji-icon" aria-hidden="true">⧉</span> Copy STK</button>
+              <button class="btn btn-soft" id="openQR"><span class="emoji-icon" aria-hidden="true">⤢</span> Zoom</button>
             </div>
+            <button class="btn btn-soft" id="downloadQR" style="width:100%; margin-top:10px;"><span class="emoji-icon" aria-hidden="true">⤓</span> Tải ảnh QR</button>
           </div>
 
           <div class="tab-panel" id="email-tab">
@@ -1080,7 +891,7 @@
               <div class="value">baotg10@vpbank.com.vn</div>
               <div class="sub">Phản hồi trong 24h làm việc</div>
             </div>
-            <button class="btn btn-primary copy-btn" data-text="baotg10@vpbank.com.vn" style="width:100%;"><span class="emoji-icon">⧉</span> Sao chép Email</button>
+            <button class="btn btn-primary copy-btn" data-text="baotg10@vpbank.com.vn" style="width:100%;"><span class="emoji-icon" aria-hidden="true">⧉</span> Sao chép Email</button>
           </div>
 
           <div class="tab-panel" id="phone-tab">
@@ -1090,41 +901,41 @@
               <div class="sub">Sẵn sàng liên hệ nhanh khi cần</div>
             </div>
             <div class="grid-2">
-              <button class="btn btn-soft copy-btn" data-text="0336620689"><span class="emoji-icon">⧉</span> Copy số</button>
-              <a href="tel:0336620689" class="btn btn-primary"><span class="emoji-icon">☎</span> Gọi ngay</a>
+              <button class="btn btn-soft copy-btn" data-text="0336620689"><span class="emoji-icon" aria-hidden="true">⧉</span> Copy số</button>
+              <a href="tel:0336620689" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">☎</span> Gọi ngay</a>
             </div>
           </div>
         </div>
 
-        <div class="panel focus-card">
-          <h4>Điểm nâng cấp chính</h4>
-          <div class="focus-list">
-            <div class="focus-item"><i>✓</i><span>Giảm chiều cao phần đầu để tool xuất hiện sớm hơn</span></div>
-            <div class="focus-item"><i>✓</i><span>Thêm bộ lọc nhóm để chọn nhanh theo nghiệp vụ</span></div>
-            <div class="focus-item"><i>✓</i><span>Card gọn hơn, dễ quét hơn, hành động chính rõ hơn</span></div>
-            <div class="focus-item"><i>✓</i><span>Sidebar nhẹ hơn để không tranh sự chú ý với tool</span></div>
+        <div class="side-card card">
+          <div class="side-head"><h4>Điểm mạnh của layout này</h4></div>
+          <div class="note-list">
+            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Nhìn sáng, sạch và dễ tạo cảm giác chuyên nghiệp</span></div>
+            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Nội dung chính phụ phân tách rõ ràng hơn</span></div>
+            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Thẻ tool đồng đều, dễ quét mắt và dễ bấm</span></div>
+            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Mobile cũng gọn hơn bản dark trước</span></div>
           </div>
         </div>
 
-        <div class="panel footer-card">
-          <h4>baotg10</h4>
-          Giao diện mới theo hướng sáng, hiện đại, thực dụng và ưu tiên thao tác nhanh trong môi trường nội bộ.
+        <div class="side-card card footer-card">
+          © 2026 <strong style="color:var(--text)">baotg10</strong><br>
+          Giao diện mới theo hướng sáng, tối giản và thực dụng hơn.
         </div>
       </aside>
     </section>
   </div>
 
   <div class="modal" id="qrModal">
-    <div class="modal-box">
-      <button class="close-modal" id="closeModal"><span class="emoji-icon">✕</span></button>
+    <div class="modal-box card">
+      <button class="close-modal" id="closeModal"><span class="emoji-icon" aria-hidden="true">✕</span></button>
       <h3>Ủng hộ baotg10</h3>
       <p>Quét mã hoặc sao chép số tài khoản để ủng hộ phát triển thêm nhiều công cụ hữu ích.</p>
       <div class="modal-qr">
         <img src="./qr-donate.png?v=10" alt="QR Large" onerror="this.src='https://placehold.co/500x500/ffffff/111827?text=QR'">
       </div>
       <div class="grid-2">
-        <button class="btn btn-soft" id="copyAcc2"><span class="emoji-icon">⧉</span> Copy STK</button>
-        <button class="btn btn-primary" id="downloadQR2"><span class="emoji-icon">⤓</span> Tải ảnh</button>
+        <button class="btn btn-soft" id="copyAcc2"><span class="emoji-icon" aria-hidden="true">⧉</span> Copy STK</button>
+        <button class="btn btn-primary" id="downloadQR2"><span class="emoji-icon" aria-hidden="true">⤓</span> Tải ảnh</button>
       </div>
     </div>
   </div>
@@ -1135,8 +946,10 @@
 
     tabButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        tabButtons.forEach(item => item.classList.remove('active'));
+        const group = btn.parentElement.querySelectorAll('.tab-btn');
+        group.forEach(item => item.classList.remove('active'));
         btn.classList.add('active');
+
         panels.forEach(panel => panel.classList.remove('active'));
         const target = document.getElementById(btn.dataset.tab + '-tab');
         if (target) target.classList.add('active');
@@ -1150,6 +963,20 @@
       const toast = document.createElement('div');
       toast.className = 'toast-msg';
       toast.textContent = message;
+      Object.assign(toast.style, {
+        position: 'fixed',
+        left: '50%',
+        bottom: '22px',
+        transform: 'translateX(-50%)',
+        background: '#142033',
+        color: '#fff',
+        padding: '12px 16px',
+        borderRadius: '999px',
+        boxShadow: '0 12px 30px rgba(20,32,51,0.22)',
+        zIndex: 100,
+        fontWeight: '700',
+        fontSize: '0.9rem'
+      });
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 1800);
     }
@@ -1193,6 +1020,7 @@
       document.body.removeChild(link);
     }
 
+    document.getElementById('downloadQR').addEventListener('click', dlQR);
     document.getElementById('downloadQR2').addEventListener('click', dlQR);
 
     const modal = document.getElementById('qrModal');
@@ -1211,46 +1039,29 @@
     heroDonateBtn.addEventListener('click', () => toggleModal(true));
     closeModal.addEventListener('click', () => toggleModal(false));
 
-    modal.addEventListener('click', e => {
+    modal.addEventListener('click', (e) => {
       if (e.target === modal) toggleModal(false);
     });
 
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') toggleModal(false);
     });
 
     const toolSearch = document.getElementById('toolSearch');
-    const toolCards = [...document.querySelectorAll('.tool-card')];
+    const toolCards = document.querySelectorAll('.tool-card');
     const emptyState = document.getElementById('emptyState');
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    let currentCategory = 'all';
 
-    function filterTools() {
+    toolSearch.addEventListener('input', () => {
       const keyword = toolSearch.value.trim().toLowerCase();
       let count = 0;
 
       toolCards.forEach(card => {
-        const category = card.dataset.category || 'all';
-        const text = (card.dataset.search || '').toLowerCase();
-        const categoryMatched = currentCategory === 'all' || currentCategory === category;
-        const keywordMatched = !keyword || text.includes(keyword);
-        const visible = categoryMatched && keywordMatched;
-        card.style.display = visible ? '' : 'none';
-        if (visible) count++;
+        const matched = (card.dataset.search || '').includes(keyword);
+        card.style.display = matched ? '' : 'none';
+        if (matched) count++;
       });
 
       emptyState.style.display = count ? 'none' : 'block';
-    }
-
-    toolSearch.addEventListener('input', filterTools);
-
-    categoryButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        categoryButtons.forEach(item => item.classList.remove('active'));
-        btn.classList.add('active');
-        currentCategory = btn.dataset.category;
-        filterTools();
-      });
     });
   </script>
 </body>
