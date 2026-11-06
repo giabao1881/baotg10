@@ -3,72 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>baotg10 | Bộ công cụ làm việc</title>
+  <title>baotg10 | Tool Center</title>
   <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #f6f8fc;
       --surface: #ffffff;
-      --surface-2: #f9fbff;
-      --line: #e5eaf3;
-      --line-strong: #d8e0ee;
-      --text: #142033;
-      --muted: #6e7d95;
-      --primary: #1f6fff;
-      --primary-dark: #1257d6;
-      --green: #10b981;
-      --red: #ef476f;
-      --amber: #f59e0b;
-      --shadow: 0 18px 50px rgba(18, 39, 73, 0.08);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --maxw: 1220px;
+      --surface-2: #f4f7fd;
+      --surface-3: #eef3fb;
+      --line: #e3e9f4;
+      --line-strong: #d0daec;
+      --text: #0f1729;
+      --text-2: #3d4d68;
+      --muted: #7386a3;
+      --primary: #2563ff;
+      --primary-2: #4f83ff;
+      --primary-dark: #1a4fd6;
+      --primary-soft: #eaf1ff;
+      --green: #0ea472;
+      --green-soft: #e6f9f1;
+      --red: #e8406a;
+      --red-soft: #ffedf2;
+      --amber: #e8950a;
+      --amber-soft: #fff6e3;
+      --purple: #7c3aed;
+      --purple-soft: #f1ebff;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 41, 0.04);
+      --shadow-md: 0 8px 24px rgba(15, 23, 41, 0.07);
+      --shadow-lg: 0 20px 50px rgba(15, 23, 41, 0.1);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --maxw: 1240px;
+      --font: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --surface: #141a27;
+      --surface-2: #1a2233;
+      --surface-3: #212b40;
+      --line: #253046;
+      --line-strong: #34405a;
+      --text: #f0f4fc;
+      --text-2: #b8c5dc;
+      --muted: #7d8ba5;
+      --primary: #5b8cff;
+      --primary-2: #7ba3ff;
+      --primary-dark: #4a7aeb;
+      --primary-soft: #1a2744;
+      --green: #2dd4a0;
+      --green-soft: #0f2e26;
+      --red: #ff6b8b;
+      --red-soft: #331620;
+      --amber: #fbbf24;
+      --amber-soft: #33280e;
+      --purple: #a78bfa;
+      --purple-soft: #251d3d;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      font-family: var(--font);
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      background:
-        radial-gradient(circle at top left, rgba(31,111,255,0.06), transparent 28%),
-        linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
+      background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       padding: 20px;
+      transition: background var(--transition), color var(--transition);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ambient background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(37, 99, 255, 0.07), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(124, 58, 237, 0.05), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    [data-theme="dark"] body::before {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(91, 140, 255, 0.08), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(167, 139, 250, 0.06), transparent 60%);
     }
 
     a { color: inherit; text-decoration: none; }
     button { border: none; background: none; color: inherit; font: inherit; cursor: pointer; }
+    input { font: inherit; }
 
-    .emoji-icon {
+    .ico {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-style: normal;
       line-height: 1;
-      min-width: 1em;
+      flex-shrink: 0;
+    }
+
+    .ico svg {
+      width: 1em;
+      height: 1em;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .page {
       max-width: var(--maxw);
       margin: 0 auto;
       display: grid;
-      gap: 22px;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .card {
       background: var(--surface);
       border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-sm);
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
     }
 
+    /* ===== TOPBAR ===== */
     .topbar {
-      border-radius: 22px;
-      padding: 16px 20px;
+      border-radius: var(--radius-lg);
+      padding: 14px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -76,7 +152,9 @@
       flex-wrap: wrap;
       position: sticky;
       top: 12px;
-      z-index: 20;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--surface) 85%, transparent);
     }
 
     .brand {
@@ -86,605 +164,860 @@
     }
 
     .brand-logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
       font-size: 1.15rem;
       font-weight: 800;
       color: white;
-      background: linear-gradient(135deg, var(--primary), #5d9cff);
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 6px 18px rgba(37, 99, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.25));
     }
 
     .brand-text strong {
       display: block;
       font-size: 1rem;
-      margin-bottom: 4px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
     }
 
     .brand-text span {
-      font-size: 0.86rem;
+      font-size: 0.82rem;
       color: var(--muted);
     }
 
     .topbar-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
-    .mini-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       border: 1px solid var(--line);
       background: var(--surface-2);
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 600;
+      display: grid;
+      place-items: center;
+      font-size: 1.15rem;
+      transition: var(--transition);
+      color: var(--text-2);
+    }
+
+    .icon-btn:hover {
+      background: var(--surface-3);
+      border-color: var(--line-strong);
+      color: var(--primary);
+      transform: translateY(-1px);
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      transition: 0.22s ease;
-      font-weight: 700;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      transition: var(--transition);
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
     }
 
     .btn-primary {
       background: var(--primary);
       color: #fff;
+      box-shadow: 0 4px 14px rgba(37, 99, 255, 0.3);
     }
 
-    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 99, 255, 0.4);
+    }
 
     .btn-soft {
       background: var(--surface-2);
       border: 1px solid var(--line);
+      color: var(--text-2);
     }
 
-    .btn-soft:hover { background: #eef4ff; }
+    .btn-soft:hover {
+      background: var(--surface-3);
+      border-color: var(--line-strong);
+      color: var(--text);
+    }
 
+    .kbd-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .kbd-hint:hover {
+      border-color: var(--line-strong);
+      color: var(--text-2);
+    }
+
+    .kbd-hint kbd {
+      font-family: var(--font);
+      background: var(--surface-3);
+      border: 1px solid var(--line);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-2);
+    }
+
+    /* ===== HERO ===== */
     .hero {
       display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
-      gap: 22px;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 20px;
     }
 
     .hero-main {
       border-radius: var(--radius-xl);
-      padding: 34px;
+      padding: 40px 38px;
       position: relative;
       overflow: hidden;
-      min-height: 300px;
-      background:
-        linear-gradient(135deg, #1f6fff 0%, #3d86ff 52%, #76acff 100%);
+      min-height: 320px;
+      background: linear-gradient(135deg, #1e5eff 0%, #3d7bff 45%, #6ba3ff 100%);
       color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      filter: blur(20px);
     }
 
     .hero-main::after {
       content: "";
       position: absolute;
-      right: -50px;
-      bottom: -70px;
-      width: 240px;
-      height: 240px;
+      right: 60px;
+      bottom: -100px;
+      width: 260px;
+      height: 260px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 14px;
+      padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.18);
-      margin-bottom: 18px;
-      font-size: 0.84rem;
-      font-weight: 700;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      width: fit-content;
+      backdrop-filter: blur(8px);
     }
 
     .hero-main h1 {
-      font-size: clamp(2rem, 4vw, 3.45rem);
-      line-height: 1.06;
-      max-width: 700px;
-      margin-bottom: 14px;
+      font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      max-width: 640px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-main p {
-      max-width: 700px;
+      max-width: 560px;
       font-size: 1rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.86);
-      margin-bottom: 24px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-actions {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
     }
 
-    .hero-actions .btn-soft {
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.2);
+    .hero-actions .btn {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       color: white;
+      backdrop-filter: blur(8px);
     }
 
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+    .hero-actions .btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
     }
 
-    .metric {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 18px;
-      padding: 16px;
+    .hero-actions .btn-white {
+      background: white;
+      color: var(--primary);
+      border-color: white;
     }
 
-    .metric strong {
-      display: block;
-      font-size: 1.2rem;
-      margin-bottom: 6px;
-    }
-
-    .metric span {
-      font-size: 0.86rem;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.5;
+    .hero-actions .btn-white:hover {
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--primary-dark);
     }
 
     .hero-side {
       border-radius: var(--radius-xl);
-      padding: 24px;
-      display: grid;
-      gap: 16px;
-      align-content: start;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .profile {
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: center;
     }
 
     .avatar {
-      width: 72px;
-      height: 72px;
+      width: 68px;
+      height: 68px;
       border-radius: 20px;
-      background: linear-gradient(135deg, #1f6fff, #7bb0ff);
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
       display: grid;
       place-items: center;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 800;
       color: white;
       flex-shrink: 0;
+      box-shadow: 0 8px 22px rgba(37, 99, 255, 0.25);
     }
 
     .profile h2 {
       font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
       margin-bottom: 4px;
     }
 
     .profile p {
       color: var(--muted);
-      line-height: 1.6;
-      font-size: 0.92rem;
+      line-height: 1.5;
+      font-size: 0.86rem;
     }
 
-    .info-list {
+    .stat-grid {
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
 
-    .info-item {
-      border: 1px solid var(--line);
+    .stat-item {
       background: var(--surface-2);
-      border-radius: 16px;
-      padding: 14px 15px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.92rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+      transition: var(--transition);
     }
 
-    .info-item span { color: var(--muted); }
-    .info-item strong { text-align: right; }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr 330px;
-      gap: 22px;
-      align-items: start;
+    .stat-item:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
     }
 
-    .section {
-      border-radius: var(--radius-xl);
-      padding: 24px;
+    .stat-item strong {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      margin-bottom: 2px;
     }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .section-head h3 {
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-    }
-
-    .section-head p {
+    .stat-item span {
+      font-size: 0.78rem;
       color: var(--muted);
-      font-size: 0.92rem;
+      font-weight: 500;
     }
 
-    .search {
-      min-width: 280px;
+    /* ===== TOOLBAR / FILTERS ===== */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 16px 20px;
+      border-radius: var(--radius-lg);
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .chip {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--text-2);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .chip:hover {
+      border-color: var(--line-strong);
+      color: var(--text);
+    }
+
+    .chip.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(37, 99, 255, 0.3);
+    }
+
+    .chip .count {
+      font-size: 0.72rem;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--surface-3);
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .chip.active .count {
+      background: rgba(255, 255, 255, 0.22);
+      color: white;
+    }
+
+    .search-box {
+      min-width: 260px;
+      flex: 1;
+      max-width: 360px;
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 14px;
-      border-radius: 14px;
+      padding: 11px 16px;
+      border-radius: var(--radius-md);
       border: 1px solid var(--line);
       background: var(--surface-2);
+      transition: var(--transition);
     }
 
-    .search input {
+    .search-box:focus-within {
+      border-color: var(--primary);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+
+    .search-box .ico {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .search-box input {
       border: none;
       outline: none;
       background: transparent;
       width: 100%;
       color: var(--text);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
-    .search input::placeholder { color: #96a4bb; }
+    .search-box input::placeholder {
+      color: var(--muted);
+    }
+
+    /* ===== TOOLS GRID ===== */
+    .tools-section {
+      display: grid;
+      gap: 16px;
+    }
 
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
 
     .tool-card {
       border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 20px;
+      border-radius: var(--radius-lg);
+      padding: 22px;
       background: var(--surface);
-      transition: 0.22s ease;
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
       gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      opacity: 0;
+      transition: var(--transition);
     }
 
     .tool-card:hover {
       transform: translateY(-4px);
-      border-color: #cfdaf0;
-      box-shadow: 0 16px 38px rgba(18, 39, 73, 0.09);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tool-card:hover::before {
+      opacity: 1;
     }
 
     .tool-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 14px;
+      gap: 12px;
     }
 
     .tool-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
       display: grid;
       place-items: center;
-      background: #eef4ff;
+      background: var(--primary-soft);
       color: var(--primary);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
+      transition: var(--transition);
     }
+
+    .tool-card:hover .tool-icon {
+      transform: scale(1.05) rotate(-3deg);
+    }
+
+    .tool-icon.green { background: var(--green-soft); color: var(--green); }
+    .tool-icon.red { background: var(--red-soft); color: var(--red); }
+    .tool-icon.amber { background: var(--amber-soft); color: var(--amber); }
+    .tool-icon.purple { background: var(--purple-soft); color: var(--purple); }
 
     .badge-row {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
 
     .badge {
-      padding: 6px 10px;
+      padding: 4px 9px;
       border-radius: 999px;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
-    .badge.new { background: #eafaf4; color: var(--green); }
-    .badge.hot { background: #fff0f4; color: var(--red); }
-    .badge.vpb { background: #fff7e8; color: var(--amber); }
+    .badge.new { background: var(--green-soft); color: var(--green); }
+    .badge.hot { background: var(--red-soft); color: var(--red); }
+    .badge.vpb { background: var(--amber-soft); color: var(--amber); }
 
     .tool-card h4 {
-      font-size: 1.08rem;
-      line-height: 1.45;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
     }
 
     .tool-card p {
       color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.92rem;
-      min-height: 78px;
+      line-height: 1.65;
+      font-size: 0.88rem;
+      flex: 1;
+    }
+
+    .tool-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tool-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--muted);
+      border: 1px solid var(--line);
     }
 
     .tool-actions {
       display: flex;
-      gap: 10px;
-      margin-top: auto;
+      gap: 8px;
+      margin-top: 4px;
     }
 
     .tool-actions .btn {
       flex: 1;
-      font-size: 0.92rem;
-      padding: 11px 12px;
+      font-size: 0.86rem;
+      padding: 10px 14px;
     }
 
-    .icon-btn {
-      flex: 0 0 46px !important;
-      width: 46px;
+    .tool-actions .icon-btn {
+      flex: 0 0 42px !important;
+      width: 42px;
+      height: 42px;
       padding: 0 !important;
-    }
-
-    .sidebar {
-      display: grid;
-      gap: 16px;
-      position: sticky;
-      top: 90px;
-    }
-
-    .side-card {
-      border-radius: 22px;
-      padding: 20px;
-    }
-
-    .side-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .side-head h4 { font-size: 1rem; }
-
-    .tab-nav {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 11px 10px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: var(--surface-2);
-      color: var(--muted);
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .tab-btn.active {
-      background: #eaf2ff;
-      color: var(--primary);
-      border-color: #d8e6ff;
-    }
-
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    .qr-box {
-      width: 175px;
-      height: 175px;
-      background: white;
-      border-radius: 22px;
-      padding: 10px;
-      margin: 0 auto 16px;
-      border: 1px solid var(--line);
-    }
-
-    .qr-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 14px;
-    }
-
-    .info-box {
-      background: var(--surface-2);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      text-align: center;
-      padding: 14px;
-      margin-bottom: 14px;
-    }
-
-    .label {
-      display: block;
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .value {
-      font-size: 1.08rem;
-      font-weight: 800;
-      line-height: 1.55;
-      word-break: break-word;
-    }
-
-    .sub {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.6;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .note-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .note-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
-    }
-
-    .note-item i {
-      color: var(--primary);
-      margin-top: 3px;
-    }
-
-    .footer-card {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.7;
-    }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(17, 24, 39, 0.5);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 80;
-      padding: 20px;
-      backdrop-filter: blur(6px);
-    }
-
-    .modal.open { display: flex; }
-
-    .modal-box {
-      width: min(460px, 100%);
-      border-radius: 26px;
-      padding: 24px;
-      position: relative;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      background: var(--surface-2);
-      display: grid;
-      place-items: center;
-    }
-
-    .modal-box h3 {
-      text-align: center;
-      font-size: 1.35rem;
-      margin-bottom: 10px;
-    }
-
-    .modal-box p {
-      text-align: center;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 18px;
-      font-size: 0.92rem;
-    }
-
-    .modal-qr {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 12px;
-      margin-bottom: 18px;
-    }
-
-    .modal-qr img {
-      width: 100%;
-      display: block;
-      border-radius: 14px;
+      font-size: 1rem;
     }
 
     .empty-state {
       display: none;
       text-align: center;
-      padding: 28px 10px 6px;
+      padding: 60px 20px;
       color: var(--muted);
     }
 
-    @media (max-width: 1080px) {
-      .hero,
-      .layout {
-        grid-template-columns: 1fr;
-      }
+    .empty-state .ico {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+      opacity: 0.5;
+    }
 
-      .sidebar { position: static; }
+    .empty-state strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      padding: 30px 20px 20px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .footer strong { color: var(--text-2); }
+
+    /* ===== COMMAND PALETTE ===== */
+    .palette {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 26, 0.5);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      z-index: 100;
+      padding: 12vh 20px 20px;
+    }
+
+    .palette.open { display: flex; }
+
+    .palette-box {
+      width: min(560px, 100%);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: slideDown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-16px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .palette-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .palette-input-wrap .ico {
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .palette-input-wrap input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .palette-input-wrap input::placeholder {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .palette-esc {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .palette-results {
+      max-height: 380px;
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .palette-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .palette-item:hover,
+    .palette-item.selected {
+      background: var(--primary-soft);
+    }
+
+    .palette-item .pi-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-2);
+      color: var(--primary);
+      font-size: 1rem;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+    }
+
+    .palette-item.selected .pi-icon {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .palette-item .pi-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .palette-item .pi-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: var(--text);
+    }
+
+    .palette-item .pi-text span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+
+    .palette-item .pi-enter {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .palette-item.selected .pi-enter {
+      opacity: 1;
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .palette-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .palette-footer {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line);
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--surface-2);
+    }
+
+    .palette-footer span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .palette-footer kbd {
+      font-family: var(--font);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text);
+      color: var(--bg);
+      padding: 12px 20px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-lg);
+      z-index: 200;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background: var(--line-strong);
+      border-radius: 999px;
+      border: 2px solid var(--bg);
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1080px) {
+      .hero { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
-      body { padding: 14px; }
+      body { padding: 12px; }
 
-      .topbar,
-      .hero-main,
-      .hero-side,
-      .section,
-      .side-card,
-      .modal-box {
-        border-radius: 20px;
-      }
+      .topbar { padding: 12px 16px; border-radius: var(--radius-md); }
+      .brand-logo { width: 40px; height: 40px; border-radius: 12px; font-size: 1rem; }
+      .brand-text strong { font-size: 0.92rem; }
+      .brand-text span { display: none; }
 
-      .hero-main,
-      .hero-side,
-      .section,
-      .side-card { padding: 18px; }
+      .hero-main { padding: 28px 24px; border-radius: var(--radius-lg); }
+      .hero-side { padding: 22px; border-radius: var(--radius-lg); }
+      .hero-main h1 { font-size: 1.8rem; }
 
-      .hero-metrics,
-      .tools-grid,
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
+      .toolbar { padding: 14px 16px; }
+      .search-box { min-width: 0; max-width: none; width: 100%; }
 
-      .search {
-        min-width: 0;
-        width: 100%;
+      .tools-grid { grid-template-columns: 1fr; }
+      .tool-card { padding: 18px; border-radius: var(--radius-md); }
+
+      .kbd-hint { display: none; }
+      .topbar-actions .btn span:not(.ico) { display: none; }
+      .topbar-actions .btn { padding: 11px 14px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-main h1 { font-size: 1.55rem; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
+    <!-- TOPBAR -->
     <header class="topbar card">
       <div class="brand">
         <div class="brand-logo">B</div>
@@ -695,38 +1028,38 @@
       </div>
 
       <div class="topbar-actions">
-        <div class="mini-chip"><span class="emoji-icon" aria-hidden="true">📍</span> HCM</div>
-        <a href="#tools" class="btn btn-soft"><span class="emoji-icon" aria-hidden="true">▦</span> Danh sách tool</a>
-        <button class="btn btn-primary" id="topDonateBtn"><span class="emoji-icon" aria-hidden="true">❤</span> Ủng hộ</button>
+        <button class="kbd-hint" id="openPalette" aria-label="Mở tìm kiếm nhanh">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+          <span>Tìm tool</span>
+          <kbd>⌘K</kbd>
+        </button>
+        <button class="icon-btn" id="themeToggle" aria-label="Chuyển chế độ sáng tối">
+          <span class="ico" id="themeIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+        </button>
       </div>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-main card">
-        <div class="hero-tag"><span class="emoji-icon" aria-hidden="true">✦</span> Phiên bản giao diện mới</div>
-        <h1>CÔNG CỤ, TIỆN ÍCH VPBANK</h1>
+        <div class="hero-tag">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3Z"/></svg></span>
+          Phiên bản 2026
+        </div>
+        <h1>Công cụ & tiện ích VPBANK</h1>
         <p>
-          Hi vọng với những công cụ này thì có thể giúp mọi người xử lý nhanh hơn, hiệu quả hơn, giảm thiểu tối đa thời gian xử lý công việc
+          Tập hợp các công cụ giúp xử lý công việc nhanh hơn, hiệu quả hơn và giảm thiểu tối đa thời gian thao tác.
         </p>
 
         <div class="hero-actions">
-          <a href="#tools" class="btn btn-soft"><span class="emoji-icon" aria-hidden="true">↓</span> Xem công cụ</a>
-          <button class="btn btn-soft" id="heroDonateBtn"><span class="emoji-icon" aria-hidden="true">⌘</span> Mở QR ủng hộ</button>
-        </div>
-
-        <div class="hero-metrics">
-          <div class="metric">
-            <strong>06+</strong>
-            <span>Công cụ hữu ích cho công việc</span>
-          </div>
-          <div class="metric">
-            <strong>Nhanh</strong>
-            <span>Mở tool và copy link chỉ trong 1 chạm</span>
-          </div>
-          <div class="metric">
-            <strong>Gọn</strong>
-            <span>Liên hệ, ủng hộ và thao tác đặt cùng 1 nơi</span>
-          </div>
+          <a href="#tools" class="btn btn-white">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></span>
+            Khám phá ngay
+          </a>
+          <button class="btn" id="heroSearchBtn">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            Tìm công cụ
+          </button>
         </div>
       </div>
 
@@ -735,257 +1068,274 @@
           <div class="avatar">B</div>
           <div>
             <h2>BAOTG10</h2>
-            <p>Chuyên viên xử lý nợ VPBANK. Châm ngôn:"càng nhanh càng tốt"</p>
+            <p>Chuyên viên xử lý nợ VPBANK. Châm ngôn: "càng nhanh càng tốt".</p>
           </div>
         </div>
 
-        <div class="info-list">
-          <div class="info-item">
-            <span>Vai trò</span>
-            <strong>Developer / Creator</strong>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <strong id="statTools">06</strong>
+            <span>Công cụ</span>
           </div>
-          <div class="info-item">
-            <span>Chuyên môn</span>
-            <strong>PDF • KPI • Hồ sơ • Form</strong>
-          </div>
-          <div class="info-item">
-            <span>Khu vực</span>
-            <strong>Hồ Chí Minh</strong>
+          <div class="stat-item">
+            <strong>24/7</strong>
+            <span>Sẵn sàng</span>
           </div>
         </div>
       </aside>
     </section>
 
-    <section class="layout">
-      <div class="section card" id="tools">
-        <div class="section-head">
-          <div>
-            <h3>Danh sách công cụ</h3>
-            <p>Tổng hợp các tiện ích hỗ trợ công việc nhanh chóng và hiệu quả.</p>
-          </div>
-
-          <label class="search">
-            <span class="emoji-icon" aria-hidden="true">⌕</span>
-            <input type="text" id="toolSearch" placeholder="Tìm theo tên tool hoặc chức năng...">
-          </label>
-        </div>
-
-        <div class="tools-grid" id="toolsGrid">
-          <article class="tool-card" data-search="chuyen doi dia chi chuan hoa danh sach dia chi excel">
-            <div class="tool-top">
-              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">📍</span></div>
-              <div class="badge-row"><span class="badge new">New</span></div>
-            </div>
-            <h4>Chuyển đổi địa chỉ</h4>
-            <p>Chuẩn hóa danh sách địa chỉ cũ sang định dạng mới, hỗ trợ dán nhanh vào Excel khi xử lý số lượng lớn.</p>
-            <div class="tool-actions">
-              <a href="https://giabao1881.github.io/diachimoivn/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/diachimoivn/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
-            </div>
-          </article>
-
-          <article class="tool-card" data-search="tach doi ten gop nen pdf trang nhom dung luong">
-            <div class="tool-top">
-              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">📄</span></div>
-              <div class="badge-row"><span class="badge hot">Hot</span></div>
-            </div>
-            <h4>Tách, đổi tên, gộp, nén, chuyển Ảnh sang PDF</h4>
-            <p>Tách file PDF theo trang, nhóm hoặc dung lượng và hỗ trợ tự động đặt tên theo danh sách đầu vào.</p>
-            <div class="tool-actions">
-              <a href="https://giabao1881.github.io/TACHFILE/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TACHFILE/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
-            </div>
-          </article>
-
-          <article class="tool-card" data-search="bang ke tinh lai vpbank lai suat phi phat tong tien vay">
-            <div class="tool-top">
-              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">🧮</span></div>
-              <div class="badge-row"><span class="badge vpb">VPB</span></div>
-            </div>
-            <h4>Bảng kê tính lãi</h4>
-            <p>Tính lãi suất, phí phạt và tổng số tiền phải thanh toán cho các khoản vay theo nghiệp vụ VPBANK.</p>
-            <div class="tool-actions">
-              <a href="https://giabao1881.github.io/BKTL/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/BKTL/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
-            </div>
-          </article>
-
-          <article class="tool-card" data-search="don khoi kien ban tu khai ho so tin chap btk">
-            <div class="tool-top">
-              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">⚖</span></div>
-              <div class="badge-row"></div>
-            </div>
-            <h4>Đơn khởi kiện & BTK</h4>
-            <p>Tạo nhanh mẫu đơn khởi kiện và bản tự khai cho hồ sơ tín chấp để rút ngắn thời gian chuẩn bị hồ sơ.</p>
-            <div class="tool-actions">
-              <a href="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
-            </div>
-          </article>
-
-          <article class="tool-card" data-search="tinh kpi thang ca nhan co che moi nhat chi so">
-            <div class="tool-top">
-              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">📈</span></div>
-              <div class="badge-row"></div>
-            </div>
-            <h4>Tính KPI tháng</h4>
-            <p>Theo dõi và tính toán chỉ số KPI cá nhân theo cơ chế mới, dễ kiểm soát tiến độ và hiệu suất công việc.</p>
-            <div class="tool-actions">
-              <a href="https://giabao1881.github.io/KPI/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/KPI/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
-            </div>
-          </article>
-
-          <article class="tool-card" data-search="tinh an phi toa an le phi tra cuu nhanh quy dinh">
-            <div class="tool-top">
-              <div class="tool-icon"><span class="emoji-icon" aria-hidden="true">🏛</span></div>
-              <div class="badge-row"></div>
-            </div>
-            <h4>Tính án phí Tòa án</h4>
-            <p>Công cụ tra cứu và tính nhanh án phí, lệ phí tòa án theo quy định để hỗ trợ xử lý hồ sơ chính xác hơn.</p>
-            <div class="tool-actions">
-              <a href="https://giabao1881.github.io/ANPHI/" target="_blank" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">↗</span> Mở tool</a>
-              <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/ANPHI/"><span class="emoji-icon" aria-hidden="true">🔗</span></button>
-            </div>
-          </article>
-        </div>
-
-        <div class="empty-state" id="emptyState">
-          <div style="font-size:2rem; margin-bottom:10px;">:(</div>
-          <div>Không tìm thấy công cụ phù hợp.</div>
-        </div>
+    <!-- TOOLBAR -->
+    <div class="toolbar card">
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-filter="all">
+          Tất cả <span class="count" id="countAll">6</span>
+        </button>
+        <button class="chip" data-filter="vpb">
+          VPBANK <span class="count" id="countVpb">3</span>
+        </button>
+        <button class="chip" data-filter="pdf">
+          PDF <span class="count" id="countPdf">1</span>
+        </button>
+        <button class="chip" data-filter="tinh-toan">
+          Tính toán <span class="count" id="countTinh">2</span>
+        </button>
+        <button class="chip" data-filter="ho-so">
+          Hồ sơ <span class="count" id="countHoSo">1</span>
+        </button>
       </div>
 
-      <aside class="sidebar">
-        <div class="side-card card">
-          <div class="side-head">
-            <h4>Liên hệ nhanh</h4>
-            <span style="font-size:0.82rem; color:var(--muted);">1 chạm</span>
-          </div>
+      <label class="search-box">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+        <input type="text" id="toolSearch" placeholder="Tìm tool, chức năng..." />
+      </label>
+    </div>
 
-          <div class="tab-nav">
-            <button class="tab-btn active" data-tab="donate">Donate</button>
-            <button class="tab-btn" data-tab="email">Email</button>
-            <button class="tab-btn" data-tab="phone">Phone</button>
+    <!-- TOOLS -->
+    <section class="tools-section" id="tools">
+      <div class="tools-grid" id="toolsGrid">
+        <article class="tool-card" data-search="chuyen doi dia chi chuan hoa danh sach excel" data-category="ho-so">
+          <div class="tool-top">
+            <div class="tool-icon green">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            </div>
+            <div class="badge-row"><span class="badge new">New</span></div>
           </div>
-
-          <div class="tab-panel active" id="donate-tab">
-            <div class="qr-box">
-              <img src="./qr-donate.png?v=10" alt="QR Donate" onerror="this.src='https://placehold.co/300x300/ffffff/111827?text=QR'">
-            </div>
-            <div class="info-box">
-              <span class="label">VPBANK</span>
-              <div class="value" id="accNo">0336 620 689</div>
-              <div class="sub">Chủ TK: BAO TRAN</div>
-            </div>
-            <div class="grid-2">
-              <button class="btn btn-primary" id="copyAcc"><span class="emoji-icon" aria-hidden="true">⧉</span> Copy STK</button>
-              <button class="btn btn-soft" id="openQR"><span class="emoji-icon" aria-hidden="true">⤢</span> Zoom</button>
-            </div>
-            <button class="btn btn-soft" id="downloadQR" style="width:100%; margin-top:10px;"><span class="emoji-icon" aria-hidden="true">⤓</span> Tải ảnh QR</button>
+          <h4>Chuyển đổi địa chỉ</h4>
+          <p>Chuẩn hóa danh sách địa chỉ cũ sang định dạng mới, hỗ trợ dán nhanh vào Excel khi xử lý số lượng lớn.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Địa chỉ</span>
+            <span class="tool-tag">Excel</span>
           </div>
-
-          <div class="tab-panel" id="email-tab">
-            <div class="info-box">
-              <span class="label">Email liên hệ</span>
-              <div class="value">baotg10@vpbank.com.vn</div>
-              <div class="sub">Phản hồi trong 24h làm việc</div>
-            </div>
-            <button class="btn btn-primary copy-btn" data-text="baotg10@vpbank.com.vn" style="width:100%;"><span class="emoji-icon" aria-hidden="true">⧉</span> Sao chép Email</button>
+          <div class="tool-actions">
+            <a href="https://giabao1881.github.io/diachimoivn/" target="_blank" class="btn btn-primary">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              Mở tool
+            </a>
+            <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/diachimoivn/" aria-label="Copy link">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+            </button>
           </div>
+        </article>
 
-          <div class="tab-panel" id="phone-tab">
-            <div class="info-box">
-              <span class="label">Hotline / Zalo</span>
-              <div class="value">0336 620 689</div>
-              <div class="sub">Sẵn sàng liên hệ nhanh khi cần</div>
+        <article class="tool-card" data-search="tach doi ten gop nen pdf trang nhom dung luong" data-category="pdf">
+          <div class="tool-top">
+            <div class="tool-icon red">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
             </div>
-            <div class="grid-2">
-              <button class="btn btn-soft copy-btn" data-text="0336620689"><span class="emoji-icon" aria-hidden="true">⧉</span> Copy số</button>
-              <a href="tel:0336620689" class="btn btn-primary"><span class="emoji-icon" aria-hidden="true">☎</span> Gọi ngay</a>
+            <div class="badge-row"><span class="badge hot">Hot</span></div>
+          </div>
+          <h4>Tách, đổi tên, gộp, nén PDF</h4>
+          <p>Tách file PDF theo trang, nhóm hoặc dung lượng, chuyển ảnh sang PDF và hỗ trợ tự động đặt tên theo danh sách đầu vào.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">PDF</span>
+            <span class="tool-tag">Ảnh</span>
+          </div>
+          <div class="tool-actions">
+            <a href="https://giabao1881.github.io/TACHFILE/" target="_blank" class="btn btn-primary">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              Mở tool
+            </a>
+            <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TACHFILE/" aria-label="Copy link">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+            </button>
+          </div>
+        </article>
+
+        <article class="tool-card" data-search="bang ke tinh lai vpbank lai suat phi phat tong tien vay" data-category="tinh-toan">
+          <div class="tool-top">
+            <div class="tool-icon amber">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="8" x2="16" y1="10" y2="10"/><line x1="8" x2="16" y1="14" y2="14"/><line x1="8" x2="16" y1="18" y2="18"/></svg></span>
             </div>
+            <div class="badge-row"><span class="badge vpb">VPB</span></div>
           </div>
-        </div>
-
-        <div class="side-card card">
-          <div class="side-head"><h4>Điểm mạnh của layout này</h4></div>
-          <div class="note-list">
-            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Nhìn sáng, sạch và dễ tạo cảm giác chuyên nghiệp</span></div>
-            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Nội dung chính phụ phân tách rõ ràng hơn</span></div>
-            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Thẻ tool đồng đều, dễ quét mắt và dễ bấm</span></div>
-            <div class="note-item"><span class="emoji-icon" aria-hidden="true">✓</span><span>Mobile cũng gọn hơn bản dark trước</span></div>
+          <h4>Bảng kê tính lãi</h4>
+          <p>Tính lãi suất, phí phạt và tổng số tiền phải thanh toán cho các khoản vay theo nghiệp vụ VPBANK.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">VPBANK</span>
+            <span class="tool-tag">Lãi suất</span>
           </div>
-        </div>
+          <div class="tool-actions">
+            <a href="https://giabao1881.github.io/BKTL/" target="_blank" class="btn btn-primary">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              Mở tool
+            </a>
+            <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/BKTL/" aria-label="Copy link">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+            </button>
+          </div>
+        </article>
 
-        <div class="side-card card footer-card">
-          © 2026 <strong style="color:var(--text)">baotg10</strong><br>
-          Giao diện mới theo hướng sáng, tối giản và thực dụng hơn.
-        </div>
-      </aside>
+        <article class="tool-card" data-search="don khoi kien ban tu khai ho so tin chap btk" data-category="ho-so">
+          <div class="tool-top">
+            <div class="tool-icon purple">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></span>
+            </div>
+            <div class="badge-row"></div>
+          </div>
+          <h4>Đơn khởi kiện & BTK</h4>
+          <p>Tạo nhanh mẫu đơn khởi kiện và bản tự khai cho hồ sơ tín chấp để rút ngắn thời gian chuẩn bị hồ sơ.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Hồ sơ</span>
+            <span class="tool-tag">Tín chấp</span>
+          </div>
+          <div class="tool-actions">
+            <a href="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC" target="_blank" class="btn btn-primary">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              Mở tool
+            </a>
+            <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/TOOL_DKK_BTK_UNSEC" aria-label="Copy link">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+            </button>
+          </div>
+        </article>
+
+        <article class="tool-card" data-search="tinh kpi thang ca nhan co che moi nhat chi so" data-category="tinh-toan">
+          <div class="tool-top">
+            <div class="tool-icon">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
+            </div>
+            <div class="badge-row"></div>
+          </div>
+          <h4>Tính KPI tháng</h4>
+          <p>Theo dõi và tính toán chỉ số KPI cá nhân theo cơ chế mới, dễ kiểm soát tiến độ và hiệu suất công việc.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">KPI</span>
+            <span class="tool-tag">Hiệu suất</span>
+          </div>
+          <div class="tool-actions">
+            <a href="https://giabao1881.github.io/KPI/" target="_blank" class="btn btn-primary">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              Mở tool
+            </a>
+            <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/KPI/" aria-label="Copy link">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+            </button>
+          </div>
+        </article>
+
+        <article class="tool-card" data-search="tinh an phi toa an le phi tra cuu nhanh quy dinh" data-category="tinh-toan">
+          <div class="tool-top">
+            <div class="tool-icon green">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg></span>
+            </div>
+            <div class="badge-row"></div>
+          </div>
+          <h4>Tính án phí Tòa án</h4>
+          <p>Công cụ tra cứu và tính nhanh án phí, lệ phí tòa án theo quy định để hỗ trợ xử lý hồ sơ chính xác hơn.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Pháp lý</span>
+            <span class="tool-tag">Án phí</span>
+          </div>
+          <div class="tool-actions">
+            <a href="https://giabao1881.github.io/ANPHI/" target="_blank" class="btn btn-primary">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+              Mở tool
+            </a>
+            <button class="btn btn-soft icon-btn copy-link" data-link="https://giabao1881.github.io/ANPHI/" aria-label="Copy link">
+              <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="m8 8 6 6"/><path d="m14 8-6 6"/></svg></div>
+        <strong>Không tìm thấy công cụ phù hợp</strong>
+        <span>Thử từ khóa khác hoặc chọn bộ lọc khác nhé.</span>
+      </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      © 2026 <strong>baotg10</strong> · Tool Center<br>
+      Giao diện mới tối giản, nhanh và thực dụng hơn.
+    </footer>
   </div>
 
-  <div class="modal" id="qrModal">
-    <div class="modal-box card">
-      <button class="close-modal" id="closeModal"><span class="emoji-icon" aria-hidden="true">✕</span></button>
-      <h3>Ủng hộ baotg10</h3>
-      <p>Quét mã hoặc sao chép số tài khoản để ủng hộ phát triển thêm nhiều công cụ hữu ích.</p>
-      <div class="modal-qr">
-        <img src="./qr-donate.png?v=10" alt="QR Large" onerror="this.src='https://placehold.co/500x500/ffffff/111827?text=QR'">
+  <!-- COMMAND PALETTE -->
+  <div class="palette" id="palette">
+    <div class="palette-box">
+      <div class="palette-input-wrap">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+        <input type="text" id="paletteInput" placeholder="Tìm công cụ... (nhập để tìm kiếm)" autocomplete="off" />
+        <span class="palette-esc">ESC</span>
       </div>
-      <div class="grid-2">
-        <button class="btn btn-soft" id="copyAcc2"><span class="emoji-icon" aria-hidden="true">⧉</span> Copy STK</button>
-        <button class="btn btn-primary" id="downloadQR2"><span class="emoji-icon" aria-hidden="true">⤓</span> Tải ảnh</button>
+      <div class="palette-results" id="paletteResults"></div>
+      <div class="palette-footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> di chuyển</span>
+        <span><kbd>↵</kbd> mở</span>
+        <span><kbd>esc</kbd> đóng</span>
       </div>
     </div>
   </div>
 
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+    <span id="toastText">Đã sao chép!</span>
+  </div>
+
   <script>
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const panels = document.querySelectorAll('.tab-panel');
+    /* ===== THEME ===== */
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const root = document.documentElement;
 
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const group = btn.parentElement.querySelectorAll('.tab-btn');
-        group.forEach(item => item.classList.remove('active'));
-        btn.classList.add('active');
+    const sunSvg = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
+    const moonSvg = '<svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
 
-        panels.forEach(panel => panel.classList.remove('active'));
-        const target = document.getElementById(btn.dataset.tab + '-tab');
-        if (target) target.classList.add('active');
-      });
-    });
-
-    function showToast(message) {
-      const old = document.querySelector('.toast-msg');
-      if (old) old.remove();
-
-      const toast = document.createElement('div');
-      toast.className = 'toast-msg';
-      toast.textContent = message;
-      Object.assign(toast.style, {
-        position: 'fixed',
-        left: '50%',
-        bottom: '22px',
-        transform: 'translateX(-50%)',
-        background: '#142033',
-        color: '#fff',
-        padding: '12px 16px',
-        borderRadius: '999px',
-        boxShadow: '0 12px 30px rgba(20,32,51,0.22)',
-        zIndex: 100,
-        fontWeight: '700',
-        fontSize: '0.9rem'
-      });
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 1800);
+    function setTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      themeIcon.innerHTML = theme === 'dark' ? sunSvg : moonSvg;
+      localStorage.setItem('baotg10-theme', theme);
     }
 
+    const savedTheme = localStorage.getItem('baotg10-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+
+    /* ===== TOAST ===== */
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastText').textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    /* ===== COPY ===== */
     async function copyText(text) {
       try {
         await navigator.clipboard.writeText(text);
-        showToast('Đã sao chép: ' + text);
-      } catch (err) {
+        showToast('Đã sao chép liên kết!');
+      } catch {
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);
@@ -996,73 +1346,172 @@
       }
     }
 
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => copyText(btn.dataset.text));
-    });
-
     document.querySelectorAll('.copy-link').forEach(btn => {
       btn.addEventListener('click', () => copyText(btn.dataset.link));
     });
 
-    function getAcc() {
-      return document.getElementById('accNo').innerText.replace(/\s/g, '');
-    }
-
-    document.getElementById('copyAcc').addEventListener('click', () => copyText(getAcc()));
-    document.getElementById('copyAcc2').addEventListener('click', () => copyText(getAcc()));
-
-    function dlQR() {
-      const link = document.createElement('a');
-      link.href = './qr-donate.png?v=10';
-      link.download = 'baotg10-donate.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    document.getElementById('downloadQR').addEventListener('click', dlQR);
-    document.getElementById('downloadQR2').addEventListener('click', dlQR);
-
-    const modal = document.getElementById('qrModal');
-    const openQR = document.getElementById('openQR');
-    const closeModal = document.getElementById('closeModal');
-    const topDonateBtn = document.getElementById('topDonateBtn');
-    const heroDonateBtn = document.getElementById('heroDonateBtn');
-
-    function toggleModal(show) {
-      modal.classList.toggle('open', show);
-      document.body.style.overflow = show ? 'hidden' : '';
-    }
-
-    openQR.addEventListener('click', () => toggleModal(true));
-    topDonateBtn.addEventListener('click', () => toggleModal(true));
-    heroDonateBtn.addEventListener('click', () => toggleModal(true));
-    closeModal.addEventListener('click', () => toggleModal(false));
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) toggleModal(false);
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') toggleModal(false);
-    });
-
-    const toolSearch = document.getElementById('toolSearch');
+    /* ===== FILTER ===== */
+    const chips = document.querySelectorAll('.chip');
     const toolCards = document.querySelectorAll('.tool-card');
+    const toolSearch = document.getElementById('toolSearch');
     const emptyState = document.getElementById('emptyState');
 
-    toolSearch.addEventListener('input', () => {
+    let activeFilter = 'all';
+
+    function applyFilters() {
       const keyword = toolSearch.value.trim().toLowerCase();
       let count = 0;
 
       toolCards.forEach(card => {
-        const matched = (card.dataset.search || '').includes(keyword);
-        card.style.display = matched ? '' : 'none';
-        if (matched) count++;
+        const searchMatch = !keyword || (card.dataset.search || '').includes(keyword);
+        const categoryMatch = activeFilter === 'all' || card.dataset.category === activeFilter;
+        const visible = searchMatch && categoryMatch;
+
+        card.style.display = visible ? '' : 'none';
+        if (visible) count++;
       });
 
       emptyState.style.display = count ? 'none' : 'block';
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.dataset.filter;
+        applyFilters();
+      });
     });
+
+    toolSearch.addEventListener('input', applyFilters);
+
+    /* ===== COMMAND PALETTE ===== */
+    const palette = document.getElementById('palette');
+    const paletteInput = document.getElementById('paletteInput');
+    const paletteResults = document.getElementById('paletteResults');
+    const openPaletteBtn = document.getElementById('openPalette');
+    const heroSearchBtn = document.getElementById('heroSearchBtn');
+
+    const toolsData = Array.from(toolCards).map(card => ({
+      name: card.querySelector('h4').textContent.trim(),
+      desc: card.querySelector('p').textContent.trim(),
+      link: card.querySelector('a[href]').href,
+      iconEl: card.querySelector('.tool-icon').innerHTML,
+      search: card.dataset.search || ''
+    }));
+
+    let paletteIndex = 0;
+    let filteredTools = [...toolsData];
+
+    function renderPalette(items) {
+      paletteResults.innerHTML = '';
+      paletteIndex = 0;
+      filteredTools = items;
+
+      if (!items.length) {
+        paletteResults.innerHTML = '<div class="palette-empty">Không tìm thấy công cụ phù hợp.</div>';
+        return;
+      }
+
+      items.forEach((tool, i) => {
+        const item = document.createElement('div');
+        item.className = 'palette-item' + (i === 0 ? ' selected' : '');
+        item.dataset.index = i;
+        item.innerHTML = `
+          <div class="pi-icon">${tool.iconEl}</div>
+          <div class="pi-text">
+            <strong>${tool.name}</strong>
+            <span>${tool.desc}</span>
+          </div>
+          <span class="pi-enter">↵</span>
+        `;
+        item.addEventListener('click', () => {
+          window.open(tool.link, '_blank');
+          closePalette();
+        });
+        item.addEventListener('mouseenter', () => {
+          paletteResults.querySelectorAll('.palette-item').forEach(el => el.classList.remove('selected'));
+          item.classList.add('selected');
+          paletteIndex = i;
+        });
+        paletteResults.appendChild(item);
+      });
+    }
+
+    function updateSelection() {
+      const items = paletteResults.querySelectorAll('.palette-item');
+      items.forEach((el, i) => el.classList.toggle('selected', i === paletteIndex));
+      if (items[paletteIndex]) {
+        items[paletteIndex].scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    function openPalette() {
+      palette.classList.add('open');
+      paletteInput.value = '';
+      renderPalette(toolsData);
+      setTimeout(() => paletteInput.focus(), 50);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePalette() {
+      palette.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    openPaletteBtn.addEventListener('click', openPalette);
+    heroSearchBtn.addEventListener('click', openPalette);
+
+    paletteInput.addEventListener('input', () => {
+      const q = paletteInput.value.trim().toLowerCase();
+      const items = !q ? toolsData : toolsData.filter(t =>
+        t.name.toLowerCase().includes(q) ||
+        t.desc.toLowerCase().includes(q) ||
+        t.search.includes(q)
+      );
+      renderPalette(items);
+    });
+
+    paletteInput.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (paletteIndex < filteredTools.length - 1) {
+          paletteIndex++;
+          updateSelection();
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (paletteIndex > 0) {
+          paletteIndex--;
+          updateSelection();
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (filteredTools[paletteIndex]) {
+          window.open(filteredTools[paletteIndex].link, '_blank');
+          closePalette();
+        }
+      }
+    });
+
+    palette.addEventListener('click', (e) => {
+      if (e.target === palette) closePalette();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (palette.classList.contains('open')) closePalette();
+        else openPalette();
+      }
+      if (e.key === 'Escape' && palette.classList.contains('open')) {
+        closePalette();
+      }
+    });
+
+    /* ===== UPDATE COUNTS ===== */
+    document.getElementById('statTools').textContent = String(toolsData.length).padStart(2, '0');
+    document.getElementById('countAll').textContent = toolsData.length;
   </script>
 </body>
 </html>
